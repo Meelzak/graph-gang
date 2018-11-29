@@ -21,7 +21,7 @@ public class myInformation {
     public static final double ButtonWidthPercent=90;
     public static final double ButtonHelpHeightPercent=90;
     public static final double ButtonHelpWidthPercent=10;
-    public static final double ScrollPaneWidthPercent=40;
+    public static final double ListViewWidthPercent=40;
 
     public static final Dimension SmallMiddleBigButtonPercent=new Dimension(20,30);
     public static final Dimension TextfiledPercent=new Dimension(30,30);

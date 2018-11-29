@@ -129,15 +129,19 @@
 }
 .buttonNormal{
     -fx-background-color: -fx-color-normal;
+    -fx-font-size: 30;
 }
 .buttonNormal:hover{
     -fx-background-color: -fx-color-normal-hover;
+    -fx-font-size: 30;
 }
 .buttonClicked{
     -fx-background-color: -fx-color-normal-clicked;
+    -fx-font-size: 30;
 }
 
 .textfield{
+    -fx-font-size: 20;
 
 }
 .textfield:hover{
@@ -147,7 +151,7 @@
     -fx-alignment: center;
     -fx-spacing: 15;
 }
-.buttonRight2ScrollPane{
+.listView{
     -fx-alignment: center;
 }
 .buttonRight3HBox{
@@ -156,4 +160,16 @@
 }
 .label:hover{
     -fx-background-color: -fx-color-normal-hover;
+}
+.buttonMenu{
+    -fx-font-size: 20;
+}
+.buttonMenu:hover{
+
+}
+.enterStackPane{
+    -fx-alignment: BOTTOM_CENTER;
+}
+.enter{
+    -fx-font-size: 80;
 }

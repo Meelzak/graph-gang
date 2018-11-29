@@ -56,9 +56,13 @@ public class Game2 {
     private HBox newGraphHBox = new HBox();
     private Button newGraphButtonYes=new Button();
     private Button newGraphButtonNo=new Button();
+    private Starter starter;
     //Booleans
     public BooleanProperty booleanProperty= new SimpleBooleanProperty(false);
 
+    public Game2(Starter starter){
+        this.starter=starter;
+    }
 
     public Scene giveScene(){
         builder();
