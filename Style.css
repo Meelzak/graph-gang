@@ -154,3 +154,6 @@
     -fx-alignment: center;
     -fx-spacing: 15;
 }
+.label:hover{
+    -fx-background-color: -fx-color-normal-hover;
+}

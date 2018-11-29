@@ -4,7 +4,10 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class Starter extends Application{
+    private ChromaticManager chromaticManager = new ChromaticManager("C:/Users/cavid/Dropbox/Private/Final/src/GraphColoring/Graphs");
     public static void main(String[] args){
         launch(args);
     }
@@ -19,5 +22,8 @@ public class Starter extends Application{
         primaryStage.show();
 
 
+    }
+    public ArrayList giveGraphs(){
+        return chromaticManager.listFiles();
     }
 }

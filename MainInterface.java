@@ -2,15 +2,16 @@ package GraphColoring;
 
 import javafx.beans.property.*;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.Parent;
+
+import java.util.ArrayList;
 
 public class MainInterface {
     //Regions
@@ -57,7 +58,11 @@ public class MainInterface {
 
     private TextField textFieldVertices = new TextField();
     private TextField textFieldEdges = new TextField();
-
+    //test
+    private Label label = new Label("faejnk");
+    private Label label2 = new Label("faejnk");
+    private Label label3 = new Label("faejnk");
+    private VBox vBoxScrollPane = new VBox();
 //----------------------------------------------------------------------------------------------------------------
     public MainInterface(Starter starter){
         this.starter=starter;
@@ -115,7 +120,13 @@ public class MainInterface {
 
         //Phase 2 stuff
         buttonRight1HBox.getChildren().addAll(smallButton,middleButton,bigButton);
-
+        ListView listView = new ListView();
+        //listView.setItems(starter.giveGraphs());
+        ArrayList arrayList = starter.giveGraphs();
+        for(int i=0;i<arrayList.size();i++){
+            vBoxScrollPane.getChildren().add(new Label((String)arrayList.get(i)));
+        }
+        buttonRight2ScrollPane.setContent(vBoxScrollPane);
         buttonRight3HBox.getChildren().addAll(textFieldVertices,textFieldEdges);
     }
     private void setSize(double width,double height){
