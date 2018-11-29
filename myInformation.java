@@ -1,0 +1,25 @@
+package GraphColoring;
+
+import javafx.scene.paint.Color;
+
+import java.awt.*;
+
+public class myInformation {
+    //Game Interface
+    public static final Color colorNormal= Color.rgb(194, 156, 178, 0.50);
+    public static final double leftButtonsPercent=19.5;
+    public static final double upperButtonsPercent=15;
+    public static final double upperToDownPercent=3;//insert Upper
+    public static final double leftToRightPercent=12;//insert Left
+    public static final Dimension startDimension=new Dimension(1400,850);
+    public static final Dimension newGamemodeButtonsPercent=new Dimension(20,10);
+    public static final Dimension backButtonPercent=new Dimension(8,5);
+    //Menu Interface
+    public static final double topToBottomPercent=3;//Enter Top
+    public static final double leftToRigthPercent=60;
+    public static final double ButtonHeigthPercent=20;
+    public static final double ButtonWidthPercent=90;
+    public static final double ButtonHelpHeightPercent=90;
+    public static final double ButtonHelpWidthPercent=10;
+
+}
