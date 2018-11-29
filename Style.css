@@ -136,3 +136,21 @@
 .buttonClicked{
     -fx-background-color: -fx-color-normal-clicked;
 }
+
+.textfield{
+
+}
+.textfield:hover{
+
+}
+.buttonRight1HBox{
+    -fx-alignment: center;
+    -fx-spacing: 15;
+}
+.buttonRight2ScrollPane{
+    -fx-alignment: center;
+}
+.buttonRight3HBox{
+    -fx-alignment: center;
+    -fx-spacing: 15;
+}

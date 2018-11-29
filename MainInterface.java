@@ -89,6 +89,16 @@ public class MainInterface {
         buttonRight1.getStyleClass().add("buttonNormal");
         buttonRight2.getStyleClass().add("buttonNormal");
         buttonRight3.getStyleClass().add("buttonNormal");
+
+        smallButton.getStyleClass().add("buttonNormal");
+        middleButton.getStyleClass().add("buttonNormal");
+        bigButton.getStyleClass().add("buttonNormal");
+        textFieldVertices.getStyleClass().add("textfield");
+        textFieldEdges.getStyleClass().add("textfield");
+        //Regions p2
+        buttonRight1HBox.getStyleClass().add("buttonRight1HBox");
+        buttonRight2ScrollPane.getStyleClass().add("buttonRight2ScrollPane");
+        buttonRight3HBox.getStyleClass().add("buttonRight3HBox");
     }
     private void connect(){
         vBoxLeft.getChildren().addAll(buttonLeft1,buttonLeft2,buttonLeft3);
