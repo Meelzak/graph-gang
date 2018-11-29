@@ -17,9 +17,12 @@ public class myInformation {
     //Menu Interface
     public static final double topToBottomPercent=3;//Enter Top
     public static final double leftToRigthPercent=60;
-    public static final double ButtonHeigthPercent=20;
+    public static final double ButtonHeigthPercent=25;
     public static final double ButtonWidthPercent=90;
     public static final double ButtonHelpHeightPercent=90;
     public static final double ButtonHelpWidthPercent=10;
+    public static final double ScrollPaneWidthPercent=50;
 
+    public static final Dimension SmallMiddleBigButtonPercent=new Dimension(20,30);
+    public static final Dimension TextfiledPercent=new Dimension(30,30);
 }

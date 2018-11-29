@@ -1,12 +1,6 @@
 package GraphColoring;
 
 import javafx.application.Application;
-import javafx.beans.binding.BooleanBinding;
-import javafx.beans.binding.NumberBinding;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -17,7 +11,7 @@ public class Starter extends Application{
     @Override
     public void start(Stage primaryStage) {
         Game2 game2 = new Game2();
-        MainInterface mainInterface = new MainInterface();
+        MainInterface mainInterface = new MainInterface(this);
         Scene scene = mainInterface.getScene();
         primaryStage.setTitle("test");
         primaryStage.setScene(scene);

@@ -268,7 +268,6 @@ public class Game2 {
 
     }
     private void test(){
-        Font font = new Font("Cavid",100);
         left1Button.setText("test");
     }
     private void listen(){

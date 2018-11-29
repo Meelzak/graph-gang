@@ -1,6 +1,7 @@
 * {
     -fx-color-normal: rgba(88,139,174, 0.50);
     -fx-color-normal-hover: rgba(194, 156, 178, 0.70);
+    -fx-color-normal-clicked: rgba(194, 156, 178, 0.90);
     -fx-color-chooseButton: rgba(255, 255, 255, 0.90);
     -fx-color-chooseButton-hover: rgba(200, 200, 200, 0.90);
     -fx-color-background-menue: rgba(1, 1, 1, 0.50);
@@ -96,6 +97,15 @@
     -fx-spacing: 30;
     -fx-alignment: center;
 }
+
+
+
+
+
+
+
+
+
 .hBoxTop{
     -fx-alignment: bottom-right;
     -fx-background-color: -fx-color-top-bar;
@@ -122,4 +132,7 @@
 }
 .buttonNormal:hover{
     -fx-background-color: -fx-color-normal-hover;
+}
+.buttonClicked{
+    -fx-background-color: -fx-color-normal-clicked;
 }
