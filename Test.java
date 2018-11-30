@@ -32,19 +32,17 @@ public class Test extends Application {
     }
     @Override
     public void start(Stage primaryStage) {
-        Boolean b1=false;
-        Boolean b2=false;
         pane.setMinSize(800,800);
         stackPane.setMinSize(800,800);
         canvas.setHeight(800);
         canvas.setWidth(800);
         chromaticManager = new ChromaticManager("C:/Users/cavid/Dropbox/Private/Final/src/GraphColoring/Graphs");
-        Graph graph = chromaticManager.calculate(8,15);
+        Graph graph = chromaticManager.calculate(100,100);
         ArrayList<Dot> list = graph.getList();
         Random random = new Random();
         for(int i=0;i<list.size();i++){
-            int x=random.nextInt(300)+100;
-            int y=random.nextInt(300)+100;
+            int x=random.nextInt(400)+200;
+            int y=random.nextInt(400)+200;
             list.get(i).setPosition(new Position(x,y));
             pane.getChildren().add(list.get(i));
         }
@@ -54,8 +52,7 @@ public class Test extends Application {
 
 
         button.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
-
-            Timeline timeline = new Timeline(new KeyFrame(Duration.millis(166), ev -> {
+            Timeline timeline = new Timeline(new KeyFrame(Duration.millis(10), ev -> {
                 canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
                 ArrayList<Position> positionArrayList=new ArrayList();
                 for(int i=0;i<list.size();i++){
@@ -76,7 +73,7 @@ public class Test extends Application {
                     }
                 }
             }));
-            timeline.setCycleCount(10);
+            timeline.setCycleCount(1000);
             timeline.play();
 
         });

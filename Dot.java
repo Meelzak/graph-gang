@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class Dot extends Electron{
     private int content=0;
     private ArrayList<Dot> list;
+    private int coloredAs=0;
     public Dot(){
         //A class representing a single vertice of a graph
         list =new ArrayList<Dot>();
@@ -17,11 +18,11 @@ public class Dot extends Electron{
     public void setContent(int c){
         content = c;
     }
-    public int giveContent(){
-        return content;
-    }
+    public int giveContent(){ return content; }
     public ArrayList giveList(){
         return list;
     }
+    public void setColoredAs(int color){coloredAs=color;}
+    public int getColor(){ return coloredAs; }
 
 }
