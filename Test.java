@@ -32,18 +32,19 @@ public class Test extends Application {
     }
     @Override
     public void start(Stage primaryStage) {
-        pane.setMinSize(800,800);
-        stackPane.setMinSize(800,800);
-        canvas.setHeight(800);
-        canvas.setWidth(800);
+        pane.setMinSize(1000,1000);
+        stackPane.setMinSize(1000,1000);
+        canvas.setHeight(1000);
+        canvas.setWidth(1000);
         chromaticManager = new ChromaticManager("C:/Users/cavid/Dropbox/Private/Final/src/GraphColoring/Graphs");
-        Graph graph = chromaticManager.calculate(100,100);
+        Graph graph = chromaticManager.calculate(10,1000);
         ArrayList<Dot> list = graph.getList();
         Random random = new Random();
         for(int i=0;i<list.size();i++){
             int x=random.nextInt(400)+200;
             int y=random.nextInt(400)+200;
             list.get(i).setPosition(new Position(x,y));
+            list.get(i).setMinSize(30,30);
             pane.getChildren().add(list.get(i));
         }
         Button button = new Button("MacheWas");
@@ -63,13 +64,12 @@ public class Test extends Application {
                 for(int i=0;i<list.size();i++){
                     list.get(i).setPosition(positionArrayList.get(i));
                 }
-
                 for(int i=0;i<list.size();i++){
                     ArrayList<Dot> myList = list.get(i).giveList();
                     for(int x=0;x<myList.size();x++){
                         Position position1 = list.get(i).position;
                         Position position2 = myList.get(x).position;
-                        canvas.getGraphicsContext2D().strokeLine(position1.x,position1.y,position2.x,position2.y);
+                        canvas.getGraphicsContext2D().strokeLine(position1.x+15,position1.y+15,position2.x+15,position2.y+15);
                     }
                 }
             }));
@@ -77,9 +77,10 @@ public class Test extends Application {
             timeline.play();
 
         });
-        stackPane.getChildren().add(canvas);
         stackPane.getChildren().add(pane);
-        Scene scene = new Scene(stackPane,800,800);
+        canvas.setMouseTransparent(true);
+        stackPane.getChildren().add(canvas);
+        Scene scene = new Scene(stackPane,1000,1000);
         primaryStage.setTitle("test");
         primaryStage.setScene(scene);
         primaryStage.show();
