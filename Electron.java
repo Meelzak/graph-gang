@@ -7,6 +7,9 @@ import java.util.Random;
 
 public class Electron extends Button {
     public Position position;
+    public Electron(){
+
+    }
 
     public Electron(Position position){
         this.position=position;
@@ -20,7 +23,7 @@ public class Electron extends Button {
         this.position=p;
         this.relocate(position.x,position.y);
     }
-    public Vector calculateVector(Electron electron){
+    public Vector calculateVector(Dot electron){
         Vector vector= new Vector(this.position,electron.position);
         if(vector.length<=0){
             Random random = new Random();
@@ -45,21 +48,21 @@ public class Electron extends Button {
         return vector;
     }
     //needs connected Electron
-    public Vector calculateSpring(Electron electron){
+    public Vector calculateSpring(Dot electron){
         Vector vector= new Vector(this.position,electron.position);
         if(vector.length<=0){
             return vector;
         }
         double plannedDistance=0;
         plannedDistance=vector.length/Parameters.divideBy;
-        vector.multiply(plannedDistance/vector.length);
+        vector.multiply((plannedDistance/vector.length)*-1);
         return vector;
     }
 
 
 
 
-    public Position test(ArrayList<Electron> electronArrayList,ArrayList<Electron> connectedElectronsArrayList){
+    public Position test(ArrayList<Dot> electronArrayList,ArrayList<Dot> connectedElectronsArrayList){
         Vector finalVector = new Vector(0,0);
         for(int i=0;i<electronArrayList.size();i++){
             finalVector.add(this.calculateVector(electronArrayList.get(i)));

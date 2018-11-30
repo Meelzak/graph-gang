@@ -4,7 +4,7 @@ package GraphColoring;
  * Cavid Karca
  */
 import java.util.ArrayList;
-public class Dot{
+public class Dot extends Electron{
     private int content=0;
     private ArrayList<Dot> list;
     public Dot(){
