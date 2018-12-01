@@ -49,7 +49,7 @@ public class Generator{
         //The graph has transfered number of vertices and edges,if edges<0 a random number of edges 
         //between 0 and the maximal possible number of edges will be used, if edges>= maximal number of edges
         // max number of edges will be used
-    
+        System.out.println(vertices+" b "+edges);
         ArrayList list = doList2(vertices);
         if(edges>=list.size()){
             return list;
@@ -58,11 +58,14 @@ public class Generator{
         Random rand = new Random();
         int i=0;
         int r=edges;
+        if(vertices==1){
+            return newList;
+        }
         if(r<0){
-            r = rand.nextInt(list.size()-1)+1;
+            r = rand.nextInt(list.size())+1;
         }
         while(i<r){
-            int r1 = rand.nextInt(list.size()-1);
+            int r1 = rand.nextInt(list.size());
             newList.add(list.remove(r1));
             i++;
         }

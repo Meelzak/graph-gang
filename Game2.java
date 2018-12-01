@@ -6,12 +6,15 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
@@ -63,6 +66,21 @@ public class Game2 {
     private HBox newGraphHBox = new HBox();
     private Button newGraphButtonYes=new Button("Yes");
     private Button newGraphButtonNo=new Button("No");
+    //new Graph Mode
+    private HBox sMBHBox = new HBox();
+    private VBox listViewVBox = new VBox();
+    private Button smallButton = new Button("Small");
+    private Button middleButton = new Button("Middle");
+    private Button bigButton = new Button("Big");
+
+    private ListView listView = new ListView();
+
+    private HBox textFieldHBox = new HBox();
+    private TextField textFieldVertices = new TextField();
+    private TextField textFieldEdges = new TextField();
+    private Button buttonTextfield = new Button("Submit");
+    private Button submit2 = new Button("Submit");
+    private String myGraph="";
 
     //Display Stuff
     private Pane pane = new Pane();
@@ -122,6 +140,8 @@ public class Game2 {
         upperRestLabel = new Label();
         //test
         backPane.setPickOnBounds(false);
+        textFieldVertices.setPromptText("Vertices");
+        textFieldEdges.setPromptText("Edges");
     }
     private void styling(){
         canvasStackPane.getStyleClass().add("canvasStackPane");
@@ -150,10 +170,20 @@ public class Game2 {
         newGraphModebutton1.getStyleClass().add("chooseButtons");
         newGraphModebutton2.getStyleClass().add("chooseButtons");
         newGraphModebutton3.getStyleClass().add("chooseButtons");
+        sMBHBox.getStyleClass().add("newGraphModeHBox");
+        smallButton.getStyleClass().add("chooseButtons");
+        middleButton.getStyleClass().add("chooseButtons");
+        bigButton.getStyleClass().add("chooseButtons");
+        textFieldHBox.getStyleClass().add("newGraphModeHBox");
+        buttonTextfield.getStyleClass().add("chooseButtons");
         //new Graph
         newGraphHBox.getStyleClass().add("newGraphHBox");
         newGraphButtonYes.getStyleClass().add("chooseButtons");
         newGraphButtonNo.getStyleClass().add("chooseButtons");
+        submit2.getStyleClass().add("chooseButtons");
+        listViewVBox.getStyleClass().add("newGraphHBox");
+        textFieldVertices.getStyleClass().add("textfield");
+        textFieldEdges.getStyleClass().add("textfield");
     }
     public void setSize(double width, double height){
         double topLaneHeight=height/100*myInformation.upperToDownPercent;
@@ -188,6 +218,9 @@ public class Game2 {
 
         stackPane.setMinSize(width, height);
         stackPane.setMaxSize(width, height);
+
+        listViewVBox.setMinSize(width, height);
+        listViewVBox.setMaxSize(width, height);
         //Objects
         upperLeftButton.setMinSize(leftSideWidth,topLaneHeight);
         upperLeftButton.setMaxSize(leftSideWidth,topLaneHeight);
@@ -266,6 +299,31 @@ public class Game2 {
 
         newGraphModebutton3.setMinSize(nBWidth,nBHeight);
         newGraphModebutton3.setMaxSize(nBWidth,nBHeight);
+
+        sMBHBox.setMinSize(width,height);
+        sMBHBox.setMaxSize(width,height);
+        smallButton.setMinSize(nBWidth,nBHeight);
+        smallButton.setMaxSize(nBWidth,nBHeight);
+        middleButton.setMinSize(nBWidth,nBHeight);
+        middleButton.setMaxSize(nBWidth,nBHeight);
+        bigButton.setMinSize(nBWidth,nBHeight);
+        bigButton.setMaxSize(nBWidth,nBHeight);
+
+        listView.setMinSize(width/8,height/2);
+        listView.setMaxSize(width/8,height/2);
+        submit2.setMinSize(width/8,height/10);
+        submit2.setMaxSize(width/8,height/10);
+
+        textFieldHBox.setMinSize(width,height);
+        textFieldHBox.setMaxSize(width,height);
+        textFieldVertices.setMinSize(nBWidth,nBHeight);
+        textFieldVertices.setMaxSize(nBWidth,nBHeight);
+        textFieldEdges.setMinSize(nBWidth,nBHeight);
+        textFieldEdges.setMaxSize(nBWidth,nBHeight);
+
+        buttonTextfield.setMinSize(nBWidth/2,nBHeight);
+        buttonTextfield.setMaxSize(nBWidth/2,nBHeight);
+
         //New Graph
         newGraphHBox.setMinSize(width,height);
         newGraphHBox.setMaxSize(width,height);
@@ -292,6 +350,10 @@ public class Game2 {
         newGraphModeHBox.getChildren().addAll(newGraphModebutton1,newGraphModebutton2,newGraphModebutton3);
         //new Graph
         newGraphHBox.getChildren().addAll(newGraphButtonYes,newGraphButtonNo);
+
+        sMBHBox.getChildren().addAll(smallButton,middleButton,bigButton);
+        textFieldHBox.getChildren().addAll(textFieldVertices,textFieldEdges,buttonTextfield);
+        listViewVBox.getChildren().addAll(listView,submit2);
 
     }
     private void test(){
@@ -324,24 +386,21 @@ public class Game2 {
         });
         //Back Button
         backButton.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
-            stackPane.getChildren().removeAll(newGraphHBox,newGamemodeHBox,newGraphModeHBox,backPane);
+            stackPane.getChildren().removeAll(newGraphHBox,newGamemodeHBox,newGraphModeHBox,sMBHBox,backPane,listView,textFieldHBox,listViewVBox);
         });
         //Other Buttons
         newGraphButtonYes.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             stackPane.getChildren().removeAll(newGraphHBox,backPane);
             if(graphMode==1){
                 Random random = new Random();
-                int small=7;
-                int middle=14;
-                int big=20;
                 if(selectedSize==1){
-                    setDisplay(chromaticManager.calculate(random.nextInt(small)+1,-1));
+                    setDisplay(chromaticManager.calculate(random.nextInt(myInformation.smallGraph)+1,-1));
                 }
                 if(selectedSize==2){
-                    setDisplay(chromaticManager.calculate(random.nextInt(middle)+small,-1));
+                    setDisplay(chromaticManager.calculate(random.nextInt(myInformation.middleGraph-myInformation.smallGraph)+myInformation.smallGraph+1,-1));
                 }
                 if(selectedSize==3){
-                    setDisplay(chromaticManager.calculate(random.nextInt(big)+middle,-1));
+                    setDisplay(chromaticManager.calculate(random.nextInt(myInformation.bigGraph-myInformation.middleGraph)+myInformation.middleGraph+1,-1));
                 }
             }
             if(graphMode==2){
@@ -353,6 +412,60 @@ public class Game2 {
         });
         newGraphButtonNo.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             stackPane.getChildren().removeAll(newGraphHBox,backPane);
+        });
+        newGraphModebutton1.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
+            stackPane.getChildren().removeAll(newGraphModeHBox,backPane);
+            stackPane.getChildren().addAll(sMBHBox,backPane);
+        });
+        newGraphModebutton2.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
+            listView.setItems(FXCollections.observableArrayList(starter.giveGraphs()));
+            stackPane.getChildren().removeAll(newGraphModeHBox,backPane);
+            stackPane.getChildren().addAll(listViewVBox,backPane);
+        });
+        newGraphModebutton3.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
+            stackPane.getChildren().removeAll(newGraphModeHBox,backPane);
+            stackPane.getChildren().addAll(textFieldHBox,backPane);
+        });
+        //New Graphs Buttons
+        smallButton.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
+            stackPane.getChildren().removeAll(sMBHBox,backPane);
+            graphMode=1;
+            selectedSize=1;
+            Random random = new Random();
+            setDisplay(chromaticManager.calculate(random.nextInt(myInformation.smallGraph)+1,-1));
+        });
+        middleButton.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
+            stackPane.getChildren().removeAll(sMBHBox,backPane);
+            graphMode=1;
+            selectedSize=2;
+            Random random = new Random();
+            setDisplay(chromaticManager.calculate(random.nextInt(myInformation.middleGraph-myInformation.smallGraph)+myInformation.smallGraph+1,-1));
+        });
+        bigButton.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
+            stackPane.getChildren().removeAll(sMBHBox,backPane);
+            graphMode=1;
+            selectedSize=3;
+            Random random = new Random();
+            setDisplay(chromaticManager.calculate(random.nextInt(myInformation.bigGraph-myInformation.middleGraph)+myInformation.middleGraph+1,-1));
+        });
+        listView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            myGraph=newValue.toString();
+        });
+        submit2.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
+            stackPane.getChildren().removeAll(listViewVBox,backPane);
+            graphMode=2;
+            setDisplay(chromaticManager.calculate(myGraph));
+        });
+        buttonTextfield.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
+            graphMode=3;
+            try {
+                stackPane.getChildren().removeAll(textFieldHBox,backPane);
+                myVertices = Integer.parseInt(textFieldVertices.getText());
+                myEdges = Integer.parseInt(textFieldEdges.getText());
+                setDisplay(chromaticManager.calculate(myVertices,myEdges));
+            }catch (NumberFormatException e){
+
+            }
         });
 
     }
@@ -371,7 +484,7 @@ public class Game2 {
             pane.getChildren().add(list.get(i));
         }
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(10), ev -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1), ev -> {
             canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
             canvas.getGraphicsContext2D().strokeRect(canvas.getWidth()/2,canvas.getHeight()/2,10,10);
             ArrayList<Position> positionArrayList=new ArrayList();
@@ -392,7 +505,7 @@ public class Game2 {
                 }
             }
         }));
-        timeline.setCycleCount(250);
+        timeline.setCycleCount(10000);
         timeline.play();
 
     }

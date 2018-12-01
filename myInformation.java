@@ -25,4 +25,8 @@ public class myInformation {
 
     public static final Dimension SmallMiddleBigButtonPercent=new Dimension(20,30);
     public static final Dimension TextfiledPercent=new Dimension(30,30);
+
+    public static final int smallGraph=5;
+    public static final int middleGraph=10;
+    public static final int bigGraph=15;
 }

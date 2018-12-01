@@ -43,17 +43,14 @@ public class Starter extends Application{
                 game2.graphMode=1;
                 game2.selectedSize=mainInterface.selectedSize;
                 Random random = new Random();
-                int small=7;
-                int middle=14;
-                int big=20;
                 if(mainInterface.selectedSize==1){
-                    game2.currentGraph=chromaticManager.calculate(random.nextInt(small+1)+1,-1);
+                    game2.currentGraph=chromaticManager.calculate(random.nextInt(myInformation.smallGraph)+1,-1);
                 }
                 if(mainInterface.selectedSize==2){
-                    game2.currentGraph=chromaticManager.calculate(random.nextInt(middle+1)+small,-1);
+                    game2.currentGraph=chromaticManager.calculate(random.nextInt(myInformation.middleGraph-myInformation.smallGraph)+myInformation.smallGraph+1,-1);
                 }
                 if(mainInterface.selectedSize==3){
-                    game2.currentGraph=chromaticManager.calculate(random.nextInt(big+1)+middle,-1);
+                    game2.currentGraph=chromaticManager.calculate(random.nextInt(myInformation.bigGraph-myInformation.middleGraph)+myInformation.middleGraph+1,-1);
                 }
             }
             if(mainInterface.graphMode==2){
