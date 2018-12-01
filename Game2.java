@@ -1,4 +1,6 @@
 package GraphColoring;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -13,6 +15,11 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
+import javafx.util.Duration;
+
+import java.util.ArrayList;
+import java.util.Random;
+
 public class Game2 {
     //Regions
     private VBox leftVBox;
@@ -56,10 +63,19 @@ public class Game2 {
     private HBox newGraphHBox = new HBox();
     private Button newGraphButtonYes=new Button();
     private Button newGraphButtonNo=new Button();
+
+    //Display Stuff
+    private Pane pane = new Pane();
+    private ChromaticManager chromaticManager = new ChromaticManager("C:/Users/cavid/Dropbox/Private/Final/src/GraphColoring/Graphs");
+    private Graph currentGraph;
+
+
+
     private Starter starter;
     //Booleans
     public BooleanProperty booleanProperty= new SimpleBooleanProperty(false);
 
+    //-------------------------------------------------------------------------------------
     public Game2(Starter starter){
         this.starter=starter;
     }
@@ -73,6 +89,7 @@ public class Game2 {
         test();
         styling();
         listen();
+        canvas.setMouseTransparent(true);
         return scene;
 
     }
@@ -157,6 +174,8 @@ public class Game2 {
         canvas.setWidth(rightSideWidth);
         canvas.setHeight(bottomLaneHeight);
 
+        pane.setMinSize(rightSideWidth,bottomLaneHeight);
+        pane.setMaxSize(rightSideWidth,bottomLaneHeight);
         canvasStackPane.setMinSize(rightSideWidth,bottomLaneHeight);
         canvasStackPane.setMaxSize(rightSideWidth,bottomLaneHeight);
 
@@ -257,7 +276,7 @@ public class Game2 {
     private void insert(){
         leftVBox.getChildren().addAll(upperLeftButton,left1Button,left2Button,left3Button,left4Button,left5Button,leftRestLabel);
         upperHBox.getChildren().addAll(upper1Label,upper2Label,upper3Label);
-        canvasStackPane.getChildren().add(canvas);
+        canvasStackPane.getChildren().addAll(pane,canvas);
         rightVBox.getChildren().addAll(upperHBox,canvasStackPane);
         flowPane.getChildren().addAll(leftVBox,rightVBox);
         stackPane.getChildren().addAll(flowPane);
@@ -286,6 +305,7 @@ public class Game2 {
         //Button Listeners
         left1Button.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             booleanProperty.setValue(true);
+            setDisplay(chromaticManager.calculate(20,30));
         });
         left2Button.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             stackPane.getChildren().add(newGraphHBox);
@@ -303,6 +323,44 @@ public class Game2 {
         backButton.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             stackPane.getChildren().removeAll(newGraphHBox,newGamemodeHBox,newGraphModeHBox,backPane);
         });
+
+    }
+    private void setDisplay(Graph graph){
+        double myWidth=canvas.getWidth();
+        double myHeight=canvas.getHeight();
+        ArrayList<Dot> list = graph.getList();
+        Random random = new Random();
+        for(int i=0;i<list.size();i++){
+            int x=random.nextInt((int)Math.round(myWidth/4))+(int)Math.round((myWidth/2)-myWidth/8);
+            int y=random.nextInt((int)Math.round(myHeight/4))+(int)Math.round((myHeight/2)-myHeight/8);
+            list.get(i).setPosition(new Position(x,y));
+            list.get(i).setMinSize(30,30);
+            pane.getChildren().add(list.get(i));
+        }
+
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(10), ev -> {
+            canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+            canvas.getGraphicsContext2D().strokeRect(canvas.getWidth()/2,canvas.getHeight()/2,10,10);
+            ArrayList<Position> positionArrayList=new ArrayList();
+            for(int i=0;i<list.size();i++){
+                Dot d= list.remove(i);
+                positionArrayList.add(d.test(list,d.giveList(),canvas.getWidth(),canvas.getHeight()));
+                list.add(i,d);
+            }
+            for(int i=0;i<list.size();i++){
+                list.get(i).setPosition(positionArrayList.get(i));
+            }
+            for(int i=0;i<list.size();i++){
+                ArrayList<Dot> myList = list.get(i).giveList();
+                for(int x=0;x<myList.size();x++){
+                    Position position1 = list.get(i).position;
+                    Position position2 = myList.get(x).position;
+                    canvas.getGraphicsContext2D().strokeLine(position1.x+15,position1.y+15,position2.x+15,position2.y+15);
+                }
+            }
+        }));
+        timeline.setCycleCount(1000);
+        timeline.play();
 
     }
 }

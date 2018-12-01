@@ -32,12 +32,13 @@ public class Test extends Application {
     }
     @Override
     public void start(Stage primaryStage) {
-        pane.setMinSize(1000,1000);
-        stackPane.setMinSize(1000,1000);
-        canvas.setHeight(1000);
-        canvas.setWidth(1000);
+        pane.setMinSize(800,800);
+        stackPane.setMinSize(800,800);
+        canvas.setHeight(800);
+        canvas.setWidth(800);
+        canvas.getGraphicsContext2D().strokeRect(400,400,10,10);
         chromaticManager = new ChromaticManager("C:/Users/cavid/Dropbox/Private/Final/src/GraphColoring/Graphs");
-        Graph graph = chromaticManager.calculate(10,1000);
+        Graph graph = chromaticManager.calculate(1,1000);
         ArrayList<Dot> list = graph.getList();
         Random random = new Random();
         for(int i=0;i<list.size();i++){
@@ -55,10 +56,11 @@ public class Test extends Application {
         button.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             Timeline timeline = new Timeline(new KeyFrame(Duration.millis(10), ev -> {
                 canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+                canvas.getGraphicsContext2D().strokeRect(500,500,10,10);
                 ArrayList<Position> positionArrayList=new ArrayList();
                 for(int i=0;i<list.size();i++){
                     Dot d= list.remove(i);
-                    positionArrayList.add(d.test(list,d.giveList()));
+                    positionArrayList.add(d.test(list,d.giveList(),canvas.getWidth(),canvas.getHeight()));
                     list.add(i,d);
                 }
                 for(int i=0;i<list.size();i++){
@@ -80,7 +82,7 @@ public class Test extends Application {
         stackPane.getChildren().add(pane);
         canvas.setMouseTransparent(true);
         stackPane.getChildren().add(canvas);
-        Scene scene = new Scene(stackPane,1000,1000);
+        Scene scene = new Scene(stackPane,800,800);
         primaryStage.setTitle("test");
         primaryStage.setScene(scene);
         primaryStage.show();

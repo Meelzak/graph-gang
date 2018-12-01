@@ -11,6 +11,7 @@ public class Dot extends Electron{
     public Dot(){
         //A class representing a single vertice of a graph
         list =new ArrayList<Dot>();
+        this.setMinSize(30,30);
     }
     public void setConnection(Dot dot){
         list.add(dot);

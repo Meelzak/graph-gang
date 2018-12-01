@@ -44,7 +44,7 @@ public class Electron extends Button {
         }else{
             plannedDistance=0;
         }
-        vector.multiply(plannedDistance/vector.length*-1);
+        vector.multiply(plannedDistance/vector.length);
         return vector;
     }
     //needs connected Electron
@@ -60,36 +60,41 @@ public class Electron extends Button {
         else{
             plannedDistance=Parameters.maxPushOfSpring/Parameters.pushOfToSpring*vector.length;
         }
-        vector.multiply((plannedDistance/vector.length));
+        vector.multiply((plannedDistance/vector.length)*-1);
         return vector;
     }
-    public Vector borderPush(){
-        double witdth = 800;
-        double heigth = 800;
-        double plannedDistance=0;
+    public Vector borderPush(double witdth,double heigth){
         Vector vectorTop = new Vector(new Position(position.x,0),this.position);
-        plannedDistance=Parameters.maxPushOfBorder-Math.pow(Math.pow(Parameters.maxPushOfBorder,1/Parameters.pushOfToBorder),vectorTop.length);
-        vectorTop.multiply(plannedDistance/vectorTop.length);
-        Vector vectorBottom = new Vector(new Position(position.x,witdth),this.position);
-        plannedDistance=Parameters.maxPushOfBorder-Math.pow(Math.pow(Parameters.maxPushOfBorder,1/Parameters.pushOfToBorder),vectorBottom.length);
-        vectorBottom.multiply(plannedDistance/vectorTop.length);
+        vectorTop.multiply(borderAlgorithm(vectorTop)/vectorTop.length*-1);
+
+        Vector vectorBottom = new Vector(new Position(position.x,heigth),this.position);
+        vectorBottom.multiply(borderAlgorithm(vectorBottom)/vectorBottom.length*-1);
+
         Vector vectorRight = new Vector(new Position(0,position.y),this.position);
-        plannedDistance=Parameters.maxPushOfBorder-Math.pow(Math.pow(Parameters.maxPushOfBorder,1/Parameters.pushOfToBorder),vectorRight.length);
-        vectorRight.multiply(plannedDistance/vectorTop.length);
-        Vector vectorLeft = new Vector(new Position(heigth,position.y),this.position);
-        plannedDistance=Parameters.maxPushOfBorder-Math.pow(Math.pow(Parameters.maxPushOfBorder,1/Parameters.pushOfToBorder),vectorLeft.length);
-        vectorLeft.multiply(plannedDistance/vectorTop.length);
+        vectorRight.multiply(borderAlgorithm(vectorRight)/vectorRight.length*-1);
+
+        Vector vectorLeft = new Vector(new Position(witdth,position.y),this.position);
+        vectorLeft.multiply(borderAlgorithm(vectorLeft)/vectorLeft.length*-1);
+
         vectorTop.add(vectorBottom);
         vectorTop.add(vectorRight);
         vectorTop.add(vectorLeft);
-        System.out.println(vectorTop.oben+" "+vectorTop.unten);
         return vectorTop;
+    }
+    private double borderAlgorithm(Vector vector){
+        if(vector.length<=0){
+            return Parameters.maxPushOfBorder;
+        }
+        if(vector.length>=Parameters.pushOfToBorder){
+            return 0;
+        }
+        return Parameters.maxPushOfBorder-(Parameters.maxPushOfBorder/Parameters.pushOfToBorder*vector.length);
     }
 
 
 
 
-    public Position test(ArrayList<Dot> electronArrayList,ArrayList<Dot> connectedElectronsArrayList){
+    public Position test(ArrayList<Dot> electronArrayList,ArrayList<Dot> connectedElectronsArrayList,double width,double height){
         Vector finalVector = new Vector(0,0);
 
         for(int i=0;i<electronArrayList.size();i++){
@@ -97,7 +102,7 @@ public class Electron extends Button {
         }
 
 
-       finalVector.add(this.borderPush());
+        finalVector.add(this.borderPush(width,height));
 
 
         for(int i=0;i<connectedElectronsArrayList.size();i++){

@@ -10,8 +10,8 @@ public class Vector {
     }
     //show 1 to 2
     public Vector(Position p1,Position p2){
-        oben=p1.x-p2.x;
-        unten=p1.y-p2.y;
+        oben=p2.x-p1.x;
+        unten=p2.y-p1.y;
         length= Math.sqrt(this.oben*this.oben+this.unten*this.unten);
     }
     public void multiply(double multiplier){
