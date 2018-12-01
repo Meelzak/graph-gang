@@ -48,27 +48,31 @@ public class Game2 {
 
     //New GameMode Button
     private HBox newGamemodeHBox=new HBox();
-    private Button newGamemodebutton1=new Button();
-    private Button newGamemodebutton2=new Button();
-    private Button newGamemodebutton3=new Button();
+    private Button newGamemodebutton1=new Button("Bitter End");
+    private Button newGamemodebutton2=new Button("Best upper Bound");
+    private Button newGamemodebutton3=new Button("Random Order");
     //Back Button
     private StackPane backPane=new StackPane();
-    private Button backButton=new Button();
+    private Button backButton=new Button("Back");
     //New GraphMode
     private HBox newGraphModeHBox=new HBox();
-    private Button newGraphModebutton1=new Button();
-    private Button newGraphModebutton2=new Button();
-    private Button newGraphModebutton3=new Button();
+    private Button newGraphModebutton1=new Button("Random Graph");
+    private Button newGraphModebutton2=new Button("Graph from Textfile");
+    private Button newGraphModebutton3=new Button("Create Graph");
     //New Graph Yes or No
     private HBox newGraphHBox = new HBox();
-    private Button newGraphButtonYes=new Button();
-    private Button newGraphButtonNo=new Button();
+    private Button newGraphButtonYes=new Button("Yes");
+    private Button newGraphButtonNo=new Button("No");
 
     //Display Stuff
     private Pane pane = new Pane();
     private ChromaticManager chromaticManager = new ChromaticManager("C:/Users/cavid/Dropbox/Private/Final/src/GraphColoring/Graphs");
-    private Graph currentGraph;
-
+    public Graph currentGraph;
+    public int graphMode=0;
+    public String txtGraph="";
+    public int myEdges=0;
+    public int myVertices=0;
+    public int selectedSize=0;
 
 
     private Starter starter;
@@ -104,10 +108,10 @@ public class Game2 {
         stackPane = new StackPane();
         //Objects
         //Left
-        left1Button = new Button();
-        left2Button = new Button();
-        left3Button = new Button();
-        left4Button = new Button();
+        left1Button = new Button("Hint");
+        left2Button = new Button("New Graph");
+        left3Button = new Button("New GameMode");
+        left4Button = new Button("New GraphMode");
         left5Button = new Button();
         leftRestLabel = new Label();
         //Up
@@ -151,7 +155,7 @@ public class Game2 {
         newGraphButtonYes.getStyleClass().add("chooseButtons");
         newGraphButtonNo.getStyleClass().add("chooseButtons");
     }
-    private void setSize(double width, double height){
+    public void setSize(double width, double height){
         double topLaneHeight=height/100*myInformation.upperToDownPercent;
         double bottomLaneHeight=height-topLaneHeight;
         double leftSideWidth=width/100*myInformation.leftToRightPercent;
@@ -291,7 +295,7 @@ public class Game2 {
 
     }
     private void test(){
-        left1Button.setText("test");
+        //left1Button.setText("test");
     }
     private void listen(){
         //new Size Listeners
@@ -305,7 +309,6 @@ public class Game2 {
         //Button Listeners
         left1Button.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             booleanProperty.setValue(true);
-            setDisplay(chromaticManager.calculate(20,30));
         });
         left2Button.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             stackPane.getChildren().add(newGraphHBox);
@@ -323,11 +326,41 @@ public class Game2 {
         backButton.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             stackPane.getChildren().removeAll(newGraphHBox,newGamemodeHBox,newGraphModeHBox,backPane);
         });
+        //Other Buttons
+        newGraphButtonYes.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
+            stackPane.getChildren().removeAll(newGraphHBox,backPane);
+            if(graphMode==1){
+                Random random = new Random();
+                int small=7;
+                int middle=14;
+                int big=20;
+                if(selectedSize==1){
+                    setDisplay(chromaticManager.calculate(random.nextInt(small)+1,-1));
+                }
+                if(selectedSize==2){
+                    setDisplay(chromaticManager.calculate(random.nextInt(middle)+small,-1));
+                }
+                if(selectedSize==3){
+                    setDisplay(chromaticManager.calculate(random.nextInt(big)+middle,-1));
+                }
+            }
+            if(graphMode==2){
+                setDisplay(starter.chromaticManager.calculate(txtGraph));
+            }
+            if(graphMode==3){
+                setDisplay(starter.chromaticManager.calculate(myVertices,myEdges));
+            }
+        });
+        newGraphButtonNo.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
+            stackPane.getChildren().removeAll(newGraphHBox,backPane);
+        });
 
     }
     private void setDisplay(Graph graph){
+        clear();
         double myWidth=canvas.getWidth();
         double myHeight=canvas.getHeight();
+        System.out.println(myWidth+" "+myHeight);
         ArrayList<Dot> list = graph.getList();
         Random random = new Random();
         for(int i=0;i<list.size();i++){
@@ -359,8 +392,15 @@ public class Game2 {
                 }
             }
         }));
-        timeline.setCycleCount(1000);
+        timeline.setCycleCount(250);
         timeline.play();
 
+    }
+    public void setGraph(){
+        setDisplay(currentGraph);
+    }
+    public void clear(){
+        canvas.getGraphicsContext2D().clearRect(canvas.getWidth(),canvas.getHeight(),1,1);
+        pane.getChildren().clear();
     }
 }

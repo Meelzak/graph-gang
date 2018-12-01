@@ -33,30 +33,35 @@
 }
 .left1Button{
     -fx-background-color: -fx-color-normal;
+    -fx-font-size: 20;
 }
 .left1Button:hover{
     -fx-background-color: -fx-color-normal-hover;
 }
 .left2Button{
     -fx-background-color: -fx-color-normal;
+    -fx-font-size: 20;
 }
 .left2Button:hover{
     -fx-background-color: -fx-color-normal-hover;
 }
 .left3Button{
     -fx-background-color: -fx-color-normal;
+    -fx-font-size: 20;
 }
 .left3Button:hover{
     -fx-background-color: -fx-color-normal-hover;
 }
 .left4Button{
     -fx-background-color: -fx-color-normal;
+    -fx-font-size: 20;
 }
 .left4Button:hover{
     -fx-background-color: -fx-color-normal-hover;
 }
 .left5Button{
     -fx-background-color: -fx-color-normal;
+    -fx-font-size: 20;
 }
 .left5Button:hover{
     -fx-background-color: -fx-color-normal-hover;
@@ -70,6 +75,7 @@
 }
 .chooseButtons{
     -fx-background-color: -fx-color-chooseButton;
+    -fx-font-size: 20;
 }
 .chooseButtons:hover{
     -fx-background-color: -fx-color-chooseButton-hover;
@@ -81,6 +87,8 @@
 .backButton{
     -fx-background-image: url("backArrow.png");
     -fx-background-repeat: stretch;
+    -fx-font-size: 20;
+
 }
 .backButton:hover{
     -fx-background-color: #a58396;
