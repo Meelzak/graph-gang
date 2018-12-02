@@ -10,6 +10,7 @@ public class Graph{
     private int upperBound=-1;
     private int lowerBound=-1;
     private int cNumber=-1;
+    private int hints=0;
     private ArrayList<Dot> list;
     public Graph(int vertices,int edges,ArrayList list){
         //A class were all information of a Graph are safed
@@ -46,5 +47,6 @@ public class Graph{
     public int getCNumber(){
         return cNumber;
     }
-
+    public int getHints() { return hints; }
+    public void addHints(int hints) { this.hints = this.hints+hints; }
 }

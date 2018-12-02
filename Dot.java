@@ -65,6 +65,18 @@ public class Dot extends Electron {
             hBox.getChildren().removeAll(listView);
             hBox.getChildren().add(listView);
         });
+        mainButton.addEventHandler(MouseEvent.MOUSE_ENTERED,event -> {
+            for(int i=0;i<list.size();i++){
+                list.get(i).mainButton.getStyleClass().removeAll("graphB");
+                list.get(i).mainButton.getStyleClass().add("graphNeighbour");
+            }
+        });
+        mainButton.addEventHandler(MouseEvent.MOUSE_EXITED,event -> {
+            for(int i=0;i<list.size();i++){
+                list.get(i).mainButton.getStyleClass().removeAll("graphNeighbour");
+                list.get(i).mainButton.getStyleClass().add("graphB");
+            }
+        });
     }
 
 }

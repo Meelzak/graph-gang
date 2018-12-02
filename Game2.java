@@ -91,7 +91,7 @@ public class Game2 {
 
     //Display Stuff
     private Pane pane = new Pane();
-    private ChromaticManager chromaticManager = new ChromaticManager("D:/Universiteit/Jaar 1/Second period/Project 1.2/GitHub/src/GraphColoring/Graphs");
+    private ChromaticManager chromaticManager;
     public Graph currentGraph;
     public int graphMode=0;
     public String txtGraph="";
@@ -106,6 +106,7 @@ public class Game2 {
 
     //-------------------------------------------------------------------------------------
     public Game2(Starter starter){
+        chromaticManager = starter.chromaticManager;
         this.starter=starter;
     }
 
@@ -385,12 +386,10 @@ public class Game2 {
         });
         //Button Listeners
         left1HintButton.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
-            booleanProperty.setValue(true);
-            HintButtonCounter++;
-            if(HintButtonCounter==1){
-                Hint hint = new Hint();
-                int upperBound = hint.giveUpperbound();
-                upperBoundLabel.setText(Integer.toString(upperBound));
+            if(HintButtonCounter==0){
+
+                upperBoundLabel.setText(Integer.toString(currentGraph.getUpperBound()));
+                currentGraph.addHints(1);
             }
         });
         left2Button.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
@@ -415,20 +414,25 @@ public class Game2 {
             if(graphMode==1){
                 Random random = new Random();
                 if(selectedSize==1){
-                    setDisplay(chromaticManager.calculate(random.nextInt(myInformation.smallGraph)+1,-1));
+                    currentGraph=chromaticManager.calculate(random.nextInt(myInformation.smallGraph)+1,-1);
+                    setDisplay(currentGraph);
                 }
                 if(selectedSize==2){
-                    setDisplay(chromaticManager.calculate(random.nextInt(myInformation.middleGraph-myInformation.smallGraph)+myInformation.smallGraph+1,-1));
+                    currentGraph=chromaticManager.calculate(random.nextInt(myInformation.middleGraph-myInformation.smallGraph)+myInformation.smallGraph+1,-1);
+                    setDisplay(currentGraph);
                 }
                 if(selectedSize==3){
-                    setDisplay(chromaticManager.calculate(random.nextInt(myInformation.bigGraph-myInformation.middleGraph)+myInformation.middleGraph+1,-1));
+                    currentGraph=chromaticManager.calculate(random.nextInt(myInformation.bigGraph-myInformation.middleGraph)+myInformation.middleGraph+1,-1);
+                    setDisplay(currentGraph);
                 }
             }
             if(graphMode==2){
-                setDisplay(starter.chromaticManager.calculate(txtGraph));
+                currentGraph=starter.chromaticManager.calculate(txtGraph);
+                setDisplay(currentGraph);
             }
             if(graphMode==3){
-                setDisplay(starter.chromaticManager.calculate(myVertices,myEdges));
+                currentGraph=starter.chromaticManager.calculate(myVertices,myEdges);
+                setDisplay(currentGraph);
             }
         });
         newGraphButtonNo.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
@@ -453,21 +457,24 @@ public class Game2 {
             graphMode=1;
             selectedSize=1;
             Random random = new Random();
-            setDisplay(chromaticManager.calculate(random.nextInt(myInformation.smallGraph)+1,-1));
+            currentGraph=chromaticManager.calculate(random.nextInt(myInformation.smallGraph)+1,-1);
+            setDisplay(currentGraph);
         });
         middleButton.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             stackPane.getChildren().removeAll(sMBHBox,backPane);
             graphMode=1;
             selectedSize=2;
             Random random = new Random();
-            setDisplay(chromaticManager.calculate(random.nextInt(myInformation.middleGraph-myInformation.smallGraph)+myInformation.smallGraph+1,-1));
+            currentGraph=chromaticManager.calculate(random.nextInt(myInformation.middleGraph-myInformation.smallGraph)+myInformation.smallGraph+1,-1);
+            setDisplay(currentGraph);
         });
         bigButton.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             stackPane.getChildren().removeAll(sMBHBox,backPane);
             graphMode=1;
             selectedSize=3;
             Random random = new Random();
-            setDisplay(chromaticManager.calculate(random.nextInt(myInformation.bigGraph-myInformation.middleGraph)+myInformation.middleGraph+1,-1));
+            currentGraph=chromaticManager.calculate(random.nextInt(myInformation.bigGraph-myInformation.middleGraph)+myInformation.middleGraph+1,-1);
+            setDisplay(currentGraph);
         });
         listView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             myGraph=newValue.toString();
@@ -475,7 +482,8 @@ public class Game2 {
         submit2.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             stackPane.getChildren().removeAll(listViewVBox,backPane);
             graphMode=2;
-            setDisplay(chromaticManager.calculate(myGraph));
+            currentGraph=chromaticManager.calculate(myGraph);
+            setDisplay(currentGraph);
         });
         buttonTextfield.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             graphMode=3;
@@ -483,7 +491,8 @@ public class Game2 {
                 stackPane.getChildren().removeAll(textFieldHBox,backPane);
                 myVertices = Integer.parseInt(textFieldVertices.getText());
                 myEdges = Integer.parseInt(textFieldEdges.getText());
-                setDisplay(chromaticManager.calculate(myVertices,myEdges));
+                currentGraph=chromaticManager.calculate(myVertices,myEdges);
+                setDisplay(currentGraph);
             }catch (NumberFormatException e){
 
             }

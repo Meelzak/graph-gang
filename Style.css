@@ -20,7 +20,7 @@
 
 }
 .myLabelTest2{
-
+    -fx-font-size: 25;
 }
 .leftVBox{
     -fx-spacing: 3;
@@ -190,8 +190,11 @@
 .graphB{
     -fx-background-radius: 15;
     -fx-background-color: yellow;
-    -fx-alignment: TOP_LEFT;
 }
 .graphB:hover{
     -fx-background-color: pink;
+}
+.graphNeighbour{
+    -fx-background-radius: 15;
+    -fx-background-color: purple;
 }
