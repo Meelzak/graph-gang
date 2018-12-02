@@ -37,12 +37,13 @@ public class Game2 {
     //Scene
     private BetterScene scene;
     //Objects
-    private Button left1Button;
+    private Button left1HintButton;
     private Button left2Button;
     private Button left3Button;
     private Button left4Button;
     private Button left5Button;
     private Label leftRestLabel;
+    private int HintButtonCounter;
 
     private Label upperLeftButton;
 
@@ -50,6 +51,7 @@ public class Game2 {
     private Label upper2Label;
     private Label upper3Label;
     private Label upperRestLabel;
+    private Label upperBoundLabel; //hint to display the upperbound when asked for
 
     //New GameMode Button
     private HBox newGamemodeHBox=new HBox();
@@ -89,7 +91,7 @@ public class Game2 {
 
     //Display Stuff
     private Pane pane = new Pane();
-    private ChromaticManager chromaticManager = new ChromaticManager("C:/Users/cavid/Dropbox/Private/Final/src/GraphColoring/Graphs");
+    private ChromaticManager chromaticManager = new ChromaticManager("D:/Universiteit/Jaar 1/Second period/Project 1.2/GitHub/src/GraphColoring/Graphs");
     public Graph currentGraph;
     public int graphMode=0;
     public String txtGraph="";
@@ -132,7 +134,7 @@ public class Game2 {
         stackPane = new StackPane();
         //Objects
         //Left
-        left1Button = new Button("Hint");
+        left1HintButton = new Button("Hint");
         left2Button = new Button("New Graph");
         left3Button = new Button("New GameMode");
         left4Button = new Button("New GraphMode");
@@ -144,6 +146,7 @@ public class Game2 {
         upper2Label = new Label();
         upper3Label = new Label();
         upperRestLabel = new Label();
+        upperBoundLabel = new Label();
         //test
         backPane.setPickOnBounds(false);
         textFieldVertices.setPromptText("Vertices");
@@ -155,10 +158,11 @@ public class Game2 {
         upper1Label.getStyleClass().add("myLabelTest");
         upper2Label.getStyleClass().add("myLabelTest1");
         upper3Label.getStyleClass().add("myLabelTest2");
+        upperBoundLabel.getStyleClass().add("myLabelTest2"); //just copied a style to it but can't test it so you can change the style
         upperHBox.getStyleClass().add("upperHBox");
         leftVBox.getStyleClass().add("leftVBox");
         upperLeftButton.getStyleClass().add("upperLeftButton");
-        left1Button.getStyleClass().add("left1Button");
+        left1HintButton.getStyleClass().add("left1Button");
         left2Button.getStyleClass().add("left2Button");
         left3Button.getStyleClass().add("left3Button");
         left4Button.getStyleClass().add("left4Button");
@@ -231,8 +235,8 @@ public class Game2 {
         upperLeftButton.setMinSize(leftSideWidth,topLaneHeight);
         upperLeftButton.setMaxSize(leftSideWidth,topLaneHeight);
         //Left Side
-        left1Button.setMinSize(leftSideWidth,buttonLeftHeight);
-        left1Button.setMaxSize(leftSideWidth,buttonLeftHeight);
+        left1HintButton.setMinSize(leftSideWidth,buttonLeftHeight);
+        left1HintButton.setMaxSize(leftSideWidth,buttonLeftHeight);
         countLeftButtons++;
 
         left2Button.setMinSize(leftSideWidth,buttonLeftHeight);
@@ -267,6 +271,11 @@ public class Game2 {
         upper3Label.setMinSize(labelTopWidth,topLaneHeight);
         upper3Label.setMaxSize(labelTopWidth,topLaneHeight);
         countTopLabels++;
+
+        upperBoundLabel.setMinSize(labelTopWidth,topLaneHeight); //I just copied the style but it needs to be set correctly
+        upperBoundLabel.setMaxSize(labelTopWidth,topLaneHeight);
+
+
 
         double restwidth=width-leftSideWidth-(labelTopWidth*countTopLabels);
         upperRestLabel.setMinSize(restwidth,topLaneHeight);
@@ -342,8 +351,8 @@ public class Game2 {
 
     }
     private void insert(){
-        leftVBox.getChildren().addAll(upperLeftButton,left1Button,left2Button,left3Button,left4Button,left5Button,leftRestLabel);
-        upperHBox.getChildren().addAll(upper1Label,upper2Label,upper3Label);
+        leftVBox.getChildren().addAll(upperLeftButton,left1HintButton,left2Button,left3Button,left4Button,left5Button,leftRestLabel);
+        upperHBox.getChildren().addAll(upper1Label,upper2Label,upper3Label, upperBoundLabel);//upperBoundLabel should not be visible since no text added to it
         canvasStackPane.getChildren().addAll(pane,canvas);
         rightVBox.getChildren().addAll(upperHBox,canvasStackPane);
         flowPane.getChildren().addAll(leftVBox,rightVBox);
@@ -375,8 +384,14 @@ public class Game2 {
             setSize(scene.getWidth(),scene.getHeight());
         });
         //Button Listeners
-        left1Button.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
+        left1HintButton.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             booleanProperty.setValue(true);
+            HintButtonCounter++;
+            if(HintButtonCounter==1){
+                Hint hint = new Hint();
+                int upperBound = hint.giveUpperbound();
+                upperBoundLabel.setText(Integer.toString(upperBound));
+            }
         });
         left2Button.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             stackPane.getChildren().add(newGraphHBox);
