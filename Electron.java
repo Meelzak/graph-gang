@@ -1,11 +1,12 @@
 package GraphColoring;
 
 import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Electron extends Button {
+public class Electron extends StackPane {
     public Position position;
     public Electron(){
 

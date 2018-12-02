@@ -8,7 +8,9 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
@@ -82,6 +84,9 @@ public class Game2 {
     private Button submit2 = new Button("Submit");
     private String myGraph="";
 
+
+    private EventHandler graphHandeler;
+
     //Display Stuff
     private Pane pane = new Pane();
     private ChromaticManager chromaticManager = new ChromaticManager("C:/Users/cavid/Dropbox/Private/Final/src/GraphColoring/Graphs");
@@ -110,6 +115,7 @@ public class Game2 {
         scene.getStylesheets().add(getClass().getResource("Style.css").toExternalForm());
         test();
         styling();
+        graphListener();
         listen();
         canvas.setMouseTransparent(true);
         return scene;
@@ -480,13 +486,12 @@ public class Game2 {
             int x=random.nextInt((int)Math.round(myWidth/4))+(int)Math.round((myWidth/2)-myWidth/8);
             int y=random.nextInt((int)Math.round(myHeight/4))+(int)Math.round((myHeight/2)-myHeight/8);
             list.get(i).setPosition(new Position(x,y));
-            list.get(i).setMinSize(30,30);
+            //list.get(i).setOnAction(graphHandeler);
+            list.get(i).getStyleClass().add("graphButton");
             pane.getChildren().add(list.get(i));
         }
-
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1), ev -> {
             canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-            canvas.getGraphicsContext2D().strokeRect(canvas.getWidth()/2,canvas.getHeight()/2,10,10);
             ArrayList<Position> positionArrayList=new ArrayList();
             for(int i=0;i<list.size();i++){
                 Dot d= list.remove(i);
@@ -515,5 +520,11 @@ public class Game2 {
     public void clear(){
         canvas.getGraphicsContext2D().clearRect(canvas.getWidth(),canvas.getHeight(),1,1);
         pane.getChildren().clear();
+    }
+    public void graphListener(){
+        graphHandeler = event -> {
+                Dot dot = (Dot)event.getSource();
+                dot.test();
+        };
     }
 }
