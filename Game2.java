@@ -13,12 +13,10 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 
@@ -139,7 +137,7 @@ public class Game2 {
         left2Button = new Button("New Graph");
         left3Button = new Button("New GameMode");
         left4Button = new Button("New GraphMode");
-        left5Button = new Button();
+        left5Button = new Button("Finished");
         leftRestLabel = new Label();
         //Up
         upperLeftButton = new Label();
@@ -354,7 +352,7 @@ public class Game2 {
     private void insert(){
         leftVBox.getChildren().addAll(upperLeftButton,left1HintButton,left2Button,left3Button,left4Button,left5Button,leftRestLabel);
         upperHBox.getChildren().addAll(upper1Label,upper2Label,upper3Label, upperBoundLabel);//upperBoundLabel should not be visible since no text added to it
-        canvasStackPane.getChildren().addAll(pane,canvas);
+        canvasStackPane.getChildren().addAll(canvas,pane);
         rightVBox.getChildren().addAll(upperHBox,canvasStackPane);
         flowPane.getChildren().addAll(leftVBox,rightVBox);
         stackPane.getChildren().addAll(flowPane);
@@ -404,6 +402,10 @@ public class Game2 {
             stackPane.getChildren().add(newGraphModeHBox);
             stackPane.getChildren().add(backPane);
         });
+        left5Button.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
+            System.out.println(coloredRight(currentGraph));
+        });
+
         //Back Button
         backButton.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             stackPane.getChildren().removeAll(newGraphHBox,newGamemodeHBox,newGraphModeHBox,sMBHBox,backPane,listView,textFieldHBox,listViewVBox);
@@ -510,6 +512,7 @@ public class Game2 {
             int x=random.nextInt((int)Math.round(myWidth/4))+(int)Math.round((myWidth/2)-myWidth/8);
             int y=random.nextInt((int)Math.round(myHeight/4))+(int)Math.round((myHeight/2)-myHeight/8);
             list.get(i).setPosition(new Position(x,y));
+            list.get(i).setParent(this);
             //list.get(i).setOnAction(graphHandeler);
             list.get(i).getStyleClass().add("graphButton");
             pane.getChildren().add(list.get(i));
@@ -526,12 +529,7 @@ public class Game2 {
                 list.get(i).setPosition(positionArrayList.get(i));
             }
             for(int i=0;i<list.size();i++){
-                ArrayList<Dot> myList = list.get(i).giveList();
-                for(int x=0;x<myList.size();x++){
-                    Position position1 = list.get(i).position;
-                    Position position2 = myList.get(x).position;
-                    canvas.getGraphicsContext2D().strokeLine(position1.x+15,position1.y+15,position2.x+15,position2.y+15);
-                }
+                printDot(list.get(i),false);
             }
         }));
         timeline.setCycleCount(10000);
@@ -546,9 +544,40 @@ public class Game2 {
         pane.getChildren().clear();
     }
     public void graphListener(){
-        graphHandeler = event -> {
-                Dot dot = (Dot)event.getSource();
-                dot.test();
-        };
+
+    }
+    public void hoverDot(Dot dot){
+
+    }
+    public void printDot(Dot dot,boolean colored){
+        canvas.getGraphicsContext2D().setLineWidth(2);
+        ArrayList<Dot> myList = dot.giveList();
+        if(colored){
+            canvas.getGraphicsContext2D().setLineWidth(3);
+            canvas.getGraphicsContext2D().setStroke(Color.DEEPPINK);
+        }else{
+            canvas.getGraphicsContext2D().setStroke(Color.BLACK);
+            canvas.getGraphicsContext2D().setLineWidth(2);
+        }
+        for(int x=0;x<myList.size();x++){
+            Position position1 = dot.position;
+            Position position2 = myList.get(x).position;
+            canvas.getGraphicsContext2D().strokeLine(position1.x+15,position1.y+15,position2.x+15,position2.y+15);
+        }
+    }
+    public boolean coloredRight(Graph graph){
+        ArrayList<Dot> list = graph.getList();
+        for(int i=0;i<list.size();i++){
+            if(list.get(i).coloredAs==null){
+                return false;
+            }
+            ArrayList<Dot> innerList = list.get(i).giveList();
+            for(int x=0;x<innerList.size();x++){
+                if(list.get(i).coloredAs.equals(innerList.get(x).coloredAs)){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

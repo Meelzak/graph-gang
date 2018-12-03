@@ -1,8 +1,11 @@
 package GraphColoring;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.paint.Color;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class myInformation {
     //Game Interface
@@ -29,4 +32,5 @@ public class myInformation {
     public static final int smallGraph=5;
     public static final int middleGraph=10;
     public static final int bigGraph=15;
+
 }
