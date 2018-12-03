@@ -6,6 +6,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -20,6 +21,7 @@ public class Starter extends Application{
     }
     @Override
     public void start(Stage primaryStage) {
+        //System.out.println(System.getProperty("user.dir"));
         listener();
         stage=primaryStage;
         scene = mainInterface.getScene();
@@ -64,6 +66,7 @@ public class Starter extends Application{
                 game2.myEdges=mainInterface.selectedEdges;
                 game2.currentGraph=(chromaticManager.calculate(mainInterface.selectedVertices,mainInterface.selectedEdges));
             }
+            game2.gamemode=mainInterface.gameMode;
             game2.setSize(mainInterface.getSize().width,mainInterface.getSize().height);
             game2.setGraph();
         });

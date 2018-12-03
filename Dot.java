@@ -38,6 +38,7 @@ public class Dot extends Electron {
         //A class representing a single vertice of a graph
         list =new ArrayList<Dot>();
         this.setMinSize(100,100);
+        this.setPickOnBounds(true);
         mainButton.setRadius(15);
         vBox1.setSpacing(2);
         vBox2.setSpacing(2);

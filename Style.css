@@ -201,3 +201,10 @@
 .buttonC{
     -fx-background-radius: 15;
 }
+.gameEndTop{
+    -fx-background-color: black;
+}
+.gameEndStackPane{
+    -fx-background-color: -fx-color-background-menue;
+    -fx-alignment: CENTER;
+}
