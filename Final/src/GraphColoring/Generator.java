@@ -5,9 +5,7 @@ package GraphColoring;
  */
 import java.util.Random;
 import java.util.ArrayList;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 class ColEdge extends Object{

@@ -1,12 +1,9 @@
 package GraphColoring;
 
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Random;
 

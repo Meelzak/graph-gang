@@ -1,5 +1,4 @@
 package GraphColoring;
-import java.util.ArrayList;
 
 public class NewForce{
     public int doNewForce(Graph graph,int upperBound,int lowerBound){

@@ -121,9 +121,7 @@ public class Game2 {
         insert();
         scene = new BetterScene(stackPane,myInformation.startDimension);
         scene.getStylesheets().add(getClass().getResource("Style.css").toExternalForm());
-        test();
         styling();
-        graphListener();
         listen();
         canvas.setMouseTransparent(true);
         return scene;
@@ -389,9 +387,6 @@ public class Game2 {
         gameEndStackPane.getChildren().add(gameEnd);
 
     }
-    private void test(){
-        //left1Button.setText("test");
-    }
     private void listen(){
         //new Size Listeners
         scene.widthProperty().addListener((observable, oldValue, newValue) -> {
@@ -569,11 +564,15 @@ public class Game2 {
             }
 
     }
-    public void newDot(Dot dot){
-        canvas.getGraphicsContext2D().setLineWidth(2);
+    public void newDot(Dot dot,boolean colored){
+        if(colored){
+            canvas.getGraphicsContext2D().setLineWidth(2);
+            canvas.getGraphicsContext2D().setStroke(Color.DEEPPINK);
+        }else{
+            canvas.getGraphicsContext2D().setStroke(Color.BLACK);
+            canvas.getGraphicsContext2D().setLineWidth(2);
+        }
         ArrayList<Dot> myList = dot.giveList();
-        canvas.getGraphicsContext2D().setStroke(Color.BLACK);
-        canvas.getGraphicsContext2D().setLineWidth(2);
         for(int x=0;x<myList.size();x++){
             if(myList.get(x).getWasClicked()){
                 Position position1 = dot.position;
@@ -597,12 +596,6 @@ public class Game2 {
     public void clear(){
         canvas.getGraphicsContext2D().clearRect(canvas.getWidth(),canvas.getHeight(),1,1);
         pane.getChildren().clear();
-    }
-    public void graphListener(){
-
-    }
-    public void hoverDot(Dot dot){
-
     }
     public void printDot(Dot dot,boolean colored){
         if(gamemode==3){

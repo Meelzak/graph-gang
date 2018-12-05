@@ -1,6 +1,5 @@
 package GraphColoring;
 
-import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 
 import java.util.ArrayList;
@@ -8,18 +7,6 @@ import java.util.Random;
 
 public class Electron extends StackPane {
     public Position position;
-    public Electron(){
-
-    }
-
-    public Electron(Position position){
-        this.position=position;
-        this.relocate(position.x,position.y);
-    }
-    public double distanceTo(Electron electron){
-        Vector vector= new Vector(this.position,electron.position);
-        return vector.length;
-    }
     public void setPosition(Position p){
         this.position=p;
         this.relocate(position.x,position.y);
@@ -115,13 +102,5 @@ public class Electron extends StackPane {
 
         return positionNew;
 
-    }
-    public void doSpring(ArrayList<Dot> connectedElectronsArrayList){
-        for(int i=0;i<connectedElectronsArrayList.size();i++){
-            Vector vector = this.calculateSpring(connectedElectronsArrayList.get(i));
-            this.position.x=this.position.x+vector.oben;
-            this.position.y=this.position.y+vector.unten;
-            this.relocate(position.x,position.y);
-        }
     }
 }

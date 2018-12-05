@@ -1,6 +1,5 @@
 package GraphColoring;
 import java.util.ArrayList;
-import java.util.ArrayList;
 
 public class Bk{
     public int doBK(Graph g){

@@ -3,8 +3,6 @@ package GraphColoring;
  * Author:
  * Cavid Karca
  */
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
@@ -39,11 +37,11 @@ public class Dot extends Electron {
     public Dot(){
         //A class representing a single vertice of a graph
         list =new ArrayList<Dot>();
-        this.setMinSize(100,100);
         this.setPickOnBounds(true);
         mainButton.setRadius(15);
         vBox1.setSpacing(2);
         vBox2.setSpacing(2);
+        this.getStyleClass().add("test");
         buttonStuff();
         this.setAlignment(Pos.TOP_LEFT);
         hBox.setSpacing(5);
@@ -115,9 +113,9 @@ public class Dot extends Electron {
         vBox2.getChildren().addAll(button5,button6,button7);
 
         button1.setStyle("-fx-background-color: YELLOW");
-        button2.setStyle("-fx-background-color: BROWN");
-        button3.setStyle("-fx-background-color: BLUE");
-        button4.setStyle("-fx-background-color: GREEN");
+        button2.setStyle("-fx-background-color: NAVY");
+        button3.setStyle("-fx-background-color: CYAN");
+        button4.setStyle("-fx-background-color: MAROON");
         button5.setStyle("-fx-background-color: RED");
         button6.setStyle("-fx-background-color: GREY");
 
@@ -126,15 +124,15 @@ public class Dot extends Electron {
             mainSetColor();
         });
         button2.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
-            coloredAs = Color.BROWN;
+            coloredAs = Color.NAVY;
             mainSetColor();
         });
         button3.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
-            coloredAs = Color.BLUE;
+            coloredAs = Color.CYAN;
             mainSetColor();
         });
         button4.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
-            coloredAs = Color.GREEN;
+            coloredAs = Color.MAROON;
             mainSetColor();
         });
         button5.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
@@ -171,12 +169,14 @@ public class Dot extends Electron {
             for(int i=0;i<list.size();i++){
                 if(!list.get(i).getWasClicked()){
                     list.get(i).setMain();
+                    game2.newDot(this,false);
                     return;
                 }
             }
             Dot dot = game2.findNewDot();
             if(dot!=null){
                 dot.setMain();
+                game2.newDot(this,false);
                 return;
             }
             game2.finished();
@@ -189,7 +189,7 @@ public class Dot extends Electron {
         this.getChildren().removeAll(hBox);
         this.getChildren().add(hBox);
         System.out.println("d");
-        game2.newDot(this);
+        game2.newDot(this,true);
     }
     public void removeMain(){
         this.getChildren().removeAll(hBox);

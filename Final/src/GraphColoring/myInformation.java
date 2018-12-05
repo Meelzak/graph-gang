@@ -1,11 +1,8 @@
 package GraphColoring;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.paint.Color;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 public class myInformation {
     //Game Interface
