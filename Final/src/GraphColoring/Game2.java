@@ -1,24 +1,17 @@
 package GraphColoring;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Application;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
@@ -151,7 +144,7 @@ public class Game2 {
         upper3Label = new Label();
         upperRestLabel = new Label();
         upperBoundLabel = new Label();
-        //test
+        //calculateVectors
         backPane.setPickOnBounds(false);
         textFieldVertices.setPromptText("Vertices");
         textFieldEdges.setPromptText("Edges");
@@ -164,7 +157,7 @@ public class Game2 {
         upper1Label.getStyleClass().add("myLabelTest");
         upper2Label.getStyleClass().add("myLabelTest1");
         upper3Label.getStyleClass().add("myLabelTest2");
-        upperBoundLabel.getStyleClass().add("myLabelTest2"); //just copied a style to it but can't test it so you can change the style
+        upperBoundLabel.getStyleClass().add("myLabelTest2"); //just copied a style to it but can't calculateVectors it so you can change the style
         upperHBox.getStyleClass().add("upperHBox");
         leftVBox.getStyleClass().add("leftVBox");
         upperLeftButton.getStyleClass().add("upperLeftButton");
@@ -546,7 +539,7 @@ public class Game2 {
                 ArrayList<Position> positionArrayList = new ArrayList();
                 for (int i = 0; i < list.size(); i++) {
                     Dot d = list.remove(i);
-                    positionArrayList.add(d.test(list, d.giveList(), canvas.getWidth(), canvas.getHeight()));
+                    positionArrayList.add(d.calculateVectors(list, d.giveList(), canvas.getWidth(), canvas.getHeight()));
                     list.add(i, d);
                 }
                 for (int i = 0; i < list.size(); i++) {

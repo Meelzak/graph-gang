@@ -85,7 +85,6 @@
     -fx-alignment: bottom-right;
 }
 .backButton{
-    -fx-background-image: url("backArrow.png");
     -fx-background-repeat: stretch;
     -fx-font-size: 20;
 

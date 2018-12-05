@@ -41,7 +41,7 @@ public class Dot extends Electron {
         mainButton.setRadius(15);
         vBox1.setSpacing(2);
         vBox2.setSpacing(2);
-        this.getStyleClass().add("test");
+        this.getStyleClass().add("calculateVectors");
         buttonStuff();
         this.setAlignment(Pos.TOP_LEFT);
         hBox.setSpacing(5);
@@ -61,11 +61,12 @@ public class Dot extends Electron {
         return list;
     }
     public void test(){
-        System.out.println("test");
+        System.out.println("calculateVectors");
     }
     private void listen(){
         mainButton.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             if (!wasClicked) {
+                this.toFront();
                 hBox.getChildren().removeAll(vBox1, vBox2);
                 hBox.getChildren().addAll(vBox1, vBox2);
                 ArrayList<Dot> dotList = game2.currentGraph.getList();

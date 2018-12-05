@@ -21,7 +21,7 @@ public class Starter extends Application{
         listener();
         stage=primaryStage;
         scene = mainInterface.getScene();
-        stage.setTitle("test");
+        stage.setTitle("calculateVectors");
         stage.setScene(scene);
         stage.show();
 

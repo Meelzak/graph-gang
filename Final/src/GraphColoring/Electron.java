@@ -82,7 +82,7 @@ public class Electron extends StackPane {
 
 
 
-    public Position test(ArrayList<Dot> electronArrayList,ArrayList<Dot> connectedElectronsArrayList,double width,double height){
+    public Position calculateVectors(ArrayList<Dot> electronArrayList, ArrayList<Dot> connectedElectronsArrayList, double width, double height){
         Vector finalVector = new Vector(0,0);
 
         for(int i=0;i<electronArrayList.size();i++){

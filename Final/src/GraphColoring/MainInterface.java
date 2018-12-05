@@ -69,7 +69,7 @@ public class MainInterface {
     private boolean rightFinished=false;
     private StackPane enterStackPane = new StackPane();
     private Text enter = new Text("Enter");
-    //test
+    //calculateVectors
 //----------------------------------------------------------------------------------------------------------------
     public MainInterface(Starter starter){
         this.starter=starter;
