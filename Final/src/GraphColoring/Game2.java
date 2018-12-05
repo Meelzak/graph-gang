@@ -530,7 +530,6 @@ public class Game2 {
             clear();
             double myWidth = canvas.getWidth();
             double myHeight = canvas.getHeight();
-            System.out.println(myWidth + " " + myHeight);
             ArrayList<Dot> list = graph.getList();
             Random random = new Random();
             for (int i = 0; i < list.size(); i++) {
@@ -542,7 +541,6 @@ public class Game2 {
                     list.get(i).gameMode = 3;
                     list.get(i).removeMain();
                 }
-                //list.get(i).setOnAction(graphHandeler);
                 list.get(i).getStyleClass().add("graphButton");
                 pane.getChildren().add(list.get(i));
             }

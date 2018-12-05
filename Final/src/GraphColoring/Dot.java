@@ -60,9 +60,6 @@ public class Dot extends Electron {
     public ArrayList giveList(){
         return list;
     }
-    public void test(){
-        System.out.println("calculateVectors");
-    }
     private void listen(){
         mainButton.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             if (!wasClicked) {
@@ -189,12 +186,10 @@ public class Dot extends Electron {
     public void setMain(){
         this.getChildren().removeAll(hBox);
         this.getChildren().add(hBox);
-        System.out.println("d");
         game2.newDot(this,true);
     }
     public void removeMain(){
         this.getChildren().removeAll(hBox);
     }
-
-
+    
 }

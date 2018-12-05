@@ -110,7 +110,7 @@
         <counts>
           <entry key="JPG" value="1" />
           <entry key="css" value="1" />
-          <entry key="java" value="26" />
+          <entry key="java" value="27" />
           <entry key="jpg" value="2" />
           <entry key="png" value="3" />
         </counts>
@@ -119,7 +119,7 @@
         <counts>
           <entry key="CSS" value="1" />
           <entry key="Image" value="6" />
-          <entry key="JAVA" value="26" />
+          <entry key="JAVA" value="27" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -153,11 +153,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GraphColoring/Dot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="39" column="35" selection-start-line="39" selection-start-column="8" selection-end-line="39" selection-end-column="35" />
+            <state relative-caret-position="310">
+              <caret line="187" column="37" selection-start-line="187" selection-start-column="37" selection-end-line="187" selection-end-column="37" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GraphColoring/Electron.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="478">
+              <caret line="51" column="22" selection-start-line="51" selection-start-column="22" selection-end-line="51" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -175,22 +187,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GraphColoring/BetterScene.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GraphColoring/Game2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2730">
-              <caret line="540" column="33" lean-forward="true" selection-start-line="540" selection-start-column="33" selection-end-line="540" selection-end-column="33" />
+            <state relative-caret-position="17">
+              <caret line="542" column="17" selection-start-line="542" selection-start-column="17" selection-end-line="542" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#5519#7973#0" />
@@ -208,7 +208,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GraphColoring/Graph.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
+            <state relative-caret-position="561">
               <caret line="51" column="1" lean-forward="true" selection-start-line="51" selection-start-column="1" selection-end-line="51" selection-end-column="1" />
             </state>
           </provider>
@@ -275,6 +275,7 @@
       <find>canvas.getGraphicsContext2D().strokeRect</find>
       <find>canvas.getGraphicsContext2D().strokeLine</find>
       <find>Hint</find>
+      <find>System.out</find>
     </findStrings>
     <replaceStrings>
       <replace>Rectangle</replace>
@@ -341,11 +342,11 @@
         <option value="$PROJECT_DIR$/src/GraphColoring/Reader.java" />
         <option value="$PROJECT_DIR$/src/GraphColoring/Electron.java" />
         <option value="$PROJECT_DIR$/src/GraphColoring/Parameters.java" />
-        <option value="$PROJECT_DIR$/src/GraphColoring/Dot.java" />
         <option value="$PROJECT_DIR$/src/GraphColoring/Style.css" />
         <option value="$PROJECT_DIR$/src/GraphColoring/Starter.java" />
         <option value="$PROJECT_DIR$/src/GraphColoring/myInformation.java" />
         <option value="$PROJECT_DIR$/src/GraphColoring/Game2.java" />
+        <option value="$PROJECT_DIR$/src/GraphColoring/Dot.java" />
       </list>
     </option>
   </component>
@@ -407,7 +408,7 @@
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544026031304" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544027184317" />
     <property name="dynamic.classpath" value="false" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -594,7 +595,7 @@
       <workItem from="1542721106580" duration="121162000" />
       <workItem from="1543409062118" duration="117040000" />
       <workItem from="1543752570349" duration="56234000" />
-      <workItem from="1544017025691" duration="9079000" />
+      <workItem from="1544017025691" duration="9883000" />
     </task>
     <task id="LOCAL-00001" summary="improved stuff">
       <created>1543499860388</created>
@@ -628,7 +629,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="311105000" />
+    <option name="totallyTimeSpent" value="311909000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -641,7 +642,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="66" y="-6" width="1441" height="1013" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Image Layers" order="0" />
       <window_info id="UI Designer" order="1" />
@@ -654,7 +654,7 @@
       <window_info anchor="bottom" id="Database Changes" order="1" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Find" order="3" weight="0.32993197" />
-      <window_info active="true" anchor="bottom" id="Run" order="4" visible="true" weight="0.32993197" />
+      <window_info anchor="bottom" id="Run" order="4" weight="0.32993197" />
       <window_info anchor="bottom" id="Debug" order="5" weight="0.3991323" />
       <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
@@ -665,7 +665,7 @@
       <window_info anchor="bottom" id="Changes" order="12" />
       <window_info anchor="bottom" id="Profiler" order="13" />
       <window_info anchor="bottom" id="Event Log" order="14" />
-      <window_info anchor="bottom" id="Messages" order="15" weight="0.3276644" />
+      <window_info active="true" anchor="bottom" id="Messages" order="15" visible="true" weight="0.3276644" />
       <window_info anchor="right" id="Palette&#9;" order="0" />
       <window_info anchor="right" id="Theme Preview" order="1" />
       <window_info anchor="right" id="Capture Analysis" order="2" />
@@ -821,13 +821,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GraphColoring/Graph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="51" column="1" lean-forward="true" selection-start-line="51" selection-start-column="1" selection-end-line="51" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GraphColoring/Position.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -904,37 +897,10 @@
     <entry file="file://$PROJECT_DIR$/src/GraphColoring/BACKGROUND_BLUE.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GraphColoring/Electron.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="82" lean-forward="true" selection-start-line="82" selection-end-line="82" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GraphColoring/MainInterface.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="100" column="53" selection-start-line="100" selection-start-column="41" selection-end-line="100" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GraphColoring/Parameters.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="48" selection-start-line="9" selection-start-column="48" selection-end-line="9" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GraphColoring/Dot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="39" column="35" selection-start-line="39" selection-start-column="8" selection-end-line="39" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -968,10 +934,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/GraphColoring/Graph.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="51" column="1" lean-forward="true" selection-start-line="51" selection-start-column="1" selection-end-line="51" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GraphColoring/Parameters.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="48" selection-start-line="9" selection-start-column="48" selection-end-line="9" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/GraphColoring/Game2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2730">
-          <caret line="540" column="33" lean-forward="true" selection-start-line="540" selection-start-column="33" selection-end-line="540" selection-end-column="33" />
+        <state relative-caret-position="17">
+          <caret line="542" column="17" selection-start-line="542" selection-start-column="17" selection-end-line="542" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#5519#7973#0" />
@@ -981,6 +961,26 @@
             <element signature="e#24979#24980#0" expanded="true" />
             <element signature="e#27905#27906#0" expanded="true" />
             <element signature="e#27967#27968#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GraphColoring/Electron.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="478">
+          <caret line="51" column="22" selection-start-line="51" selection-start-column="22" selection-end-line="51" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GraphColoring/Dot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="187" column="37" selection-start-line="187" selection-start-column="37" selection-end-line="187" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
