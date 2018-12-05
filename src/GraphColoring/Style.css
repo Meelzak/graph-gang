@@ -1,0 +1,210 @@
+* {
+    -fx-color-normal: rgba(88,139,174, 0.50);
+    -fx-color-normal-hover: rgba(194, 156, 178, 0.70);
+    -fx-color-normal-clicked: rgba(194, 156, 178, 0.90);
+    -fx-color-chooseButton: rgba(255, 255, 255, 0.90);
+    -fx-color-chooseButton-hover: rgba(200, 200, 200, 0.90);
+    -fx-color-background-menue: rgba(1, 1, 1, 0.50);
+    -fx-color-top-bar :rgba(255, 255, 255, 0.50);
+;
+}
+.root{
+   -fx-background-image: url("BACKGROUND_BLUE.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: cover;
+}
+.myLabelTest{
+
+}
+.myLabelTest1{
+
+}
+.myLabelTest2{
+    -fx-font-size: 25;
+}
+.leftVBox{
+    -fx-spacing: 3;
+}
+.upperHBox{
+    -fx-background-color: -fx-color-top-bar
+}
+.upperLeftButton{
+    -fx-background-color: -fx-color-top-bar
+}
+.left1Button{
+    -fx-background-color: -fx-color-normal;
+    -fx-font-size: 20;
+}
+.left1Button:hover{
+    -fx-background-color: -fx-color-normal-hover;
+}
+.left2Button{
+    -fx-background-color: -fx-color-normal;
+    -fx-font-size: 20;
+}
+.left2Button:hover{
+    -fx-background-color: -fx-color-normal-hover;
+}
+.left3Button{
+    -fx-background-color: -fx-color-normal;
+    -fx-font-size: 20;
+}
+.left3Button:hover{
+    -fx-background-color: -fx-color-normal-hover;
+}
+.left4Button{
+    -fx-background-color: -fx-color-normal;
+    -fx-font-size: 20;
+}
+.left4Button:hover{
+    -fx-background-color: -fx-color-normal-hover;
+}
+.left5Button{
+    -fx-background-color: -fx-color-normal;
+    -fx-font-size: 20;
+}
+.left5Button:hover{
+    -fx-background-color: -fx-color-normal-hover;
+}
+
+
+.newGameModeHBox{
+    -fx-background-color: -fx-color-background-menue;
+    -fx-spacing: 15;
+    -fx-alignment: center;
+}
+.chooseButtons{
+    -fx-background-color: -fx-color-chooseButton;
+    -fx-font-size: 20;
+}
+.chooseButtons:hover{
+    -fx-background-color: -fx-color-chooseButton-hover;
+    -fx-effect: dropshadow(gaussian,-fx-color-chooseButton-hover, 1, 1.0, 1, 1);
+}
+.backPane{
+    -fx-alignment: bottom-right;
+}
+.backButton{
+    -fx-background-image: url("backArrow.png");
+    -fx-background-repeat: stretch;
+    -fx-font-size: 20;
+
+}
+.backButton:hover{
+    -fx-background-color: #a58396;
+    -fx-effect: dropshadow(gaussian, gray, 1, 1.0, 1.5, 2);
+}
+.newGraphModeHBox{
+    -fx-background-color: -fx-color-background-menue;
+    -fx-spacing: 15;
+    -fx-alignment: center;
+}
+
+.newGraphHBox{
+    -fx-background-color: -fx-color-background-menue;
+    -fx-spacing: 30;
+    -fx-alignment: center;
+}
+
+
+
+
+
+
+
+
+
+.hBoxTop{
+    -fx-alignment: bottom-right;
+    -fx-background-color: -fx-color-top-bar;
+}
+.hBoxBottom{
+
+}
+.vBoxLeft{
+    -fx-alignment: center;
+    -fx-spacing: 30;
+}
+.vBoxRight{
+    -fx-alignment: center;
+    -fx-spacing: 30;
+}
+.buttonHelp{
+    -fx-background-color: -fx-color-normal;
+}
+.buttonHelp:hover{
+    -fx-background-color: -fx-color-normal-hover;
+}
+.buttonNormal{
+    -fx-background-color: -fx-color-normal;
+    -fx-font-size: 30;
+}
+.buttonNormal:hover{
+    -fx-background-color: -fx-color-normal-hover;
+    -fx-font-size: 30;
+}
+.buttonClicked{
+    -fx-background-color: -fx-color-normal-clicked;
+    -fx-font-size: 30;
+}
+
+.textfield{
+    -fx-font-size: 20;
+
+}
+.textfield:hover{
+
+}
+.buttonRight1HBox{
+    -fx-alignment: center;
+    -fx-spacing: 15;
+}
+.listView{
+    -fx-alignment: center;
+}
+.buttonRight3HBox{
+    -fx-alignment: center;
+    -fx-spacing: 15;
+}
+.label:hover{
+    -fx-background-color: -fx-color-normal-hover;
+}
+.buttonMenu{
+    -fx-font-size: 20;
+}
+.buttonMenu:hover{
+
+}
+.enterStackPane{
+    -fx-alignment: BOTTOM_CENTER;
+}
+.enter{
+    -fx-font-size: 80;
+}
+.graphButton{
+
+}
+.graphButton:hover{
+
+}
+.graphB{
+    -fx-background-radius: 15;
+    -fx-background-color: yellow;
+}
+.graphB:hover{
+    -fx-background-color: pink;
+}
+.graphNeighbour{
+    -fx-background-radius: 15;
+    -fx-background-color: purple;
+}
+.buttonC{
+    -fx-background-radius: 15;
+}
+.gameEndTop{
+    -fx-background-color: black;
+}
+.gameEndStackPane{
+    -fx-background-color: -fx-color-background-menue;
+    -fx-alignment: CENTER;
+}
