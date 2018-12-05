@@ -191,5 +191,5 @@ public class Dot extends Electron {
     public void removeMain(){
         this.getChildren().removeAll(hBox);
     }
-    
+
 }
