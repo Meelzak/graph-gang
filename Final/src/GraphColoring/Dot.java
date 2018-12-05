@@ -6,12 +6,20 @@ package GraphColoring;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 public class Dot extends Electron {
     private int content=0;
@@ -59,6 +67,9 @@ public class Dot extends Electron {
     public int giveContent(){ return content; }
     public ArrayList giveList(){
         return list;
+    }
+    public void test(){
+        System.out.println("calculateVectors");
     }
     private void listen(){
         mainButton.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
@@ -186,10 +197,15 @@ public class Dot extends Electron {
     public void setMain(){
         this.getChildren().removeAll(hBox);
         this.getChildren().add(hBox);
+        System.out.println("d");
         game2.newDot(this,true);
     }
     public void removeMain(){
         this.getChildren().removeAll(hBox);
     }
 
+    public void markedAsHint() {
+        Image image = new Image("GraphColoring/Exclamation_Mark.png");
+        mainButton.setFill(new ImagePattern(image));
+    }
 }
