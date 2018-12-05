@@ -396,8 +396,24 @@ public class Game2 {
         left1HintButton.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             canvasStackPane.getChildren().removeAll(leftVBox);
             if(currentGraph.getHints()==0){
+                upper2Label.setText("UpperBound: " + Integer.toString(currentGraph.getUpperBound()));
+                currentGraph.addHints(1);
+            }
+            else{
+                int maximumConnections = 0;
+                Dot mostConnections = new Dot();
+                ArrayList<Dot> dots =currentGraph.getList();
+                for(int i =0;i<dots.size();i++){
+                    int currentConnections = dots.get(i).giveList().size();
+                    if (currentConnections>=maximumConnections){
+                        maximumConnections=currentConnections;
+                        mostConnections = dots.get(i);
+                    }
 
-                upper2Label.setText(Integer.toString(currentGraph.getUpperBound()));
+                }
+                //System.out.println(maximumConnections);
+                mostConnections.markedAsHint();
+
                 currentGraph.addHints(1);
             }
         });
@@ -530,6 +546,7 @@ public class Game2 {
             clear();
             double myWidth = canvas.getWidth();
             double myHeight = canvas.getHeight();
+            System.out.println(myWidth + " " + myHeight);
             ArrayList<Dot> list = graph.getList();
             Random random = new Random();
             for (int i = 0; i < list.size(); i++) {
@@ -541,6 +558,7 @@ public class Game2 {
                     list.get(i).gameMode = 3;
                     list.get(i).removeMain();
                 }
+                //list.get(i).setOnAction(graphHandeler);
                 list.get(i).getStyleClass().add("graphButton");
                 pane.getChildren().add(list.get(i));
             }
