@@ -7,7 +7,7 @@ public class Parameters {
     public static final double maxPushOfSpring=1.4;
     public static final double pushOfToSpring=100;
 
-    public static final double maxPushOfBorder=25;
+    public static final double maxPushOfBorder=35;
     public static final double pushOfToBorder=1000;
 
 }

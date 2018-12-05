@@ -41,7 +41,7 @@ public class Dot extends Electron {
         mainButton.setRadius(15);
         vBox1.setSpacing(2);
         vBox2.setSpacing(2);
-        this.getStyleClass().add("calculateVectors");
+        this.getStyleClass().add("test");
         buttonStuff();
         this.setAlignment(Pos.TOP_LEFT);
         hBox.setSpacing(5);

@@ -138,7 +138,8 @@ public class Game2 {
         left5Button = new Button("Finished");
         leftRestLabel = new Label();
         //Up
-        upperLeftButton = new Label();
+        upperLeftButton = new Label("Menu");
+        upperLeftButton.setAlignment(Pos.CENTER);
         upper1Label = new Label();
         upper2Label = new Label();
         upper3Label = new Label();
@@ -161,11 +162,11 @@ public class Game2 {
         upperHBox.getStyleClass().add("upperHBox");
         leftVBox.getStyleClass().add("leftVBox");
         upperLeftButton.getStyleClass().add("upperLeftButton");
-        left1HintButton.getStyleClass().add("left1Button");
-        left2Button.getStyleClass().add("left2Button");
-        left3Button.getStyleClass().add("left3Button");
-        left4Button.getStyleClass().add("left4Button");
-        left5Button.getStyleClass().add("left5Button");
+        left1HintButton.getStyleClass().add("leftButton");
+        left2Button.getStyleClass().add("leftButton");
+        left3Button.getStyleClass().add("leftButton");
+        left4Button.getStyleClass().add("leftButton");
+        left5Button.getStyleClass().add("leftButton");
         //new GameMode
         newGamemodeHBox.getStyleClass().add("newGameModeHBox");
         newGamemodebutton1.getStyleClass().add("chooseButtons");
@@ -358,7 +359,7 @@ public class Game2 {
 
     }
     private void insert(){
-        leftVBox.getChildren().addAll(upperLeftButton,left1HintButton,left2Button,left3Button,left4Button,left5Button,leftRestLabel);
+        leftVBox.getChildren().addAll(upperLeftButton);
         upperHBox.getChildren().addAll(upper1Label,upper2Label,upper3Label, upperBoundLabel);//upperBoundLabel should not be visible since no text added to it
         canvasStackPane.getChildren().addAll(canvas,pane);
         rightVBox.getChildren().addAll(upperHBox,canvasStackPane);
@@ -390,6 +391,13 @@ public class Game2 {
             setSize(scene.getWidth(),scene.getHeight());
         });
         //Button Listeners
+        upperLeftButton.addEventHandler(MouseEvent.MOUSE_ENTERED,event -> {
+            leftVBox.getChildren().removeAll(left1HintButton,left2Button,left3Button,left4Button,left5Button,leftRestLabel);
+            leftVBox.getChildren().addAll(left1HintButton,left2Button,left3Button,left4Button,left5Button,leftRestLabel);
+        });
+        leftVBox.addEventHandler(MouseEvent.MOUSE_EXITED,event -> {
+            leftVBox.getChildren().removeAll(left1HintButton,left2Button,left3Button,left4Button,left5Button,leftRestLabel);
+        });
         left1HintButton.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             if(HintButtonCounter==0){
 
