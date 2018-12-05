@@ -21,7 +21,7 @@ public class Starter extends Application{
         listener();
         stage=primaryStage;
         scene = mainInterface.getScene();
-        stage.setTitle("calculateVectors");
+        stage.setTitle("GraphColoring");
         stage.setScene(scene);
         stage.show();
 

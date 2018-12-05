@@ -19,13 +19,13 @@ import java.util.Random;
 
 public class Game2 {
     //Regions
-    private VBox leftVBox;
-    private VBox rightVBox;
-    private HBox upperHBox;
-    private Canvas canvas;
-    private FlowPane flowPane;
-    private StackPane stackPane;
-    private StackPane canvasStackPane=new StackPane();
+    private VBox leftVBox = new VBox();
+    private HBox upperHBox = new HBox();
+    private Canvas canvas = new Canvas();
+    private StackPane stackPane = new StackPane();
+    private Pane pane = new Pane();
+    private StackPane canvasStackPane = new StackPane();
+    private VBox mainVBox = new VBox();
     //Scene
     private BetterScene scene;
     //Objects
@@ -86,7 +86,6 @@ public class Game2 {
     private StackPane gameEndStackPane = new StackPane();
 
     //Display Stuff
-    private Pane pane = new Pane();
     private ChromaticManager chromaticManager;
     public Graph currentGraph;
     public int graphMode=0;
@@ -122,15 +121,9 @@ public class Game2 {
     }
 
     private void builder(){
-        //Regions
-        leftVBox = new VBox();
-        rightVBox = new VBox();
-        upperHBox = new HBox();
-        canvas = new Canvas();
-        flowPane = new FlowPane();
-        stackPane = new StackPane();
         //Objects
         //Left
+        canvasStackPane.setAlignment(Pos.TOP_LEFT);
         left1HintButton = new Button("Hint");
         left2Button = new Button("New Graph");
         left3Button = new Button("New GameMode");
@@ -151,6 +144,8 @@ public class Game2 {
         textFieldEdges.setPromptText("Edges");
         gameEnd.setSpacing(30);
         gameEnd.setAlignment(Pos.CENTER);
+        canvasStackPane.setPickOnBounds(true);
+        canvas.setPickOnBounds(true);
     }
     private void styling(){
         canvasStackPane.getStyleClass().add("canvasStackPane");
@@ -158,7 +153,7 @@ public class Game2 {
         upper1Label.getStyleClass().add("myLabelTest");
         upper2Label.getStyleClass().add("myLabelTest1");
         upper3Label.getStyleClass().add("myLabelTest2");
-        upperBoundLabel.getStyleClass().add("myLabelTest2"); //just copied a style to it but can't calculateVectors it so you can change the style
+        upperRestLabel.getStyleClass().add("myLabelTest");
         upperHBox.getStyleClass().add("upperHBox");
         leftVBox.getStyleClass().add("leftVBox");
         upperLeftButton.getStyleClass().add("upperLeftButton");
@@ -211,25 +206,23 @@ public class Game2 {
         leftVBox.setMinSize(leftSideWidth,height);
         leftVBox.setMaxSize(leftSideWidth,height);
 
-        rightVBox.setMinSize(rightSideWidth,height);
-        rightVBox.setMaxSize(rightSideWidth,height);
+        upperHBox.setMinSize(width,topLaneHeight);
+        upperHBox.setMaxSize(width,topLaneHeight);
 
-        upperHBox.setMinSize(rightSideWidth,topLaneHeight);
-        upperHBox.setMaxSize(rightSideWidth,topLaneHeight);
-
-        canvas.setWidth(rightSideWidth);
+        canvas.setWidth(width);
         canvas.setHeight(bottomLaneHeight);
 
-        pane.setMinSize(rightSideWidth,bottomLaneHeight);
-        pane.setMaxSize(rightSideWidth,bottomLaneHeight);
-        canvasStackPane.setMinSize(rightSideWidth,bottomLaneHeight);
-        canvasStackPane.setMaxSize(rightSideWidth,bottomLaneHeight);
-
-        flowPane.setMinSize(width, height);
-        flowPane.setMaxSize(width, height);
+        pane.setMinSize(width,bottomLaneHeight);
+        pane.setMaxSize(width,bottomLaneHeight);
 
         stackPane.setMinSize(width, height);
         stackPane.setMaxSize(width, height);
+
+        mainVBox.setMinSize(width, height);
+        mainVBox.setMaxSize(width, height);
+
+        canvasStackPane.setMinSize(width,bottomLaneHeight);
+        canvasStackPane.setMaxSize(width,bottomLaneHeight);
 
         listViewVBox.setMinSize(width, height);
         listViewVBox.setMaxSize(width, height);
@@ -274,12 +267,11 @@ public class Game2 {
         upper3Label.setMaxSize(labelTopWidth,topLaneHeight);
         countTopLabels++;
 
-        upperBoundLabel.setMinSize(labelTopWidth,topLaneHeight); //I just copied the style but it needs to be set correctly
-        upperBoundLabel.setMaxSize(labelTopWidth,topLaneHeight);
 
 
 
-        double restwidth=width-leftSideWidth-(labelTopWidth*countTopLabels);
+
+        double restwidth=width-upperLeftButton.getWidth()-(labelTopWidth*countTopLabels);
         upperRestLabel.setMinSize(restwidth,topLaneHeight);
         upperRestLabel.setMaxSize(restwidth,topLaneHeight);
         //New Gamemode stuff
@@ -359,12 +351,11 @@ public class Game2 {
 
     }
     private void insert(){
-        leftVBox.getChildren().addAll(upperLeftButton);
-        upperHBox.getChildren().addAll(upper1Label,upper2Label,upper3Label, upperBoundLabel);//upperBoundLabel should not be visible since no text added to it
+        leftVBox.getChildren().addAll(left1HintButton,left2Button,left3Button,left4Button,left5Button,leftRestLabel);
+        upperHBox.getChildren().addAll(upperLeftButton,upper1Label,upper2Label,upper3Label,upperRestLabel);//upperBoundLabel should not be visible since no text added to it
         canvasStackPane.getChildren().addAll(canvas,pane);
-        rightVBox.getChildren().addAll(upperHBox,canvasStackPane);
-        flowPane.getChildren().addAll(leftVBox,rightVBox);
-        stackPane.getChildren().addAll(flowPane);
+        mainVBox.getChildren().addAll(upperHBox,canvasStackPane);
+        stackPane.getChildren().add(mainVBox);
         //new GameMode stuff
         newGamemodeHBox.getChildren().addAll(newGamemodebutton1,newGamemodebutton2,newGamemodebutton3);
         //Back button
@@ -385,39 +376,48 @@ public class Game2 {
         //new Size Listeners
         scene.widthProperty().addListener((observable, oldValue, newValue) -> {
             setSize(scene.getWidth(),scene.getHeight());
-
+            setDisplay(currentGraph);
         });
         scene.heightProperty().addListener((observable, oldValue, newValue) -> {
             setSize(scene.getWidth(),scene.getHeight());
+            setDisplay(currentGraph);
         });
         //Button Listeners
         upperLeftButton.addEventHandler(MouseEvent.MOUSE_ENTERED,event -> {
-            leftVBox.getChildren().removeAll(left1HintButton,left2Button,left3Button,left4Button,left5Button,leftRestLabel);
-            leftVBox.getChildren().addAll(left1HintButton,left2Button,left3Button,left4Button,left5Button,leftRestLabel);
+            canvasStackPane.getChildren().removeAll(leftVBox);
+            canvasStackPane.getChildren().add(leftVBox);
         });
         leftVBox.addEventHandler(MouseEvent.MOUSE_EXITED,event -> {
-            leftVBox.getChildren().removeAll(left1HintButton,left2Button,left3Button,left4Button,left5Button,leftRestLabel);
+            canvasStackPane.getChildren().removeAll(leftVBox);
+        });
+        upper1Label.addEventHandler(MouseEvent.MOUSE_ENTERED,event -> {
+            canvasStackPane.getChildren().removeAll(leftVBox);
         });
         left1HintButton.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
-            if(HintButtonCounter==0){
+            canvasStackPane.getChildren().removeAll(leftVBox);
+            if(currentGraph.getHints()==0){
 
-                upperBoundLabel.setText(Integer.toString(currentGraph.getUpperBound()));
+                upper2Label.setText(Integer.toString(currentGraph.getUpperBound()));
                 currentGraph.addHints(1);
             }
         });
         left2Button.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
+            canvasStackPane.getChildren().removeAll(leftVBox);
             stackPane.getChildren().add(newGraphHBox);
             stackPane.getChildren().add(backPane);
         });
         left3Button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            canvasStackPane.getChildren().removeAll(leftVBox);
             stackPane.getChildren().add(newGamemodeHBox);
             stackPane.getChildren().add(backPane);
         });
         left4Button.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
+            canvasStackPane.getChildren().removeAll(leftVBox);
             stackPane.getChildren().add(newGraphModeHBox);
             stackPane.getChildren().add(backPane);
         });
         left5Button.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
+            canvasStackPane.getChildren().removeAll(leftVBox);
             finished();
         });
 
@@ -506,23 +506,27 @@ public class Game2 {
 
     }
     private void setDisplay(Graph graph){
-        if(timer!=null){ timer.stop();}
-        if(gamemode==2){
-            double time=15;
-            timing=(int)time;
-            timer = new Timeline(new KeyFrame(Duration.seconds(1),event->{
-                timing--;
-                upper2Label.setText(Double.toString(timing));
-            }));
+        if(currentGraph!=null) {
 
-            timer.setCycleCount((int)time);
-            timer.setOnFinished(event -> {
-                timing=0;
-                timerUp();
-            });
-            timer.play();
+            if (timer != null) {
+                timer.stop();
+            }
+            if (gamemode == 2) {
+                double time = 15;
+                timing = (int) time;
+                timer = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+                    timing--;
+                    upper2Label.setText(Double.toString(timing));
+                }));
 
-        }
+                timer.setCycleCount((int) time);
+                timer.setOnFinished(event -> {
+                    timing = 0;
+                    timerUp();
+                });
+                timer.play();
+
+            }
             clear();
             double myWidth = canvas.getWidth();
             double myHeight = canvas.getHeight();
@@ -534,8 +538,8 @@ public class Game2 {
                 int y = random.nextInt((int) Math.round(myHeight / 4)) + (int) Math.round((myHeight / 2) - myHeight / 8);
                 list.get(i).setPosition(new Position(x, y));
                 list.get(i).setParent(this);
-                if(gamemode==3){
-                    list.get(i).gameMode=3;
+                if (gamemode == 3) {
+                    list.get(i).gameMode = 3;
                     list.get(i).removeMain();
                 }
                 //list.get(i).setOnAction(graphHandeler);
@@ -560,9 +564,10 @@ public class Game2 {
             }));
             timeline.setCycleCount(1000);
             timeline.play();
-            if(gamemode==3){
+            if (gamemode == 3) {
                 list.get(1).getChildren().add(list.get(1).hBox);
             }
+        }
 
     }
     public void newDot(Dot dot,boolean colored){
