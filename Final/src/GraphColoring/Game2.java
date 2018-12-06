@@ -35,7 +35,6 @@ public class Game2 {
     private Button left4Button;
     private Button left5Button;
     private Label leftRestLabel;
-    private int HintButtonCounter;
 
     private Label upperLeftButton;
 
@@ -43,8 +42,6 @@ public class Game2 {
     private Label upper2Label;
     private Label upper3Label;
     private Label upperRestLabel;
-    private Label upperBoundLabel; //hint to display the upperbound when asked for
-
     //New GameMode Button
     private HBox newGamemodeHBox=new HBox();
     private Button newGamemodebutton1=new Button("Bitter End");
@@ -137,7 +134,6 @@ public class Game2 {
         upper2Label = new Label();
         upper3Label = new Label();
         upperRestLabel = new Label();
-        upperBoundLabel = new Label();
         //calculateVectors
         backPane.setPickOnBounds(false);
         textFieldVertices.setPromptText("Vertices");
@@ -146,6 +142,7 @@ public class Game2 {
         gameEnd.setAlignment(Pos.CENTER);
         canvasStackPane.setPickOnBounds(true);
         canvas.setPickOnBounds(true);
+        canvas.getGraphicsContext2D().setLineWidth(2.5);
     }
     private void styling(){
         canvasStackPane.getStyleClass().add("canvasStackPane");
@@ -623,18 +620,20 @@ public class Game2 {
         if(gamemode==3){
             return;
         }
-        canvas.getGraphicsContext2D().setLineWidth(2);
         ArrayList<Dot> myList = dot.giveList();
-        if(colored){
-            canvas.getGraphicsContext2D().setLineWidth(3);
-            canvas.getGraphicsContext2D().setStroke(Color.DEEPPINK);
-        }else{
-            canvas.getGraphicsContext2D().setStroke(Color.BLACK);
-            canvas.getGraphicsContext2D().setLineWidth(2);
-        }
         for(int x=0;x<myList.size();x++){
             Position position1 = dot.position;
-            Position position2 = myList.get(x).position;
+            Dot myDot = myList.get(x);
+            Position position2 = myDot.position;
+            if(colored){
+                if( true &&myDot.coloredAs!=null){
+                    canvas.getGraphicsContext2D().setStroke(myDot.coloredAs);
+                }else{
+                    canvas.getGraphicsContext2D().setStroke(Color.DEEPPINK);
+                }
+            }else{
+                canvas.getGraphicsContext2D().setStroke(Color.BLACK);
+            }
             canvas.getGraphicsContext2D().strokeLine(position1.x+15,position1.y+15,position2.x+15,position2.y+15);
         }
     }

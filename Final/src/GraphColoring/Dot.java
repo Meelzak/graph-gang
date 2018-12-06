@@ -13,13 +13,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 public class Dot extends Electron {
     private int content=0;
@@ -87,15 +80,16 @@ public class Dot extends Electron {
         });
         mainButton.addEventHandler(MouseEvent.MOUSE_ENTERED,event -> {
             for(int i=0;i<list.size();i++){
-                list.get(i).mainButton.getStyleClass().removeAll("graphB");
-                list.get(i).mainButton.getStyleClass().add("graphNeighbour");
+                Dot myDot =list.get(i);
+                myDot.mainButton.setStrokeWidth(3);
+                myDot.mainButton.setStroke(Color.GHOSTWHITE);
             }
             game2.printDot(this,true);
         });
         mainButton.addEventHandler(MouseEvent.MOUSE_EXITED,event -> {
             for(int i=0;i<list.size();i++){
-                list.get(i).mainButton.getStyleClass().removeAll("graphNeighbour");
-                list.get(i).mainButton.getStyleClass().add("graphB");
+                Dot myDot =list.get(i);
+                myDot.mainButton.setStroke(myDot.coloredAs);
             }
             game2.printDot(this,false);
         });
