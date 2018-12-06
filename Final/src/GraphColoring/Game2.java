@@ -391,28 +391,52 @@ public class Game2 {
             canvasStackPane.getChildren().removeAll(leftVBox);
         });
         left1HintButton.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
-            canvasStackPane.getChildren().removeAll(leftVBox);
-            if(currentGraph.getHints()==0){
-                upper2Label.setText("UpperBound: " + Integer.toString(currentGraph.getUpperBound()));
-                currentGraph.addHints(1);
-            }
-            else{
-                int maximumConnections = 0;
-                Dot mostConnections = new Dot();
-                ArrayList<Dot> dots =currentGraph.getList();
-                for(int i =0;i<dots.size();i++){
-                    int currentConnections = dots.get(i).giveList().size();
-                    if (currentConnections>=maximumConnections){
-                        maximumConnections=currentConnections;
-                        mostConnections = dots.get(i);
-                    }
+             canvasStackPane.getChildren().removeAll(leftVBox);
+                 if(currentGraph.getHints()==0){
+                    upper2Label.setText("UpperBound: " + Integer.toString(currentGraph.getUpperBound()));
+                    currentGraph.addHints(1);
+                 } else {
+					if(currentGraph.getHints()==1){
+					     int maximumConnections = 0;
+					     Dot mostConnections = new Dot();
+					     ArrayList<Dot> dots = (ArrayList<Dot>) currentGraph.getList().clone();
+					        
+					     for(int i =0;i<dots.size();i++){
+					    	Dot currentDot = (Dot) dots.get(i);
+					        int currentConnections = currentDot.getNrOfConnections();
+					           if (currentConnections>=maximumConnections){
+					                maximumConnections=currentConnections;
+					                mostConnections = (Dot) currentDot;
+					            }
+					     }
+					     mostConnections.markedAsHint();
+					     currentGraph.addHints(1);
+					 }
+					 else {
+						 ArrayList<Dot> clique = new ArrayList<Dot>();//the list with all the vertices that belong in a clique
+						 ArrayList<Dot> dots = (ArrayList<Dot>) currentGraph.getList().clone();
+						 ArrayList<Dot> dotsTwo = (ArrayList<Dot>) currentGraph.getList().clone();
+						 ArrayList<Dot> dotsThree = (ArrayList<Dot>) currentGraph.getList().clone();
+						 
+						 //as it would take a VERY long time to get the biggest clique (the bigger the graph, the slower the hint is), I decided to just give a random clique
+						 for(int i=0;i<dots.size();i++){
+					         Dot dot = dots.get(i); 
+					         
+					         dotsTwo.add(dot);                         
+					         dots.retainAll(dot.giveList());                        
+					         dotsThree.retainAll(dot.giveList());
 
-                }
-                //System.out.println(maximumConnections);
-                mostConnections.markedAsHint();
-
-                currentGraph.addHints(1);
-            }
+					         dots.remove(dot);
+					         dotsThree.add(dot);
+					        
+					         clique = (ArrayList<Dot>) dotsThree;
+						 }  
+						 for (int i = 0; i< clique.size(); i++) {
+							 clique.get(i).markedAsSecondHint();
+							 currentGraph.addHints(1);
+						 }
+					 }
+				}
         });
         left2Button.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             canvasStackPane.getChildren().removeAll(leftVBox);

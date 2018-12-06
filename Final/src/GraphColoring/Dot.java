@@ -54,6 +54,11 @@ public class Dot extends Electron {
     public void setConnection(Dot dot){
         list.add(dot);
     }
+    
+    public int getNrOfConnections() {
+    	return list.size();
+    }
+    
     public void setContent(int c){
         content = c;
     }
@@ -201,5 +206,10 @@ public class Dot extends Electron {
     public void markedAsHint() {
         Image image = new Image("GraphColoring/Exclamation_Mark.png");
         mainButton.setFill(new ImagePattern(image));
+    }
+    
+    public void markedAsSecondHint() {
+    	Image imageTwo = new Image("GraphColoring/Signal.png");
+    	mainButton.setFill(new ImagePattern(imageTwo));
     }
 }
