@@ -392,10 +392,10 @@ public class Game2 {
         });
         left1HintButton.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
              canvasStackPane.getChildren().removeAll(leftVBox);
-                 if(currentGraph.getHints()==0){
-                    upper2Label.setText("UpperBound: " + Integer.toString(currentGraph.getUpperBound()));
-                    currentGraph.addHints(1);
-                 } else {
+                 if(currentGraph.getHints()==0) {
+                     upper2Label.setText("UpperBound: " + Integer.toString(currentGraph.getUpperBound()));
+                     currentGraph.addHints(1);
+                 }
 					if(currentGraph.getHints()==1){
 					     int maximumConnections = 0;
 					     Dot mostConnections = new Dot();
@@ -412,7 +412,7 @@ public class Game2 {
 					     mostConnections.markedAsHint();
 					     currentGraph.addHints(1);
 					 }
-					 else {
+					 if(currentGraph.getHints()==2) {
 						 ArrayList<Dot> clique = new ArrayList<Dot>();//the list with all the vertices that belong in a clique
 						 ArrayList<Dot> dots = (ArrayList<Dot>) currentGraph.getList().clone();
 						 ArrayList<Dot> dotsTwo = (ArrayList<Dot>) currentGraph.getList().clone();
@@ -435,8 +435,26 @@ public class Game2 {
 							 clique.get(i).markedAsSecondHint();
 							 currentGraph.addHints(1);
 						 }
+                         currentGraph.addHints(1);
 					 }
-				}
+                    if (currentGraph.getHints()>=3) {
+                        ArrayList<Dot> dots = (ArrayList<Dot>) currentGraph.getList().clone();
+                        //the problem I have is that it now only checks if the color is available for the first graph
+                        //I don't know how to check the dot the user selects with the mouse
+                        Dot currentDot = (Dot) dots.get(0);
+                        ArrayList<Dot> connections = currentDot.giveList();
+                        ArrayList<Color> colorsUsed = new ArrayList<Color>();
+                        for (int i = 0; i < connections.size(); i++) {
+
+                            for (int j = 0; j < dots.size(); j++) {
+                                if (connections.get(i).equals(dots.get(j))) {
+                                    Color current = dots.get(j).coloredAs;
+                                    colorsUsed.add(current);
+                                }
+                            }
+                        }
+                        currentDot.colorsAvailable(colorsUsed);
+                    }
         });
         left2Button.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             canvasStackPane.getChildren().removeAll(leftVBox);

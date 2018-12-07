@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class Dot extends Electron {
     private int content=0;
     private ArrayList<Dot> list;
+    private ArrayList<Color> notAvailableColors;
     public Color coloredAs;
     public int gameMode=-1;
     private boolean wasClicked=false;
@@ -129,27 +130,33 @@ public class Dot extends Electron {
 
         button1.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             coloredAs =  Color.YELLOW;
-            mainSetColor();
+            checkIfAvailable();
+            //mainSetColor();
         });
         button2.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             coloredAs = Color.NAVY;
+            checkIfAvailable();
             mainSetColor();
         });
         button3.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             coloredAs = Color.CYAN;
-            mainSetColor();
+            checkIfAvailable();
+            //mainSetColor();
         });
         button4.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             coloredAs = Color.MAROON;
-            mainSetColor();
+            checkIfAvailable();
+            //mainSetColor();
         });
         button5.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             coloredAs = Color.RED;
-            mainSetColor();
+            checkIfAvailable();
+            //mainSetColor();
         });
         button6.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             coloredAs = Color.GREY;
-            mainSetColor();
+            checkIfAvailable();
+            //mainSetColor();
         });
         button7.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             hBox.getChildren().removeAll(colorPicker);
@@ -157,7 +164,8 @@ public class Dot extends Electron {
         });
         colorPicker.setOnAction(event -> {
             coloredAs=colorPicker.getValue();
-            mainSetColor();
+            checkIfAvailable();
+            //mainSetColor();
         });
 
     }
@@ -211,5 +219,22 @@ public class Dot extends Electron {
     public void markedAsSecondHint() {
     	Image imageTwo = new Image("GraphColoring/Signal.png");
     	mainButton.setFill(new ImagePattern(imageTwo));
+    }
+
+    public void colorsAvailable(ArrayList<Color> colorsAlreadyUsed){
+        notAvailableColors=colorsAlreadyUsed;
+    }
+    public void checkIfAvailable(){
+        if(notAvailableColors==null){
+            mainSetColor();
+        }else{
+            for(int i = 0;i<notAvailableColors.size();i++){
+                if (notAvailableColors.get(i)==coloredAs){
+                    System.out.println("Color not available"); //this should exactly happen in game but I'm not used to css so I don't know how that works
+                }else{
+                    mainSetColor();
+                }
+            }
+        }
     }
 }
