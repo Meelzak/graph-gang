@@ -396,6 +396,7 @@ public class Game2 {
                  if(currentGraph.getHints()==0) {
                      upper2Label.setText("UpperBound: " + Integer.toString(currentGraph.getUpperBound()));
                      currentGraph.addHints(1);
+		     CalculateScore.hintOneUsed = true;
                  }
 					if(currentGraph.getHints()==1){
 					     int maximumConnections = 0;
@@ -412,6 +413,7 @@ public class Game2 {
 					     }
 					     mostConnections.markedAsHint();
 					     currentGraph.addHints(1);
+					     CalculateScore.hintThreeUsed = true;
 					 }
 					 if(currentGraph.getHints()==2) {
 						 ArrayList<Dot> maximumClique = (ArrayList<Dot>) Bk.getMaximumClique().clone();
@@ -419,6 +421,7 @@ public class Game2 {
 							 maximumClique.get(i).markedAsSecondHint();
 						 }
 					 currentGraph.addHints(1);
+					 CalculateScore.hintFiveUsed = true;
 					 }
                     if (currentGraph.getHints()==3) {
                         ArrayList<Dot> dots = (ArrayList<Dot>) currentGraph.getList().clone();
@@ -438,6 +441,7 @@ public class Game2 {
                         }
                         currentGraph.addHints(1);
                         currentDot.colorsAvailable(colorsUsed);
+			CalculateScore.hintTwoUsed = true;
                     }
                     if (currentGraph.getHints()>=4){
                         ArrayList<Dot> dots = (ArrayList<Dot>) currentGraph.getList().clone();
@@ -455,6 +459,7 @@ public class Game2 {
                                 }
                             }
                         }
+			    CalculateScore.hintFourUsed = true;
                     }
         });
         left2Button.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
@@ -702,6 +707,7 @@ public class Game2 {
         System.out.println("TOP");
     }
     private void setNewGraph() {
+	//CalculateScore.resetHints();
         Random random = new Random();
         if (graphMode == 1) {
             if (selectedSize == 1) {
@@ -731,5 +737,7 @@ public class Game2 {
     }
     public void finished(){
         System.out.println(coloredRight(currentGraph));
+	//System.out.println(CalculateScore.giveScore());
+	//should be displayed in the score window when the game is finished
     }
 }
