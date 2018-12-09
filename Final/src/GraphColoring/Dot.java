@@ -177,6 +177,7 @@ public class Dot extends Electron {
     }
     public void mainSetColor(){
         remove();
+        game2.colorsUsers.add(coloredAs);
         mainButton.setFill(coloredAs);
         if(gameMode!=3){
             return;

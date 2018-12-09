@@ -35,6 +35,7 @@ public class Game2 {
     private Button left4Button;
     private Button left5Button;
     private Label leftRestLabel;
+    public static ArrayList<Color> colorsUsers=new ArrayList<>();
 
     private Label upperLeftButton;
 
@@ -419,7 +420,7 @@ public class Game2 {
 						 }
 					 currentGraph.addHints(1);
 					 }
-                    if (currentGraph.getHints()>=3) {
+                    if (currentGraph.getHints()==3) {
                         ArrayList<Dot> dots = (ArrayList<Dot>) currentGraph.getList().clone();
                         //the problem I have is that it now only checks if the color is available for the first graph
                         //I don't know how to check the dot the user selects with the mouse
@@ -435,7 +436,25 @@ public class Game2 {
                                 }
                             }
                         }
+                        currentGraph.addHints(1);
                         currentDot.colorsAvailable(colorsUsed);
+                    }
+                    if (currentGraph.getHints()>=4){
+                        ArrayList<Dot> dots = (ArrayList<Dot>) currentGraph.getList().clone();
+                        for (int i = 0; i<dots.size();i++){
+                            int p = 0;
+                            if (dots.get(i).coloredAs==null){
+                                ArrayList<Dot> connections = dots.get(i).giveList();
+                                for (int j = 0; j<connections.size();j++){
+                                    if (colorsUsers.contains(connections.get(j).coloredAs)){
+                                      p++;
+                                    }
+                                    if (p==connections.size()){
+                                        System.out.println("You need to add a new color");
+                                    }
+                                }
+                            }
+                        }
                     }
         });
         left2Button.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
