@@ -30,7 +30,7 @@ public class Game2 {
     private BetterScene scene;
     //Objects
     private Button left1HintButton;
-    public boolean hint3 = false;
+    public boolean hint4 = false;
     public boolean hint9 = false;
     private Button left2Button;
     private Button left3Button;
@@ -91,15 +91,15 @@ public class Game2 {
     private VBox vBoxHint2 = new VBox();
     private VBox vBoxHint3 = new VBox();
     //add Buttons
-    private Button hintButton1 = new Button("1");
-    private Button hintButton2 = new Button("2");
-    private Button hintButton3 = new Button("3");
-    private Button hintButton4 = new Button("4");
-    private Button hintButton5 = new Button("5");
-    private Button hintButton6 = new Button("6");
-    private Button hintButton7 = new Button("7");
-    private Button hintButton8 = new Button("8");
-    private Button hintButton9 = new Button("9");
+    private Button hintButton1 = new Button("UpperBound");
+    private Button hintButton2 = new Button("LowerBound");
+    private Button hintButton3 = new Button("Chromatic Number");
+    private Button hintButton4 = new Button("Give possible colours");
+    private Button hintButton5 = new Button("Most connect vertex");
+    private Button hintButton6 = new Button("Check if new colour needed");
+    private Button hintButton7 = new Button("Biggest clique");
+    private Button hintButton8 = new Button("Colour edges");
+    private Button hintButton9 = new Button("possible colours (whole game)");
 
     //Display Stuff
     private ChromaticManager chromaticManager;
@@ -566,6 +566,7 @@ public class Game2 {
             setDisplay(currentGraph);
         });
 
+        //action listeners for the hintbuttons and call the giveHint method
         hintButton1.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             giveHint(1);
             hintButton1.setMouseTransparent(true);
@@ -582,23 +583,35 @@ public class Game2 {
             stackPane.getChildren().removeAll(hintMenuStack,backPane);
         });
         hintButton4.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
-            giveHint(1);
+            giveHint(4);
             hintButton4.setMouseTransparent(true);
             stackPane.getChildren().removeAll(hintMenuStack,backPane);
         });
         hintButton5.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
-            giveHint(1);
+            giveHint(5);
             hintButton5.setMouseTransparent(true);
             stackPane.getChildren().removeAll(hintMenuStack,backPane);
         });
         hintButton6.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
-            giveHint(1);
+            giveHint(6);
             hintButton6.setMouseTransparent(true);
             stackPane.getChildren().removeAll(hintMenuStack,backPane);
         });
+        hintButton7.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
+            giveHint(7);
+            hintButton7.setMouseTransparent(true);
+            stackPane.getChildren().removeAll(hintMenuStack,backPane);
+        });
+        hintButton8.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
+            giveHint(8);
+            hintButton8.setMouseTransparent(true);
+            stackPane.getChildren().removeAll(hintMenuStack,backPane);
+        });
+
+
         hintButton9.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             giveHint(9);
-            hintButton2.setMouseTransparent(true);
+            hintButton9.setMouseTransparent(true);
             stackPane.getChildren().removeAll(hintMenuStack,backPane);
         });
 
@@ -798,15 +811,15 @@ public void giveHint(int hintModeChosen) {
      	}
      	
          if (hintModeChosen==4) {//give possible colours - level 1
-        	 hint2 = true;
+        	 hint4 = true;
              CalculateScore.hintFourUsed = true;
          }
          
-		 if(hintModeChosen ==5){//most connected vertix - level 2
+		 if(hintModeChosen ==5){//most connected vertex - level 2
 			 int maximumConnections = 0;
 			  Dot mostConnections = new Dot();
 			  ArrayList<Dot> dots = (ArrayList<Dot>) currentGraph.getList().clone();
-			        
+			  //checks for every dot the amount of connections
 			  for(int i =0;i<dots.size();i++){
 				  Dot currentDot = (Dot) dots.get(i);
 			      int currentConnections = currentDot.getNrOfConnections();
@@ -821,6 +834,7 @@ public void giveHint(int hintModeChosen) {
 		 
 		 if (hintModeChosen==6){//show if a new colour should be used - level 2
              ArrayList<Dot> dots = (ArrayList<Dot>) currentGraph.getList().clone();
+             //checks for every uncoloured vertex if the dots adjacent to it have all possible colours already chosen by the player
              for (int i = 0; i<dots.size();i++){
                  int p = 0;
                  if (dots.get(i).coloredAs==null){
@@ -829,6 +843,7 @@ public void giveHint(int hintModeChosen) {
                          if (colorsUsers.contains(connections.get(j).coloredAs)){
                            p++;
                          }
+                         //this means that there is an uncoloured dot where all adjacent dots have an already used colour
                          if (p==connections.size()){
                              upper3Label.setText("Add a new colour");
                          }
