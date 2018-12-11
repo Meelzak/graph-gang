@@ -30,7 +30,8 @@ public class Game2 {
     private BetterScene scene;
     //Objects
     private Button left1HintButton;
-    public Boolean hint3;
+    public boolean hint3 = false;
+    public boolean hint9 = false;
     private Button left2Button;
     private Button left3Button;
     private Button left4Button;
@@ -110,7 +111,6 @@ public class Game2 {
     public int myVertices=0;
     public int selectedSize=0;
     private int timing=0;
-    public boolean hint2=false;
 
 
     private Starter starter;
@@ -572,12 +572,12 @@ public class Game2 {
             stackPane.getChildren().removeAll(hintMenuStack,backPane);
         });
         hintButton2.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
-            giveHint(1);
+            giveHint(2);
             hintButton2.setMouseTransparent(true);
             stackPane.getChildren().removeAll(hintMenuStack,backPane);
         });
         hintButton3.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
-            giveHint(1);
+            giveHint(3);
             hintButton3.setMouseTransparent(true);
             stackPane.getChildren().removeAll(hintMenuStack,backPane);
         });
@@ -594,6 +594,11 @@ public class Game2 {
         hintButton6.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             giveHint(1);
             hintButton6.setMouseTransparent(true);
+            stackPane.getChildren().removeAll(hintMenuStack,backPane);
+        });
+        hintButton9.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
+            giveHint(9);
+            hintButton2.setMouseTransparent(true);
             stackPane.getChildren().removeAll(hintMenuStack,backPane);
         });
 
@@ -787,7 +792,7 @@ public void giveHint(int hintModeChosen) {
      	}
      	
          if (hintModeChosen==3) {//give possible colours - level 1
-        	 hint2 = true;
+        	 hint3 = true;
              CalculateScore.hintThreeUsed = true;
          }
          
@@ -845,7 +850,7 @@ public void giveHint(int hintModeChosen) {
 		  }
 		  
 		  if (hintModeChosen ==9) {//tells you if you can use a colour during the whole game - level 3
-			  
+			  hint9=true;
 			  CalculateScore.hintNineUsed = true;
 		  }
     }

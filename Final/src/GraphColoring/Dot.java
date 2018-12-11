@@ -223,7 +223,7 @@ public class Dot extends Electron {
     }
 
     public void checkIfAvailable(){
-        if(game2.hint2==false){
+        if(game2.hint3==false&&game2.hint9==false){
             mainSetColor();
         }else{
             ArrayList<Dot> dots = (ArrayList<Dot>) game2.currentGraph.getList().clone();
