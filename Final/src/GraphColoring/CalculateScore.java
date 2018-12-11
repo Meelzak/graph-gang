@@ -4,11 +4,11 @@ public class CalculateScore {//can be easily changed later, if we want our gradi
 
 //hint levels will go from less revealing to more revealing
 public static boolean hintOneUsed = false; //upper bound
-public static boolean hintTwoUsed = false; //give possible colours
-public static boolean hintThreeUsed = false; //most connected
-public static boolean hintFourUsed = false; //show if new colour should be chosen
-public static boolean hintFiveUsed = false; //biggest clique
-public static boolean hintSixUsed = false; //show edges
+public static boolean hintTwoUsed = false; //chromatic number
+public static boolean hintThreeUsed = false; //give possible colours
+public static boolean hintFourUsed = false; //most connected
+public static boolean hintFiveUsed = false; //show if new colour should be chosen
+public static boolean hintSixUsed = false; //biggest clique 
 public static boolean hintSevenUsed = false; //coloured edges
 public static boolean hintEightUsed = false; //tell if colours can be used
 public static boolean hintNineUsed = false; //says if you can use colours for the whole game
@@ -49,7 +49,7 @@ public double score = 100; //this will be in percent
 		}
 	}
 	
-	public void resetHints() {//use this whenever there's a new graph, or whenever a new game is started!
+	public static void resetHints() {//use this whenever there's a new graph, or whenever a new game is started!
 		hintOneUsed = false;
 		hintTwoUsed = false;
 		hintThreeUsed = false;
