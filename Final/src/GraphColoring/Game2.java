@@ -711,7 +711,7 @@ public class Game2 {
         			if( true &&myDot.coloredAs!=null && CalculateScore.hintEightUsed){
         				canvas.getGraphicsContext2D().setStroke(myDot.coloredAs);
         			}
-        			else if (true && myDot.coloredAs!= null && CalculateScore.hintSevenUsed){
+        			else{
         				canvas.getGraphicsContext2D().setStroke(Color.DEEPPINK);
         			}
         		}
@@ -721,6 +721,7 @@ public class Game2 {
         		canvas.getGraphicsContext2D().strokeLine(position1.x+15,position1.y+15,position2.x+15,position2.y+15);
         	}
         }
+    }
     }
     public boolean coloredRight(Graph graph){
         ArrayList<Dot> list = graph.getList();
