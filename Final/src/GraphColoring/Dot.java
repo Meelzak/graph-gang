@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class Dot extends Electron {
     private int content=0;
     private ArrayList<Dot> list;
-    private ArrayList<Color> notAvailableColors;
+    private ArrayList<Color> notAvailableColors = new ArrayList<>();
     public Color coloredAs;
     public int gameMode=-1;
     private boolean wasClicked=false;
@@ -222,19 +222,30 @@ public class Dot extends Electron {
     	mainButton.setFill(new ImagePattern(imageTwo));
     }
 
-    public void colorsAvailable(ArrayList<Color> colorsAlreadyUsed){
-        notAvailableColors=colorsAlreadyUsed;
-    }
     public void checkIfAvailable(){
-        if(notAvailableColors==null){
+        if(game2.hint3==false){
             mainSetColor();
         }else{
+            ArrayList<Dot> dots = (ArrayList<Dot>) game2.currentGraph.getList().clone();
+
+            for(int i =0; i<list.size();i++){
+                for (int j = 0; j<dots.size();j++){
+                    if (list.get(i).equals(dots.get(j))){
+                        Color current = dots.get(j).coloredAs;
+                        notAvailableColors.add(current);
+                    }
+                }
+            }
+            boolean colorAvailable=true;
             for(int i = 0;i<notAvailableColors.size();i++){
                 if (notAvailableColors.get(i)==coloredAs){
                     System.out.println("Color not available"); //this should exactly happen in game but I'm not used to css so I don't know how that works
-                }else{
-                    mainSetColor();
+                    colorAvailable=false;
+                    game2.hint3=false;
                 }
+            }
+            if (colorAvailable==true){
+                mainSetColor();
             }
         }
     }
