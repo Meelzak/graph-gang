@@ -701,21 +701,23 @@ public class Game2 {
         if(gamemode==3){
             return;
         }
-        ArrayList<Dot> myList = dot.giveList();
-        for(int x=0;x<myList.size();x++){
-            Position position1 = dot.position;
-            Dot myDot = myList.get(x);
-            Position position2 = myDot.position;
-            if(colored){
-                if( true &&myDot.coloredAs!=null){
-                    canvas.getGraphicsContext2D().setStroke(myDot.coloredAs);
-                }else{
-                    canvas.getGraphicsContext2D().setStroke(Color.DEEPPINK);
-                }
-            }else{
-                canvas.getGraphicsContext2D().setStroke(Color.BLACK);
-            }
-            canvas.getGraphicsContext2D().strokeLine(position1.x+15,position1.y+15,position2.x+15,position2.y+15);
+        if (CalculateScore.hintSevenUsed) {
+        	ArrayList<Dot> myList = dot.giveList();
+        	for(int x=0;x<myList.size();x++){
+        		Position position1 = dot.position;
+        		Dot myDot = myList.get(x);
+        		Position position2 = myDot.position;
+        		if(colored){
+        			if( true &&myDot.coloredAs!=null && CalculateScore.hintEightUsed){
+        				canvas.getGraphicsContext2D().setStroke(myDot.coloredAs);
+        			}else{
+        				canvas.getGraphicsContext2D().setStroke(Color.DEEPPINK);
+        			}
+        		}else{
+        			canvas.getGraphicsContext2D().setStroke(Color.BLACK);
+        		}
+        		canvas.getGraphicsContext2D().strokeLine(position1.x+15,position1.y+15,position2.x+15,position2.y+15);
+        	}
         }
     }
     public boolean coloredRight(Graph graph){
@@ -769,22 +771,26 @@ public class Game2 {
         }
     }
 	
-   public void giveHint(int hintModeChosen) {
+public void giveHint(int hintModeChosen) {
     	canvasStackPane.getChildren().removeAll(leftVBox);
         
-     	if(hintModeChosen==1) {//give upper bound
+     	if(hintModeChosen==1) {//give upper bound - level 1
              upper2Label.setText("UpperBound: " + Integer.toString(currentGraph.getUpperBound()));
              CalculateScore.hintOneUsed = true;
          }
-         
-         if (hintModeChosen==2) {//give possible colours
-             hint2 = true;
-             currentGraph.addHints(1);
-             CalculateScore.hintTwoUsed = true;
+        
+     	if (hintModeChosen==2) {//give chromatic number - level 1
+     		 upper2Label.setText("Chromatic number: " + Integer.toString(currentGraph.getCNumber()));
+     		 CalculateScore.hintFourUsed = true;
+     	}
+     	
+         if (hintModeChosen==3) {//give possible colours - level 1
+        	 hint2 = true;
+             CalculateScore.hintThreeUsed = true;
          }
          
-		 if(hintModeChosen ==3){//most connected vertix
-			  int maximumConnections = 0;
+		 if(hintModeChosen ==4){//most connected vertix - level 2
+			 int maximumConnections = 0;
 			  Dot mostConnections = new Dot();
 			  ArrayList<Dot> dots = (ArrayList<Dot>) currentGraph.getList().clone();
 			        
@@ -797,10 +803,10 @@ public class Game2 {
 			          }
 			   }
 			   mostConnections.markedAsHint();
-			   CalculateScore.hintThreeUsed = true;
+			   CalculateScore.hintFourUsed = true;
 		  }
 		 
-		 if (hintModeChosen==4){//show if a new colour should be used
+		 if (hintModeChosen==5){//show if a new colour should be used - level 2
              ArrayList<Dot> dots = (ArrayList<Dot>) currentGraph.getList().clone();
              for (int i = 0; i<dots.size();i++){
                  int p = 0;
@@ -811,32 +817,37 @@ public class Game2 {
                            p++;
                          }
                          if (p==connections.size()){
-                             System.out.println("You need to add a new color");
+                             upper3Label.setText("Add a new colour");
                          }
                      }
                  }
              }
-             CalculateScore.hintFourUsed = true;
+             CalculateScore.hintFiveUsed = true;
          }
 		 
-		  if(hintModeChosen ==5) {//biggest clique
+		  if(hintModeChosen ==6) {//biggest clique - level 2
 			   ArrayList<Dot> maximumClique = (ArrayList<Dot>) Bk.getMaximumClique().clone();
 			   for (int i = 0; i< maximumClique.size(); i++) {
 				   maximumClique.get(i).markedAsSecondHint();
 			   }
-			   CalculateScore.hintFiveUsed = true;
+			   CalculateScore.hintSixUsed = true;
 		  }
 		  
-		  if (hintModeChosen ==6) {//show edges that are connected to vertix
-			  
-			  CalculateScore.hintSixUsed = true;
-		  }
-		  
-		  if (hintModeChosen ==7) {//show coloured edges
-			  
+		  if (hintModeChosen ==7) {//show edges that are connected to vertix - level 3
 			  CalculateScore.hintSevenUsed = true;
 		  }
+		  
+		  if (hintModeChosen ==8) {//show coloured edges - level 3
+			  CalculateScore.hintSevenUsed = true;
+			  CalculateScore.hintEightUsed = true;
+		  }
+		  
+		  if (hintModeChosen ==9) {//tells you if you can use a colour during the whole game - level 3
+			  
+			  CalculateScore.hintNineUsed = true;
+		  }
     }
+
 	
     public void finished(){
         System.out.println(coloredRight(currentGraph));
