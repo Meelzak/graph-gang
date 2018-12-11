@@ -59,6 +59,8 @@ public double score = 100; //this will be in percent
 		hintSevenUsed = false;
 		hintEightUsed = false;
 		hintNineUsed = false;
+		GameMode.hint4 = false;
+		GameMode.hint9 = false;
 	}
 	
 }
