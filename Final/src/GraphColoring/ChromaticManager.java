@@ -36,8 +36,8 @@ public class ChromaticManager{
         Graph graph = reader.read(filename);
         int upper=powell.doPowell(graph);
         int lower=bk.doBK(graph);
-        int c = newForce.doNewForce(graph, upper, lower);
-        graph.setCNumer(c);
+        //int c = newForce.doNewForce(graph, upper, lower);
+        //graph.setCNumer(c);
         graph.setLowerBound(lower);
         graph.setUpperBound(upper);
         return graph;
@@ -47,8 +47,8 @@ public class ChromaticManager{
         Graph graph = generator.GenerateGraph(vertices, edges);
         int upper=powell.doPowell(graph);
         int lower=bk.doBK(graph);
-        int c = newForce.doNewForce(graph, upper, lower);
-        graph.setCNumer(c);
+        //int c = newForce.doNewForce(graph, upper, lower);
+        //graph.setCNumer(c);
         graph.setLowerBound(lower);
         graph.setUpperBound(upper);
         return graph;
