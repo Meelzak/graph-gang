@@ -169,8 +169,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GraphColoring/Game2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="710" column="78" lean-forward="true" selection-start-line="710" selection-start-column="78" selection-end-line="710" selection-end-column="78" />
+            <state relative-caret-position="129">
+              <caret line="703" column="31" lean-forward="true" selection-start-line="703" selection-start-column="31" selection-end-line="703" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#29121#29122#0" expanded="true" />
@@ -417,7 +417,7 @@
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544530821789" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544531526895" />
     <property name="dynamic.classpath" value="false" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -639,7 +639,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="330100000" />
+    <option name="totallyTimeSpent" value="330665000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -658,14 +658,14 @@
       <window_info id="UI Designer" order="1" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="4" sideWeight="0.6703755" visible="true" weight="0.16847433" />
+      <window_info content_ui="combo" id="Project" order="4" sideWeight="0.6703755" visible="true" weight="0.16847433" />
       <window_info id="Structure" order="5" weight="0.2494577" />
       <window_info id="Favorites" order="6" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.32993197" />
       <window_info anchor="bottom" id="Database Changes" order="1" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Find" order="3" weight="0.32993197" />
-      <window_info anchor="bottom" id="Run" order="4" visible="true" weight="0.28231293" />
+      <window_info active="true" anchor="bottom" id="Run" order="4" visible="true" weight="0.28231293" />
       <window_info anchor="bottom" id="Debug" order="5" weight="0.3991323" />
       <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
@@ -957,8 +957,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GraphColoring/Game2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="710" column="78" lean-forward="true" selection-start-line="710" selection-start-column="78" selection-end-line="710" selection-end-column="78" />
+        <state relative-caret-position="129">
+          <caret line="703" column="31" lean-forward="true" selection-start-line="703" selection-start-column="31" selection-end-line="703" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#29121#29122#0" expanded="true" />
