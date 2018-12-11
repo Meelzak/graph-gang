@@ -83,6 +83,18 @@ public class Game2 {
     private StackPane gameEndTop = new StackPane();
     private StackPane gameEndStackPane = new StackPane();
 
+    private StackPane hintMenuStack = new StackPane();
+    private HBox hintMenu = new HBox();
+    private VBox vBoxHint = new VBox();
+    private VBox vBoxHint2 = new VBox();
+    //add Buttons
+    private Button hintButton1 = new Button("1");
+    private Button hintButton2 = new Button("2");
+    private Button hintButton3 = new Button("3");
+    private Button hintButton4 = new Button("4");
+    private Button hintButton5 = new Button("5");
+    private Button hintButton6 = new Button("6");
+
     //Display Stuff
     private ChromaticManager chromaticManager;
     public Graph currentGraph;
@@ -189,6 +201,12 @@ public class Game2 {
         textFieldEdges.getStyleClass().add("textfield");
         gameEndTop.getStyleClass().add("gameEndTop");
         gameEndStackPane.getStyleClass().add("gameEndStackPane");
+
+        hintMenuStack.getStyleClass().add("newGraphModeHBox");
+
+        vBoxHint.setAlignment(Pos.CENTER);
+        vBoxHint2.setAlignment(Pos.CENTER);
+        hintMenu.setAlignment(Pos.CENTER);
     }
     public void setSize(double width, double height){
         double topLaneHeight=height/100*myInformation.upperToDownPercent;
@@ -347,6 +365,26 @@ public class Game2 {
         newGraphButtonNo.setMinSize(nBWidth,nBHeight);
         newGraphButtonNo.setMaxSize(nBWidth,nBHeight);
 
+        hintButton1.setMinSize(nBWidth,nBHeight);
+        hintButton1.setMaxSize(nBWidth,nBHeight);
+        hintButton2.setMinSize(nBWidth,nBHeight);
+        hintButton2.setMaxSize(nBWidth,nBHeight);
+        hintButton3.setMinSize(nBWidth,nBHeight);
+        hintButton3.setMaxSize(nBWidth,nBHeight);
+        hintButton4.setMinSize(nBWidth,nBHeight);
+        hintButton4.setMaxSize(nBWidth,nBHeight);
+        hintButton5.setMinSize(nBWidth,nBHeight);
+        hintButton5.setMaxSize(nBWidth,nBHeight);
+        hintButton6.setMinSize(nBWidth,nBHeight);
+        hintButton6.setMaxSize(nBWidth,nBHeight);
+
+        hintMenuStack.setMinSize(width, height);
+        hintMenuStack.setMaxSize(width, height);
+
+        hintMenu.setSpacing(width/30);
+        vBoxHint.setSpacing(height/20);
+        vBoxHint2.setSpacing(height/20);
+
     }
     private void insert(){
         leftVBox.getChildren().addAll(left1HintButton,left2Button,left3Button,left4Button,left5Button,leftRestLabel);
@@ -368,6 +406,10 @@ public class Game2 {
         listViewVBox.getChildren().addAll(listView,submit2);
         gameEnd.getChildren().addAll(gameEndTop,gameEndButton);
         gameEndStackPane.getChildren().add(gameEnd);
+        vBoxHint.getChildren().addAll(hintButton1,hintButton2,hintButton3);
+        vBoxHint2.getChildren().addAll(hintButton4,hintButton5,hintButton6);
+        hintMenu.getChildren().addAll(vBoxHint,vBoxHint2);
+        hintMenuStack.getChildren().add(hintMenu);
 
     }
     private void listen(){
@@ -392,6 +434,7 @@ public class Game2 {
             canvasStackPane.getChildren().removeAll(leftVBox);
         });
         left1HintButton.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
+            stackPane.getChildren().addAll(hintMenuStack,backPane);
              canvasStackPane.getChildren().removeAll(leftVBox);
                  if(currentGraph.getHints()==0) {
                      upper2Label.setText("UpperBound: " + Integer.toString(currentGraph.getUpperBound()));
@@ -484,7 +527,7 @@ public class Game2 {
 
         //Back Button
         backButton.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
-            stackPane.getChildren().removeAll(newGraphHBox,newGamemodeHBox,newGraphModeHBox,sMBHBox,backPane,listView,textFieldHBox,listViewVBox);
+            stackPane.getChildren().removeAll(newGraphHBox,newGamemodeHBox,newGraphModeHBox,sMBHBox,backPane,listView,textFieldHBox,listViewVBox,hintMenuStack);
         });
         //Other Buttons
         newGraphButtonYes.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
