@@ -30,6 +30,7 @@ public class Game2 {
     private BetterScene scene;
     //Objects
     private Button left1HintButton;
+    public Boolean hint3;
     private Button left2Button;
     private Button left3Button;
     private Button left4Button;
@@ -775,21 +776,8 @@ public class Game2 {
          }
          
          if (hintModeChosen==2) {//give possible colours
-             ArrayList<Dot> dots = (ArrayList<Dot>) currentGraph.getList().clone();
-             //the problem I have is that it now only checks if the color is available for the first graph
-             //I don't know how to check the dot the user selects with the mouse
-             Dot currentDot = (Dot) dots.get(0);
-             ArrayList<Dot> connections = currentDot.giveList();
-             ArrayList<Color> colorsUsed = new ArrayList<Color>();
-             for (int i = 0; i < connections.size(); i++) {
-                 for (int j = 0; j < dots.size(); j++) {
-                     if (connections.get(i).equals(dots.get(j))) {
-                         Color current = dots.get(j).coloredAs;
-                         colorsUsed.add(current);
-                     }
-                 }
-             }
-             currentDot.colorsAvailable(colorsUsed);
+             hint3 = true;
+             currentGraph.addHints(1);
              CalculateScore.hintTwoUsed = true;
          }
          
