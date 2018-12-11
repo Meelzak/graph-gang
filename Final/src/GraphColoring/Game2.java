@@ -749,7 +749,7 @@ public class Game2 {
         System.out.println("TOP");
     }
     private void setNewGraph() {
-	//CalculateScore.resetHints();
+	CalculateScore.resetHints();
         Random random = new Random();
         if (graphMode == 1) {
             if (selectedSize == 1) {
@@ -860,6 +860,7 @@ public void giveHint(int hintModeChosen) {
         System.out.println(coloredRight(currentGraph));
 	CalculateScore score = new CalculateScore();
         System.out.println(score.giveScore() + "%");
+	CalculateScore.resetHints();
 	//should be displayed in the score window when the game is finished
     }
 }
