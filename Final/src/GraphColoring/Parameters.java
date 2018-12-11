@@ -10,4 +10,6 @@ public class Parameters {
     public static final double maxPushOfBorder=35;
     public static final double pushOfToBorder=1000;
 
+    public static final int trys=2000;
+
 }

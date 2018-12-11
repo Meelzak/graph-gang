@@ -52,17 +52,25 @@ public class Electron extends StackPane {
         return vector;
     }
     public Vector borderPush(double witdth,double heigth){
+        int i=-1;
+        if(this.position.y<0){ i=1; }
         Vector vectorTop = new Vector(new Position(position.x,0),this.position);
-        vectorTop.multiply(borderAlgorithm(vectorTop)/vectorTop.length*-1);
+        vectorTop.multiply(borderAlgorithm(vectorTop)/vectorTop.length*i);
 
+        i=-1;
+        if(this.position.y>heigth){ i=1; }
         Vector vectorBottom = new Vector(new Position(position.x,heigth),this.position);
-        vectorBottom.multiply(borderAlgorithm(vectorBottom)/vectorBottom.length*-1);
+        vectorBottom.multiply(borderAlgorithm(vectorBottom)/vectorBottom.length*i);
 
+        i=-1;
+        if(this.position.x<0){ i=1; }
         Vector vectorRight = new Vector(new Position(0,position.y),this.position);
-        vectorRight.multiply(borderAlgorithm(vectorRight)/vectorRight.length*-1);
+        vectorRight.multiply(borderAlgorithm(vectorRight)/vectorRight.length*i);
 
+        i=-1;
+        if(this.position.x>witdth){ i=1; }
         Vector vectorLeft = new Vector(new Position(witdth,position.y),this.position);
-        vectorLeft.multiply(borderAlgorithm(vectorLeft)/vectorLeft.length*-1);
+        vectorLeft.multiply(borderAlgorithm(vectorLeft)/vectorLeft.length*i);
 
         vectorTop.add(vectorBottom);
         vectorTop.add(vectorRight);

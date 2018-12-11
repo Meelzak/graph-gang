@@ -666,7 +666,7 @@ public class Game2 {
                     printDot(list.get(i), false);
                 }
             }));
-            timeline.setCycleCount(1000);
+            timeline.setCycleCount(Parameters.trys);
             timeline.play();
             if (gamemode == 3) {
                 list.get(1).getChildren().add(list.get(1).hBox);
