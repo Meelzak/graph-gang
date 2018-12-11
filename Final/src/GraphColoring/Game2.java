@@ -435,75 +435,6 @@ public class Game2 {
         });
         left1HintButton.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             stackPane.getChildren().addAll(hintMenuStack,backPane);
-             canvasStackPane.getChildren().removeAll(leftVBox);
-                 if(currentGraph.getHints()==0) {
-                     upper2Label.setText("UpperBound: " + Integer.toString(currentGraph.getUpperBound()));
-                     currentGraph.addHints(1);
-		     CalculateScore.hintOneUsed = true;
-                 }
-					if(currentGraph.getHints()==1){
-					     int maximumConnections = 0;
-					     Dot mostConnections = new Dot();
-					     ArrayList<Dot> dots = (ArrayList<Dot>) currentGraph.getList().clone();
-					        
-					     for(int i =0;i<dots.size();i++){
-					    	Dot currentDot = (Dot) dots.get(i);
-					        int currentConnections = currentDot.getNrOfConnections();
-					           if (currentConnections>=maximumConnections){
-					                maximumConnections=currentConnections;
-					                mostConnections = (Dot) currentDot;
-					            }
-					     }
-					     mostConnections.markedAsHint();
-					     currentGraph.addHints(1);
-					     CalculateScore.hintThreeUsed = true;
-					 }
-					 if(currentGraph.getHints()==2) {
-						 ArrayList<Dot> maximumClique = (ArrayList<Dot>) Bk.getMaximumClique().clone();
-						 for (int i = 0; i< maximumClique.size(); i++) {
-							 maximumClique.get(i).markedAsSecondHint();
-						 }
-					 currentGraph.addHints(1);
-					 CalculateScore.hintFiveUsed = true;
-					 }
-                    if (currentGraph.getHints()==3) {
-                        ArrayList<Dot> dots = (ArrayList<Dot>) currentGraph.getList().clone();
-                        //the problem I have is that it now only checks if the color is available for the first graph
-                        //I don't know how to check the dot the user selects with the mouse
-                        Dot currentDot = (Dot) dots.get(0);
-                        ArrayList<Dot> connections = currentDot.giveList();
-                        ArrayList<Color> colorsUsed = new ArrayList<Color>();
-                        for (int i = 0; i < connections.size(); i++) {
-
-                            for (int j = 0; j < dots.size(); j++) {
-                                if (connections.get(i).equals(dots.get(j))) {
-                                    Color current = dots.get(j).coloredAs;
-                                    colorsUsed.add(current);
-                                }
-                            }
-                        }
-                        currentGraph.addHints(1);
-                        currentDot.colorsAvailable(colorsUsed);
-			CalculateScore.hintTwoUsed = true;
-                    }
-                    if (currentGraph.getHints()>=4){
-                        ArrayList<Dot> dots = (ArrayList<Dot>) currentGraph.getList().clone();
-                        for (int i = 0; i<dots.size();i++){
-                            int p = 0;
-                            if (dots.get(i).coloredAs==null){
-                                ArrayList<Dot> connections = dots.get(i).giveList();
-                                for (int j = 0; j<connections.size();j++){
-                                    if (colorsUsers.contains(connections.get(j).coloredAs)){
-                                      p++;
-                                    }
-                                    if (p==connections.size()){
-                                        System.out.println("You need to add a new color");
-                                    }
-                                }
-                            }
-                        }
-			    CalculateScore.hintFourUsed = true;
-                    }
         });
         left2Button.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             canvasStackPane.getChildren().removeAll(leftVBox);
@@ -778,6 +709,89 @@ public class Game2 {
             }
         }
     }
+	
+   public void giveHint(int hintModeChosen) {
+    	canvasStackPane.getChildren().removeAll(leftVBox);
+        
+     	if(hintModeChosen==1) {//give upper bound
+             upper2Label.setText("UpperBound: " + Integer.toString(currentGraph.getUpperBound()));
+             CalculateScore.hintOneUsed = true;
+         }
+         
+         if (hintModeChosen==2) {//give possible colours
+             ArrayList<Dot> dots = (ArrayList<Dot>) currentGraph.getList().clone();
+             //the problem I have is that it now only checks if the color is available for the first graph
+             //I don't know how to check the dot the user selects with the mouse
+             Dot currentDot = (Dot) dots.get(0);
+             ArrayList<Dot> connections = currentDot.giveList();
+             ArrayList<Color> colorsUsed = new ArrayList<Color>();
+             for (int i = 0; i < connections.size(); i++) {
+                 for (int j = 0; j < dots.size(); j++) {
+                     if (connections.get(i).equals(dots.get(j))) {
+                         Color current = dots.get(j).coloredAs;
+                         colorsUsed.add(current);
+                     }
+                 }
+             }
+             currentDot.colorsAvailable(colorsUsed);
+             CalculateScore.hintTwoUsed = true;
+         }
+         
+		 if(hintModeChosen ==3){//most connected vertix
+			  int maximumConnections = 0;
+			  Dot mostConnections = new Dot();
+			  ArrayList<Dot> dots = (ArrayList<Dot>) currentGraph.getList().clone();
+			        
+			  for(int i =0;i<dots.size();i++){
+				  Dot currentDot = (Dot) dots.get(i);
+			      int currentConnections = currentDot.getNrOfConnections();
+			          if (currentConnections>=maximumConnections){
+			               maximumConnections=currentConnections;
+			               mostConnections = (Dot) currentDot;
+			          }
+			   }
+			   mostConnections.markedAsHint();
+			   CalculateScore.hintThreeUsed = true;
+		  }
+		 
+		 if (hintModeChosen==4){//show if a new colour should be used
+             ArrayList<Dot> dots = (ArrayList<Dot>) currentGraph.getList().clone();
+             for (int i = 0; i<dots.size();i++){
+                 int p = 0;
+                 if (dots.get(i).coloredAs==null){
+                     ArrayList<Dot> connections = dots.get(i).giveList();
+                     for (int j = 0; j<connections.size();j++){
+                         if (colorsUsers.contains(connections.get(j).coloredAs)){
+                           p++;
+                         }
+                         if (p==connections.size()){
+                             System.out.println("You need to add a new color");
+                         }
+                     }
+                 }
+             }
+             CalculateScore.hintFourUsed = true;
+         }
+		 
+		  if(hintModeChosen ==5) {//biggest clique
+			   ArrayList<Dot> maximumClique = (ArrayList<Dot>) Bk.getMaximumClique().clone();
+			   for (int i = 0; i< maximumClique.size(); i++) {
+				   maximumClique.get(i).markedAsSecondHint();
+			   }
+			   CalculateScore.hintFiveUsed = true;
+		  }
+		  
+		  if (hintModeChosen ==6) {//show edges that are connected to vertix
+			  
+			  CalculateScore.hintSixUsed = true;
+		  }
+		  
+		  if (hintModeChosen ==7) {//show coloured edges
+			  
+			  CalculateScore.hintSevenUsed = true;
+		  }
+    }
+	
     public void finished(){
         System.out.println(coloredRight(currentGraph));
 	CalculateScore score = new CalculateScore();
