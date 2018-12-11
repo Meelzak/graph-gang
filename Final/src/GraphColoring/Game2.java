@@ -722,7 +722,6 @@ public class Game2 {
         	}
         }
     }
-    }
     public boolean coloredRight(Graph graph){
         ArrayList<Dot> list = graph.getList();
         for(int i=0;i<list.size();i++){
