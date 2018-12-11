@@ -780,7 +780,8 @@ public class Game2 {
     }
     public void finished(){
         System.out.println(coloredRight(currentGraph));
-	//System.out.println(CalculateScore.giveScore());
+	CalculateScore score = new CalculateScore();
+        System.out.println(score.giveScore() + "%");
 	//should be displayed in the score window when the game is finished
     }
 }
