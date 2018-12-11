@@ -87,6 +87,7 @@ public class Game2 {
     private HBox hintMenu = new HBox();
     private VBox vBoxHint = new VBox();
     private VBox vBoxHint2 = new VBox();
+    private VBox vBoxHint3 = new VBox();
     //add Buttons
     private Button hintButton1 = new Button("1");
     private Button hintButton2 = new Button("2");
@@ -94,6 +95,9 @@ public class Game2 {
     private Button hintButton4 = new Button("4");
     private Button hintButton5 = new Button("5");
     private Button hintButton6 = new Button("6");
+    private Button hintButton7 = new Button("7");
+    private Button hintButton8 = new Button("8");
+    private Button hintButton9 = new Button("9");
 
     //Display Stuff
     private ChromaticManager chromaticManager;
@@ -204,8 +208,20 @@ public class Game2 {
 
         hintMenuStack.getStyleClass().add("newGraphModeHBox");
 
+        hintButton1.getStyleClass().add("chooseButtons");
+        hintButton2.getStyleClass().add("chooseButtons");
+        hintButton3.getStyleClass().add("chooseButtons");
+        hintButton4.getStyleClass().add("chooseButtons");
+        hintButton5.getStyleClass().add("chooseButtons");
+        hintButton6.getStyleClass().add("chooseButtons");
+        hintButton7.getStyleClass().add("chooseButtons");
+        hintButton8.getStyleClass().add("chooseButtons");
+        hintButton9.getStyleClass().add("chooseButtons");
+
+
         vBoxHint.setAlignment(Pos.CENTER);
         vBoxHint2.setAlignment(Pos.CENTER);
+        vBoxHint3.setAlignment(Pos.CENTER);
         hintMenu.setAlignment(Pos.CENTER);
     }
     public void setSize(double width, double height){
@@ -377,6 +393,13 @@ public class Game2 {
         hintButton5.setMaxSize(nBWidth,nBHeight);
         hintButton6.setMinSize(nBWidth,nBHeight);
         hintButton6.setMaxSize(nBWidth,nBHeight);
+        hintButton7.setMinSize(nBWidth,nBHeight);
+        hintButton7.setMaxSize(nBWidth,nBHeight);
+        hintButton8.setMinSize(nBWidth,nBHeight);
+        hintButton8.setMaxSize(nBWidth,nBHeight);
+        hintButton9.setMinSize(nBWidth,nBHeight);
+        hintButton9.setMaxSize(nBWidth,nBHeight);
+
 
         hintMenuStack.setMinSize(width, height);
         hintMenuStack.setMaxSize(width, height);
@@ -384,6 +407,7 @@ public class Game2 {
         hintMenu.setSpacing(width/30);
         vBoxHint.setSpacing(height/20);
         vBoxHint2.setSpacing(height/20);
+        vBoxHint3.setSpacing(height/20);
 
     }
     private void insert(){
@@ -408,7 +432,8 @@ public class Game2 {
         gameEndStackPane.getChildren().add(gameEnd);
         vBoxHint.getChildren().addAll(hintButton1,hintButton2,hintButton3);
         vBoxHint2.getChildren().addAll(hintButton4,hintButton5,hintButton6);
-        hintMenu.getChildren().addAll(vBoxHint,vBoxHint2);
+        vBoxHint3.getChildren().addAll(hintButton7,hintButton8,hintButton9);
+        hintMenu.getChildren().addAll(vBoxHint,vBoxHint2,vBoxHint3);
         hintMenuStack.getChildren().add(hintMenu);
 
     }
@@ -537,6 +562,37 @@ public class Game2 {
         gameEndButton.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             stackPane.getChildren().removeAll(gameEndStackPane);
             setDisplay(currentGraph);
+        });
+
+        hintButton1.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
+            giveHint(1);
+            hintButton1.setMouseTransparent(true);
+            stackPane.getChildren().removeAll(hintMenuStack,backPane);
+        });
+        hintButton2.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
+            giveHint(1);
+            hintButton2.setMouseTransparent(true);
+            stackPane.getChildren().removeAll(hintMenuStack,backPane);
+        });
+        hintButton3.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
+            giveHint(1);
+            hintButton3.setMouseTransparent(true);
+            stackPane.getChildren().removeAll(hintMenuStack,backPane);
+        });
+        hintButton4.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
+            giveHint(1);
+            hintButton4.setMouseTransparent(true);
+            stackPane.getChildren().removeAll(hintMenuStack,backPane);
+        });
+        hintButton5.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
+            giveHint(1);
+            hintButton5.setMouseTransparent(true);
+            stackPane.getChildren().removeAll(hintMenuStack,backPane);
+        });
+        hintButton6.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
+            giveHint(1);
+            hintButton6.setMouseTransparent(true);
+            stackPane.getChildren().removeAll(hintMenuStack,backPane);
         });
 
     }
