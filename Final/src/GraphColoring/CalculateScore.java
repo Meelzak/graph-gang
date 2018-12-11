@@ -3,13 +3,15 @@ package GraphColoring;
 public class CalculateScore {//can be easily changed later, if we want our grading system to be different
 
 //hint levels will go from less revealing to more revealing
-public static boolean hintOneUsed = false;//upper bound
-public static boolean hintTwoUsed = false;//give possible colours
-public static boolean hintThreeUsed = false;//most connected
-public static boolean hintFourUsed = false;//show if new colour should be chosen
-public static boolean hintFiveUsed = false;//biggest clique
-public static boolean hintSixUsed = false;//show edges
+public static boolean hintOneUsed = false; //upper bound
+public static boolean hintTwoUsed = false; //give possible colours
+public static boolean hintThreeUsed = false; //most connected
+public static boolean hintFourUsed = false; //show if new colour should be chosen
+public static boolean hintFiveUsed = false; //biggest clique
+public static boolean hintSixUsed = false; //show edges
 public static boolean hintSevenUsed = false; //coloured edges
+public static boolean hintEightUsed = false; //tell if colours can be used
+public static boolean hintNineUsed = false; //says if you can use colours for the whole game
 public double score = 100; //this will be in percent
 
 	public String giveScore() {
@@ -25,18 +27,24 @@ public double score = 100; //this will be in percent
 			score = (score/10 * 9.0);
 		}
 		if (hintThreeUsed) {
-			score = (score/10 * 8.0);
+			score = (score/10 * 8.5);
 		}
 		if (hintFourUsed) {
-			score = (score/10 * 7.5);
+			score = (score/10 * 7.0);
 		}
 		if (hintFiveUsed) {
 			score = (score/10 * 6.5);
 		}
 		if (hintSixUsed) {
-			score = (score/10 * 5.5);
+			score = (score/10 * 6.0);
 		}
-		if (hintSevenUsed) {
+		if (hintSevenUsed & hintEightUsed != true) {
+			score = (score/10 * 5.0);
+		}
+		if (hintEightUsed) {
+			score = (score/10 * 4.0);
+		}
+		if (hintNineUsed) {
 			score = (score/10 * 5.0);
 		}
 	}
@@ -49,6 +57,8 @@ public double score = 100; //this will be in percent
 		hintFiveUsed = false;
 		hintSixUsed = false;
 		hintSevenUsed = false;
+		hintEightUsed = false;
+		hintNineUsed = false;
 	}
 	
 }
