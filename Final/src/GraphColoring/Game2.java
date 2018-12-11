@@ -701,7 +701,7 @@ public class Game2 {
         if(gamemode==3){
             return;
         }
-        if (CalculateScore.hintSevenUsed) {
+        else {
         	ArrayList<Dot> myList = dot.giveList();
         	for(int x=0;x<myList.size();x++){
         		Position position1 = dot.position;
@@ -710,10 +710,12 @@ public class Game2 {
         		if(colored){
         			if( true &&myDot.coloredAs!=null && CalculateScore.hintEightUsed){
         				canvas.getGraphicsContext2D().setStroke(myDot.coloredAs);
-        			}else{
+        			}
+        			else if (true && myDot.coloredAs!= null && CalculateScore.hintSevenUsed){
         				canvas.getGraphicsContext2D().setStroke(Color.DEEPPINK);
         			}
-        		}else{
+        		}
+        		else{
         			canvas.getGraphicsContext2D().setStroke(Color.BLACK);
         		}
         		canvas.getGraphicsContext2D().strokeLine(position1.x+15,position1.y+15,position2.x+15,position2.y+15);
