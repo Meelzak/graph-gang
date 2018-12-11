@@ -840,12 +840,11 @@ public void giveHint(int hintModeChosen) {
 			   CalculateScore.hintSixUsed = true;
 		  }
 		  
-		  if (hintModeChosen ==7) {//show edges that are connected to vertix - level 3
+		  if (hintModeChosen ==7) {//a new hint, level 3
 			  CalculateScore.hintSevenUsed = true;
 		  }
 		  
 		  if (hintModeChosen ==8) {//show coloured edges - level 3
-			  CalculateScore.hintSevenUsed = true;
 			  CalculateScore.hintEightUsed = true;
 		  }
 		  
