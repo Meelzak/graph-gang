@@ -110,6 +110,7 @@ public class Game2 {
     public int myVertices=0;
     public int selectedSize=0;
     private int timing=0;
+    public boolean hint2=false;
 
 
     private Starter starter;
@@ -598,6 +599,7 @@ public class Game2 {
 
     }
     private void setDisplay(Graph graph){
+        upper2Label.setText("");
         if(currentGraph!=null) {
 
             if (timer != null) {
@@ -776,7 +778,7 @@ public class Game2 {
          }
          
          if (hintModeChosen==2) {//give possible colours
-             hint3 = true;
+             hint2 = true;
              currentGraph.addHints(1);
              CalculateScore.hintTwoUsed = true;
          }
