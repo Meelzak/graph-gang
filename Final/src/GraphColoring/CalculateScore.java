@@ -4,13 +4,13 @@ public class CalculateScore {//can be easily changed later, if we want our gradi
 
 //hint levels will go from less revealing to more revealing
 public static boolean hintOneUsed = false; //upper bound
-public static boolean hintTwoUsed = false; //chromatic number
-public static boolean hintThreeUsed = false; //give possible colours
-public static boolean hintFourUsed = false; //most connected
-public static boolean hintFiveUsed = false; //show if new colour should be chosen
-public static boolean hintSixUsed = false; //biggest clique 
-public static boolean hintSevenUsed = false; //coloured edges
-public static boolean hintEightUsed = false; //tell if colours can be used
+public static boolean hintTwoUsed = false; //lower bound
+public static boolean hintThreeUsed = false; //chromatic number
+public static boolean hintFourUsed = false; //possible colours, once
+public static boolean hintFiveUsed = false; //most connected
+public static boolean hintSixUsed = false; //new colour
+public static boolean hintSevenUsed = false; //biggest clique
+public static boolean hintEightUsed = false; //show coloured vertices
 public static boolean hintNineUsed = false; //says if you can use colours for the whole game
 public double score = 100; //this will be in percent
 
@@ -24,13 +24,13 @@ public double score = 100; //this will be in percent
 			score = (score/10 * 9.5);
 		}
 		if (hintTwoUsed) {
-			score = (score/10 * 9.0);
+			score = (score/10 * 9.5);
 		}
 		if (hintThreeUsed) {
-			score = (score/10 * 8.5);
+			score = (score/10 * 8.0);
 		}
 		if (hintFourUsed) {
-			score = (score/10 * 7.0);
+			score = (score/10 * 7.5);
 		}
 		if (hintFiveUsed) {
 			score = (score/10 * 6.5);
@@ -38,7 +38,7 @@ public double score = 100; //this will be in percent
 		if (hintSixUsed) {
 			score = (score/10 * 6.0);
 		}
-		if (hintSevenUsed & hintEightUsed != true) {
+		if (hintSevenUsed) {
 			score = (score/10 * 5.0);
 		}
 		if (hintEightUsed) {
