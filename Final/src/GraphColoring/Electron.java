@@ -84,6 +84,9 @@ public class Electron extends StackPane {
         if(vector.length>=Parameters.pushOfToBorder){
             return 0;
         }
+        /*if(vector.length<50){
+            return (100-Math.pow((vector.length*1/13),2));
+        }*/
         return Parameters.maxPushOfBorder-(Parameters.maxPushOfBorder/Parameters.pushOfToBorder*vector.length);
     }
 

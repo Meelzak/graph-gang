@@ -180,3 +180,6 @@
 .test{
 
 }
+.closedButton{
+    -fx-background-color: -fx-color-background-menue;
+}

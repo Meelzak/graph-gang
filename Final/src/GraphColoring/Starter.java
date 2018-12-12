@@ -35,35 +35,15 @@ public class Starter extends Application{
             scene=game2.giveScene();
             stage.setWidth(mainInterface.getSize().width);
             stage.setHeight(mainInterface.getSize().height);
-            game2.setSize(mainInterface.getSize().width,mainInterface.getSize().height);
             stage.setScene(scene);
-            if(mainInterface.graphMode==1){
-                game2.graphMode=1;
-                game2.selectedSize=mainInterface.selectedSize;
-                Random random = new Random();
-                if(mainInterface.selectedSize==1){
-                    game2.currentGraph=chromaticManager.calculate(random.nextInt(myInformation.smallGraph)+1,-1);
-                }
-                if(mainInterface.selectedSize==2){
-                    game2.currentGraph=chromaticManager.calculate(random.nextInt(myInformation.middleGraph-myInformation.smallGraph)+myInformation.smallGraph+1,-1);
-                }
-                if(mainInterface.selectedSize==3){
-                    game2.currentGraph=chromaticManager.calculate(random.nextInt(myInformation.bigGraph-myInformation.middleGraph)+myInformation.middleGraph+1,-1);
-                }
-            }
-            if(mainInterface.graphMode==2){
-                game2.graphMode=2;
-                game2.txtGraph=mainInterface.selectedGraph;
-                game2.currentGraph=(chromaticManager.calculate(mainInterface.selectedGraph));
-            }
-            if(mainInterface.graphMode==3){
-                game2.graphMode=3;
-                game2.myVertices=mainInterface.selectedVertices;
-                game2.myEdges=mainInterface.selectedEdges;
-                game2.currentGraph=(chromaticManager.calculate(mainInterface.selectedVertices,mainInterface.selectedEdges));
-            }
+            game2.graphMode=mainInterface.graphMode;
+            game2.selectedSize=mainInterface.selectedSize;
+            game2.textFieldVertices.setText(Integer.toString(mainInterface.selectedVertices));
+            game2.textFieldEdges.setText(Integer.toString(mainInterface.selectedEdges));
+            game2.myGraph=mainInterface.selectedGraph;
             game2.gamemode=mainInterface.gameMode;
             game2.setSize(mainInterface.getSize().width,mainInterface.getSize().height);
+            game2.setNewGraph();
             game2.setGraph();
         });
     }

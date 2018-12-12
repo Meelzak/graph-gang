@@ -16,6 +16,7 @@ import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 public class Game2 {
     //Regions
@@ -72,11 +73,11 @@ public class Game2 {
     private ListView listView = new ListView();
 
     private HBox textFieldHBox = new HBox();
-    private TextField textFieldVertices = new TextField();
-    private TextField textFieldEdges = new TextField();
+    public TextField textFieldVertices = new TextField();
+    public TextField textFieldEdges = new TextField();
     private Button buttonTextfield = new Button("Submit");
     private Button submit2 = new Button("Submit");
-    private String myGraph="";
+    public String myGraph="";
     private Timeline timer;
 
     private EventHandler graphHandeler;
@@ -91,15 +92,15 @@ public class Game2 {
     private VBox vBoxHint2 = new VBox();
     private VBox vBoxHint3 = new VBox();
     //add Buttons
-    private Button hintButton1 = new Button("1");
-    private Button hintButton2 = new Button("2");
-    private Button hintButton3 = new Button("3");
-    private Button hintButton4 = new Button("4");
-    private Button hintButton5 = new Button("5");
-    private Button hintButton6 = new Button("6");
-    private Button hintButton7 = new Button("7");
-    private Button hintButton8 = new Button("8");
-    private Button hintButton9 = new Button("9");
+    private Button hintButton1 = new Button("Level One");
+    private Button hintButton2 = new Button("Level One");
+    private Button hintButton3 = new Button("Level One");
+    private Button hintButton4 = new Button("Level Two");
+    private Button hintButton5 = new Button("Level Two");
+    private Button hintButton6 = new Button("Level Two");
+    private Button hintButton7 = new Button("Level Three");
+    private Button hintButton8 = new Button("Level Three");
+    private Button hintButton9 = new Button("Level Three");
 
     //Display Stuff
     private ChromaticManager chromaticManager;
@@ -112,6 +113,7 @@ public class Game2 {
     public int selectedSize=0;
     private int timing=0;
 
+    public static ScheduledThreadPoolExecutor threadPoolExecutor = new ScheduledThreadPoolExecutor(2);
 
     private Starter starter;
     //Booleans
@@ -461,6 +463,7 @@ public class Game2 {
             canvasStackPane.getChildren().removeAll(leftVBox);
         });
         left1HintButton.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
+            System.out.println(currentGraph.getCNumber());
             stackPane.getChildren().addAll(hintMenuStack,backPane);
         });
         left2Button.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
@@ -547,6 +550,8 @@ public class Game2 {
         });
         newGamemodebutton1.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             gamemode=1;
+            setNewGraph();
+            setDisplay(currentGraph);
             stackPane.getChildren().removeAll(newGamemodeHBox,backPane);
         });
         newGamemodebutton2.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
@@ -563,49 +568,69 @@ public class Game2 {
         });
         gameEndButton.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             stackPane.getChildren().removeAll(gameEndStackPane);
+            setNewGraph();
             setDisplay(currentGraph);
         });
 
         hintButton1.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             giveHint(1);
-            hintButton1.setMouseTransparent(true);
-            stackPane.getChildren().removeAll(hintMenuStack,backPane);
+            hintButtonClick(hintButton1);
         });
         hintButton2.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             giveHint(2);
-            hintButton2.setMouseTransparent(true);
-            stackPane.getChildren().removeAll(hintMenuStack,backPane);
+            hintButtonClick(hintButton2);
         });
         hintButton3.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             giveHint(3);
-            hintButton3.setMouseTransparent(true);
-            stackPane.getChildren().removeAll(hintMenuStack,backPane);
+            hintButtonClick(hintButton3);
         });
         hintButton4.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
-            giveHint(1);
-            hintButton4.setMouseTransparent(true);
-            stackPane.getChildren().removeAll(hintMenuStack,backPane);
+            giveHint(4);
+            hintButtonClick(hintButton4);
         });
         hintButton5.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
-            giveHint(1);
-            hintButton5.setMouseTransparent(true);
-            stackPane.getChildren().removeAll(hintMenuStack,backPane);
+            giveHint(5);
+            hintButtonClick(hintButton5);
         });
         hintButton6.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
-            giveHint(1);
-            hintButton6.setMouseTransparent(true);
-            stackPane.getChildren().removeAll(hintMenuStack,backPane);
+            giveHint(6);
+            hintButtonClick(hintButton6);
+        });
+        hintButton7.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
+            giveHint(7);
+            hintButtonClick(hintButton7);
+        });
+        hintButton8.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
+            giveHint(8);
+            hintButtonClick(hintButton8);
         });
         hintButton9.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             giveHint(9);
-            hintButton2.setMouseTransparent(true);
-            stackPane.getChildren().removeAll(hintMenuStack,backPane);
+            hintButtonClick(hintButton9);
         });
 
     }
     private void setDisplay(Graph graph){
-        upper2Label.setText("");
+
         if(currentGraph!=null) {
+            resetHintButtons();
+            int v=graph.getVertices();
+            if(v<=10){
+                Parameters.maxPushOf=30;
+            }
+            if(10<v&&v<=20){
+                Parameters.maxPushOf=20;
+            }
+            if(20<v&&v<=30){
+                Parameters.maxPushOf=10;
+            }
+            if(30<v&&v<=40){
+                Parameters.maxPushOf=5;
+            }
+            if(v>40){
+                Parameters.maxPushOf=3;
+            }
+            upper2Label.setText("");
 
             if (timer != null) {
                 timer.stop();
@@ -748,7 +773,7 @@ public class Game2 {
         stackPane.getChildren().add(gameEndStackPane);
         System.out.println("TOP");
     }
-    private void setNewGraph() {
+    public void setNewGraph() {
 	//CalculateScore.resetHints();
         Random random = new Random();
         if (graphMode == 1) {
@@ -776,6 +801,11 @@ public class Game2 {
 
             }
         }
+
+        threadPoolExecutor.execute(() -> {
+            NewForce newForce = new NewForce();
+            currentGraph.setCNumer(newForce.doNewForce(currentGraph,currentGraph.getUpperBound(),currentGraph.getLowerBound()));
+        });
     }
 	
 public void giveHint(int hintModeChosen) {
@@ -854,7 +884,28 @@ public void giveHint(int hintModeChosen) {
 			  CalculateScore.hintNineUsed = true;
 		  }
     }
-
+    private void resetHintButtons(){
+        rHintButton(hintButton1);
+        rHintButton(hintButton2);
+        rHintButton(hintButton3);
+        rHintButton(hintButton4);
+        rHintButton(hintButton5);
+        rHintButton(hintButton6);
+        rHintButton(hintButton7);
+        rHintButton(hintButton8);
+        rHintButton(hintButton9);
+    }
+    private void rHintButton(Button button){
+        button.getStyleClass().remove("closedButton");
+        button.getStyleClass().add("chooseButtons");
+        button.setMouseTransparent(false);
+    }
+    public void hintButtonClick(Button button){
+        button.setMouseTransparent(true);
+        button.getStyleClass().removeAll("chooseButtons");
+        button.getStyleClass().add("closedButton");
+        stackPane.getChildren().removeAll(hintMenuStack,backPane);
+    }
 	
     public void finished(){
         System.out.println(coloredRight(currentGraph));
