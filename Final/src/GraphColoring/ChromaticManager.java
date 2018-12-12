@@ -1,7 +1,8 @@
 package GraphColoring;
 /**
- * Author:
- * Cavid Karca
+ * Short summary:
+ * This class manages all the graphs and algorithms to calculate and generate them.
+ * It will set the lower and upper bound, and the chromatic number.
  */
 import java.io.File;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ public class ChromaticManager{
     private Powell powell;
     private NewForce newForce;
     public ChromaticManager(String path){
-        //Manages all the Graphs and Algorithms to calculate and Generate them
+        //create class instances of the classes that are used to calculate:
         reader = new Reader(path);
         bk = new Bk();
         powell = new Powell();
@@ -22,6 +23,7 @@ public class ChromaticManager{
         generator = new Generator();
         files = new ArrayList();
 
+        //add files to an ArrayList of Strings:
         File file = new File(path);
         String[] f = file.list();
         for(int i=0;i<f.length;i++){
@@ -34,6 +36,8 @@ public class ChromaticManager{
     public Graph calculate(String filename){
         // Returns the Colored graph filename
         Graph graph = reader.read(filename);
+        
+        //will calculate the upperbound, lowerbound and chromatic number, and then set their values
         int upper=powell.doPowell(graph);
         int lower=bk.doBK(graph);
         //int c = newForce.doNewForce(graph, upper, lower);
@@ -43,8 +47,10 @@ public class ChromaticManager{
         return graph;
     }
     public Graph calculate(int vertices,int edges){
-        //Returns a random Graph by generator
+        //Returns a random Graph made by a generator
         Graph graph = generator.GenerateGraph(vertices, edges);
+        
+        //will calculate the upperbound, lowerbound and chromatic number, and then set their values
         int upper=powell.doPowell(graph);
         int lower=bk.doBK(graph);
         //int c = newForce.doNewForce(graph, upper, lower);
