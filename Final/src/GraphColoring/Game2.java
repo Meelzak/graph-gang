@@ -790,7 +790,7 @@ public class Game2 {
         stackPane.getChildren().add(gameEndStackPane);
         System.out.println("TOP");
     }
-    private void setNewGraph() {
+    public void setNewGraph() {
             //method to call when player wants a new level
 	resetHints();
         Random random = new Random();
