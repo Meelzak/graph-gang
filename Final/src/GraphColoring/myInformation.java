@@ -1,7 +1,11 @@
 package GraphColoring;
+/*
+* Short summary:
+* This class contains al lot of information for other classes, such as sizes for the GUI.
+*/
+
 
 import javafx.scene.paint.Color;
-
 import java.awt.*;
 
 public class myInformation {
