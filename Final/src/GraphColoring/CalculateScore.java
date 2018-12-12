@@ -16,9 +16,10 @@ public double score = 100; //this will be in percent
 
 	public String giveScore() {
 		calculate();
-		resetHints(); //so, for the next game, the hints will be not-used again
+		//resetHints(); //so, for the next game, the hints will be not-used again
 		return Integer.toString((int) score);
 	}
+	//calculates the score and subtracts points when hints are used
 	public void calculate() {
 		if(hintOneUsed) {
 			score = (score/10 * 9.5);
@@ -48,19 +49,6 @@ public double score = 100; //this will be in percent
 			score = (score/10 * 5.0);
 		}
 	}
-	
-	public static void resetHints() {//use this whenever there's a new graph, or whenever a new game is started!
-		hintOneUsed = false;
-		hintTwoUsed = false;
-		hintThreeUsed = false;
-		hintFourUsed = false;
-		hintFiveUsed = false;
-		hintSixUsed = false;
-		hintSevenUsed = false;
-		hintEightUsed = false;
-		hintNineUsed = false;
-		GameMode.hint4 = false;
-		GameMode.hint9 = false;
-	}
-	
+	//I put the resethints method in game2 since all hintbuttons needed to set the mousetransparancy to false
+
 }

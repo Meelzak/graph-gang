@@ -113,16 +113,17 @@ public class Game2 {
     private int timing=0;
 
 
+    //object of the starter class
     private Starter starter;
-    //Booleans
-    public BooleanProperty booleanProperty= new SimpleBooleanProperty(false);
 
-    //-------------------------------------------------------------------------------------
+
+    //Constructor that uses the information of the starter class
     public Game2(Starter starter){
         chromaticManager = starter.chromaticManager;
         this.starter=starter;
     }
 
+    //creates a scene
     public Scene giveScene(){
         builder();
         setSize(myInformation.startDimension.width,myInformation.startDimension.height);
@@ -136,6 +137,7 @@ public class Game2 {
 
     }
 
+    //initializes all labels and buttons
     private void builder(){
         //Objects
         //Left
@@ -163,6 +165,7 @@ public class Game2 {
         canvas.setPickOnBounds(true);
         canvas.getGraphicsContext2D().setLineWidth(2.5);
     }
+    //styles all labels and buttons with the Style.css class
     private void styling(){
         canvasStackPane.getStyleClass().add("canvasStackPane");
 
@@ -226,6 +229,7 @@ public class Game2 {
         vBoxHint3.setAlignment(Pos.CENTER);
         hintMenu.setAlignment(Pos.CENTER);
     }
+    //sets the size of all objects
     public void setSize(double width, double height){
         double topLaneHeight=height/100*myInformation.upperToDownPercent;
         double bottomLaneHeight=height-topLaneHeight;
@@ -412,6 +416,7 @@ public class Game2 {
         vBoxHint3.setSpacing(height/20);
 
     }
+    //puts the labels buttons into layouts
     private void insert(){
         leftVBox.getChildren().addAll(left1HintButton,left2Button,left3Button,left4Button,left5Button,leftRestLabel);
         upperHBox.getChildren().addAll(upperLeftButton,upper1Label,upper2Label,upper3Label,upperRestLabel);//upperBoundLabel should not be visible since no text added to it
@@ -439,6 +444,7 @@ public class Game2 {
         hintMenuStack.getChildren().add(hintMenu);
 
     }
+    //actionslisteners of all objects
     private void listen(){
         //new Size Listeners
         scene.widthProperty().addListener((observable, oldValue, newValue) -> {
@@ -616,6 +622,7 @@ public class Game2 {
         });
 
     }
+    //timer for certain gamemodes
     private void setDisplay(Graph graph){
         upper2Label.setText("");
         if(currentGraph!=null) {
@@ -682,6 +689,7 @@ public class Game2 {
         }
 
     }
+    //creates new dots
     public void newDot(Dot dot,boolean colored){
         if(colored){
             canvas.getGraphicsContext2D().setLineWidth(2);
@@ -699,6 +707,7 @@ public class Game2 {
             }
         }
     }
+
     public Dot findNewDot(){
         ArrayList<Dot> myList = currentGraph.getList();
         for(int i=0;i<myList.size();i++){
@@ -708,14 +717,18 @@ public class Game2 {
         }
         return null;
     }
+    //sets new graph when asked for
     public void setGraph(){
         setDisplay(currentGraph);
     }
+    //clears the old graph
     public void clear(){
         canvas.getGraphicsContext2D().clearRect(canvas.getWidth(),canvas.getHeight(),1,1);
         pane.getChildren().clear();
     }
+    //prints the dots
     public void printDot(Dot dot,boolean colored){
+        //if gameMode = 3 only print 1 dot
         if(gamemode==3){
             return;
         }
@@ -740,6 +753,7 @@ public class Game2 {
         	}
         }
     }
+    //checks if user completed the game
     public boolean coloredRight(Graph graph){
         ArrayList<Dot> list = graph.getList();
         for(int i=0;i<list.size();i++){
@@ -757,12 +771,14 @@ public class Game2 {
         if(timer!=null){ timer.stop();}
         return true;
     }
+    //game ends when out of time
     private void timerUp(){
         stackPane.getChildren().add(gameEndStackPane);
         System.out.println("TOP");
     }
+    //method to call when player wants a new level
     private void setNewGraph() {
-	CalculateScore.resetHints();
+	resetHints();
         Random random = new Random();
         if (graphMode == 1) {
             if (selectedSize == 1) {
@@ -790,8 +806,9 @@ public class Game2 {
             }
         }
     }
-	
-public void giveHint(int hintModeChosen) {
+
+    //sets the hints
+    public void giveHint(int hintModeChosen) {
     	canvasStackPane.getChildren().removeAll(leftVBox);
         
      	if (hintModeChosen==1) {//give upper bound - level 1
@@ -860,7 +877,7 @@ public void giveHint(int hintModeChosen) {
 			   }
 			   CalculateScore.hintSevenUsed = true;
 		  }
-		  
+		  //STILL HAS TO BE IMPLEMENTED
 		  if (hintModeChosen ==8) {//show coloured edges - level 3
 			  CalculateScore.hintEightUsed = true;
 		  }
@@ -871,12 +888,38 @@ public void giveHint(int hintModeChosen) {
 		  }
     }
 
-	
+    //resets all hints when a new level starts
+    public void resetHints() {//use this whenever there's a new graph, or whenever a new game is started!
+        CalculateScore.hintOneUsed = false;
+        CalculateScore.hintTwoUsed = false;
+        CalculateScore.hintThreeUsed = false;
+        CalculateScore.hintFourUsed = false;
+        CalculateScore.hintFiveUsed = false;
+        CalculateScore.hintSixUsed = false;
+        CalculateScore.hintSevenUsed = false;
+        CalculateScore.hintEightUsed = false;
+        CalculateScore.hintNineUsed = false;
+        hintButton1.setMouseTransparent(false);
+        hintButton2.setMouseTransparent(false);
+        hintButton3.setMouseTransparent(false);
+        hintButton4.setMouseTransparent(false);
+        hintButton5.setMouseTransparent(false);
+        hintButton6.setMouseTransparent(false);
+        hintButton7.setMouseTransparent(false);
+        hintButton8.setMouseTransparent(false);
+        hintButton9.setMouseTransparent(false);
+        hint4 = false;
+        hint9 = false;
+    }
+
+
+
+    //method to check if user completes the level
     public void finished(){
         System.out.println(coloredRight(currentGraph));
 	CalculateScore score = new CalculateScore();
         System.out.println(score.giveScore() + "%");
-	CalculateScore.resetHints();
+	resetHints();
 	//should be displayed in the score window when the game is finished
     }
 }
