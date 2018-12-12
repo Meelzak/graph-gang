@@ -31,7 +31,7 @@ public class Game2 {
     private BetterScene scene;
     //Objects
     private Button left1HintButton;
-    public boolean hint3 = false;
+    public boolean hint4 = false;
     public boolean hint9 = false;
     private Button left2Button;
     private Button left3Button;
@@ -115,16 +115,17 @@ public class Game2 {
 
     public static ScheduledThreadPoolExecutor threadPoolExecutor = new ScheduledThreadPoolExecutor(2);
 
+    //object of the starter class
     private Starter starter;
-    //Booleans
-    public BooleanProperty booleanProperty= new SimpleBooleanProperty(false);
 
-    //-------------------------------------------------------------------------------------
+
+    //Constructor that uses the information of the starter class
     public Game2(Starter starter){
         chromaticManager = starter.chromaticManager;
         this.starter=starter;
     }
 
+    //creates a scene
     public Scene giveScene(){
         builder();
         setSize(myInformation.startDimension.width,myInformation.startDimension.height);
@@ -138,6 +139,7 @@ public class Game2 {
 
     }
 
+    //initializes all labels and buttons
     private void builder(){
         //Objects
         //Left
@@ -165,6 +167,7 @@ public class Game2 {
         canvas.setPickOnBounds(true);
         canvas.getGraphicsContext2D().setLineWidth(2.5);
     }
+    //styles all labels and buttons with the Style.css class
     private void styling(){
         canvasStackPane.getStyleClass().add("canvasStackPane");
 
@@ -228,6 +231,7 @@ public class Game2 {
         vBoxHint3.setAlignment(Pos.CENTER);
         hintMenu.setAlignment(Pos.CENTER);
     }
+    //sets the size of all objects
     public void setSize(double width, double height){
         double topLaneHeight=height/100*myInformation.upperToDownPercent;
         double bottomLaneHeight=height-topLaneHeight;
@@ -414,6 +418,7 @@ public class Game2 {
         vBoxHint3.setSpacing(height/20);
 
     }
+    //puts the labels buttons into layouts
     private void insert(){
         leftVBox.getChildren().addAll(left1HintButton,left2Button,left3Button,left4Button,left5Button,leftRestLabel);
         upperHBox.getChildren().addAll(upperLeftButton,upper1Label,upper2Label,upper3Label,upperRestLabel);//upperBoundLabel should not be visible since no text added to it
@@ -441,6 +446,7 @@ public class Game2 {
         hintMenuStack.getChildren().add(hintMenu);
 
     }
+    //actionslisteners of all objects
     private void listen(){
         //new Size Listeners
         scene.widthProperty().addListener((observable, oldValue, newValue) -> {
@@ -572,6 +578,7 @@ public class Game2 {
             setDisplay(currentGraph);
         });
 
+        //action listeners for the hintbuttons and call the giveHint method
         hintButton1.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             giveHint(1);
             hintButtonClick(hintButton1);
@@ -604,12 +611,14 @@ public class Game2 {
             giveHint(8);
             hintButtonClick(hintButton8);
         });
+
         hintButton9.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             giveHint(9);
             hintButtonClick(hintButton9);
         });
 
     }
+    //timer for certain gamemodes
     private void setDisplay(Graph graph){
 
         if(currentGraph!=null) {
@@ -694,6 +703,7 @@ public class Game2 {
         }
 
     }
+    //creates new dots
     public void newDot(Dot dot,boolean colored){
         if(colored){
             canvas.getGraphicsContext2D().setLineWidth(2);
@@ -711,6 +721,7 @@ public class Game2 {
             }
         }
     }
+
     public Dot findNewDot(){
         ArrayList<Dot> myList = currentGraph.getList();
         for(int i=0;i<myList.size();i++){
@@ -720,14 +731,18 @@ public class Game2 {
         }
         return null;
     }
+    //sets new graph when asked for
     public void setGraph(){
         setDisplay(currentGraph);
     }
+    //clears the old graph
     public void clear(){
         canvas.getGraphicsContext2D().clearRect(canvas.getWidth(),canvas.getHeight(),1,1);
         pane.getChildren().clear();
     }
+    //prints the dots
     public void printDot(Dot dot,boolean colored){
+        //if gameMode = 3 only print 1 dot
         if(gamemode==3){
             return;
         }
@@ -752,6 +767,7 @@ public class Game2 {
         	}
         }
     }
+    //checks if user completed the game
     public boolean coloredRight(Graph graph){
         ArrayList<Dot> list = graph.getList();
         for(int i=0;i<list.size();i++){
@@ -769,12 +785,14 @@ public class Game2 {
         if(timer!=null){ timer.stop();}
         return true;
     }
+    //game ends when out of time
     private void timerUp(){
         stackPane.getChildren().add(gameEndStackPane);
         System.out.println("TOP");
     }
-    public void setNewGraph() {
-	//CalculateScore.resetHints();
+    private void setNewGraph() {
+            //method to call when player wants a new level
+	resetHints();
         Random random = new Random();
         if (graphMode == 1) {
             if (selectedSize == 1) {
@@ -807,30 +825,37 @@ public class Game2 {
             currentGraph.setCNumer(newForce.doNewForce(currentGraph,currentGraph.getUpperBound(),currentGraph.getLowerBound()));
         });
     }
-	
-public void giveHint(int hintModeChosen) {
+
+    //sets the hints
+    public void giveHint(int hintModeChosen) {
     	canvasStackPane.getChildren().removeAll(leftVBox);
         
-     	if(hintModeChosen==1) {//give upper bound - level 1
+     	if (hintModeChosen==1) {//give upper bound - level 1
              upper2Label.setText("UpperBound: " + Integer.toString(currentGraph.getUpperBound()));
-             CalculateScore.hintOneUsed = true;
+             CalculateScore.hintTwoUsed = true;
          }
         
-     	if (hintModeChosen==2) {//give chromatic number - level 1
-     		 upper2Label.setText("Chromatic number: " + Integer.toString(currentGraph.getCNumber()));
-     		 CalculateScore.hintFourUsed = true;
+     	if (hintModeChosen==2) {//give lower bound - level 1
+     		upper2Label.setText("LowerBound: " + Integer.toString(currentGraph.getLowerBound())) ;
+     		CalculateScore.hintThreeUsed = true;
      	}
      	
-         if (hintModeChosen==3) {//give possible colours - level 1
-        	 hint3 = true;
-             CalculateScore.hintThreeUsed = true;
+     	
+     	if (hintModeChosen==3) {//give chromatic number - level 1
+     		 upper2Label.setText("Chromatic number: " + Integer.toString(currentGraph.getCNumber()));
+     		 CalculateScore.hintThreeUsed = true;
+     	}
+     	
+         if (hintModeChosen==4) {//give possible colours - level 1
+        	 hint4 = true;
+             CalculateScore.hintFourUsed = true;
          }
          
-		 if(hintModeChosen ==4){//most connected vertix - level 2
+		 if(hintModeChosen ==5){//most connected vertex - level 2
 			 int maximumConnections = 0;
 			  Dot mostConnections = new Dot();
 			  ArrayList<Dot> dots = (ArrayList<Dot>) currentGraph.getList().clone();
-			        
+			  //checks for every dot the amount of connections
 			  for(int i =0;i<dots.size();i++){
 				  Dot currentDot = (Dot) dots.get(i);
 			      int currentConnections = currentDot.getNrOfConnections();
@@ -840,11 +865,12 @@ public void giveHint(int hintModeChosen) {
 			          }
 			   }
 			   mostConnections.markedAsHint();
-			   CalculateScore.hintFourUsed = true;
+			   CalculateScore.hintFiveUsed = true;
 		  }
 		 
-		 if (hintModeChosen==5){//show if a new colour should be used - level 2
+		 if (hintModeChosen==6){//show if a new colour should be used - level 2
              ArrayList<Dot> dots = (ArrayList<Dot>) currentGraph.getList().clone();
+             //checks for every uncoloured vertex if the dots adjacent to it have all possible colours already chosen by the player
              for (int i = 0; i<dots.size();i++){
                  int p = 0;
                  if (dots.get(i).coloredAs==null){
@@ -853,34 +879,30 @@ public void giveHint(int hintModeChosen) {
                          if (colorsUsers.contains(connections.get(j).coloredAs)){
                            p++;
                          }
+                         //this means that there is an uncoloured dot where all adjacent dots have an already used colour
                          if (p==connections.size()){
                              upper3Label.setText("Add a new colour");
                          }
                      }
                  }
              }
-             CalculateScore.hintFiveUsed = true;
+             CalculateScore.hintSixUsed = true;
          }
 		 
-		  if(hintModeChosen ==6) {//biggest clique - level 2
+		  if(hintModeChosen ==7) {//biggest clique - level 3
 			   ArrayList<Dot> maximumClique = (ArrayList<Dot>) Bk.getMaximumClique().clone();
 			   for (int i = 0; i< maximumClique.size(); i++) {
 				   maximumClique.get(i).markedAsSecondHint();
 			   }
-			   CalculateScore.hintSixUsed = true;
+			   CalculateScore.hintSevenUsed = true;
 		  }
-		  
-		  if (hintModeChosen ==7) {//show edges that are connected to vertix - level 3
-			  CalculateScore.hintSevenUsed = true;
-		  }
-		  
+		  //STILL HAS TO BE IMPLEMENTED
 		  if (hintModeChosen ==8) {//show coloured edges - level 3
-			  CalculateScore.hintSevenUsed = true;
 			  CalculateScore.hintEightUsed = true;
 		  }
 		  
-		  if (hintModeChosen ==9) {//tells you if you can use a colour during the whole game - level 3
-			  hint9=true;
+		  if (hintModeChosen ==9) {//show if a colour can be used
+			  hint9 = true;
 			  CalculateScore.hintNineUsed = true;
 		  }
     }
@@ -906,11 +928,29 @@ public void giveHint(int hintModeChosen) {
         button.getStyleClass().add("closedButton");
         stackPane.getChildren().removeAll(hintMenuStack,backPane);
     }
-	
+    //resets all hints when a new level starts
+    public void resetHints() {//use this whenever there's a new graph, or whenever a new game is started!
+        CalculateScore.hintOneUsed = false;
+        CalculateScore.hintTwoUsed = false;
+        CalculateScore.hintThreeUsed = false;
+        CalculateScore.hintFourUsed = false;
+        CalculateScore.hintFiveUsed = false;
+        CalculateScore.hintSixUsed = false;
+        CalculateScore.hintSevenUsed = false;
+        CalculateScore.hintEightUsed = false;
+        CalculateScore.hintNineUsed = false;
+        hint4 = false;
+        hint9 = false;
+    }
+
+
+
+    //method to check if user completes the level
     public void finished(){
         System.out.println(coloredRight(currentGraph));
 	CalculateScore score = new CalculateScore();
         System.out.println(score.giveScore() + "%");
+	resetHints();
 	//should be displayed in the score window when the game is finished
     }
 }
