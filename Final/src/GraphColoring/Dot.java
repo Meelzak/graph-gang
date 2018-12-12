@@ -79,7 +79,7 @@ public class Dot extends Electron {
     	return list.size();
     }
     
-    public void setContent(int c){//the content will be the number of the vertix
+    public void setContent(int c){//the vertix can get content, if the user gives it to it
         content = c;
     }
     public int giveContent(){ return content; }//returns the content of the vertix
