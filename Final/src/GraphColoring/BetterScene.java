@@ -1,7 +1,7 @@
 package GraphColoring;
 /*
 * Short summary:
-* This is the class that inherets the scene, and adds a Parent and Dimension as parameters
+* This is the class that inherits the scene, and adds a Parent and Dimension as parameters
 */
 
 import javafx.scene.Parent;

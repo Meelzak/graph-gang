@@ -17,12 +17,12 @@ public class Electron extends StackPane {
             Random random = new Random();
             int x= random.nextInt(2);
             if(x==1){
-                vector.unten=2;
-                vector.oben=2;
+                vector.down=2;
+                vector.top=2;
                 vector.length=Math.sqrt(8);
             }else{
-                vector.unten=-3;
-                vector.oben=1;
+                vector.down=-3;
+                vector.top=1;
                 vector.length=Math.sqrt(10);
             }
         }
@@ -109,7 +109,7 @@ public class Electron extends StackPane {
         }
 
 
-        Position positionNew = new Position(position.x-finalVector.oben,position.y-finalVector.unten);
+        Position positionNew = new Position(position.x-finalVector.top,position.y-finalVector.down);
 
         return positionNew;
 

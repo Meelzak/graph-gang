@@ -76,6 +76,7 @@ public class MainInterface {
     }
 
 
+    //sets the scene
     public Scene getScene(){
         textFieldVertices.setPromptText("Vertices");
         textFieldEdges.setPromptText("Edges");
@@ -89,6 +90,7 @@ public class MainInterface {
         return scene;
     }
 
+    //styles the buttons with the style.css
     private void styling(){
         //Region
         stackPaneMain.getStyleClass().add("stackPaneMain");
@@ -121,6 +123,7 @@ public class MainInterface {
 
 
     }
+    //adds everything in layouts
     private void connect(){
         vBoxLeft.getChildren().addAll(buttonLeft1,buttonLeft2,buttonLeft3);
         buttonRight1StackPane.getChildren().add(buttonRight1);
@@ -141,6 +144,7 @@ public class MainInterface {
         buttonRight3HBox.getChildren().addAll(textFieldVertices,textFieldEdges,buttonTextfield);
         enterStackPane.getChildren().add(enter);
     }
+    //sets the size of the objects
     private void setSize(double width,double height){
         double topHeight=height/100*myInformation.topToBottomPercent;
         double bottomHeigth=height-topHeight;
@@ -231,6 +235,7 @@ public class MainInterface {
 
         buttonHelp.setMinSize(width/100*myInformation.ButtonHelpWidthPercent,topHeight/100*myInformation.ButtonHelpHeightPercent);
     }
+    //listeners for certain objects
     private void listen(){
         buttonListen();
         //new Size Listeners
@@ -306,6 +311,7 @@ public class MainInterface {
         );
 
     }
+    //listeners for buttons
     private void buttonListen(){
         //buttons
         buttonLeft1.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
@@ -404,6 +410,7 @@ public class MainInterface {
             buttonRight2.getStyleClass().add("buttonNormal");
         });
     }
+    //sets the size of the scene
     public Dimension getSize(){
         Dimension d = new Dimension();
         d.setSize(scene.getWidth(),scene.getHeight());

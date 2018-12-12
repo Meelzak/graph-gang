@@ -1,26 +1,27 @@
 package GraphColoring;
 
 public class Vector {
-    public double oben;
-    public double unten;
+
+    public double top;
+    public double down;
     public double length;
-    public Vector(double oben,double unten){
-        this.oben=oben;
-        this.unten=unten;
+    public Vector(double top,double down){
+        this.top=top;
+        this.down=down;
     }
     //show 1 to 2
     public Vector(Position p1,Position p2){
-        oben=p2.x-p1.x;
-        unten=p2.y-p1.y;
-        length= Math.sqrt(this.oben*this.oben+this.unten*this.unten);
+        top=p2.x-p1.x;
+        down=p2.y-p1.y;
+        length= Math.sqrt(this.top*this.top+this.down*this.down);
     }
     public void multiply(double multiplier){
-        oben=oben*multiplier;
-        unten=unten*multiplier;
+        top=top*multiplier;
+        down=down*multiplier;
 
     }
     public void add(Vector vector){
-        this.oben=this.oben+vector.oben;
-        this.unten=this.unten+vector.unten;
+        this.top=this.top+vector.top;
+        this.down=this.down+vector.down;
     }
 }
