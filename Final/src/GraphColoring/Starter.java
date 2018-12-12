@@ -25,7 +25,6 @@ public class Starter extends Application{
         stage.setScene(scene);
         stage.show();
 
-
     }
     public ArrayList giveGraphs(){
         return chromaticManager.listFiles();
