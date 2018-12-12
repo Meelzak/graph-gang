@@ -43,7 +43,7 @@ public class Game2 {
     private Label upperLeftButton;
 
     private Label upper1Label;
-    private Label upper2Label;
+    public Label upper2Label;
     private Label upper3Label;
     private Label upperRestLabel;
     //New GameMode Button
@@ -740,9 +740,8 @@ public class Game2 {
         canvas.getGraphicsContext2D().clearRect(canvas.getWidth(),canvas.getHeight(),1,1);
         pane.getChildren().clear();
     }
-    //prints the dots
+    //gives edges a colour for hint 8
     public void printDot(Dot dot,boolean colored){
-        //if gameMode = 3 only print 1 dot
         if(gamemode==3){
             return;
         }

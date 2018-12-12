@@ -223,6 +223,9 @@ public class Dot extends Electron {
     }
 
     public void checkIfAvailable(){
+        if (game2.upper2Label.getText().equals("Color not available")){
+            game2.upper2Label.setText("");
+        }
         if(game2.hint4==false&&game2.hint9==false){
             mainSetColor();
         }else{
@@ -241,6 +244,7 @@ public class Dot extends Electron {
                 if (notAvailableColors.get(i)==coloredAs){
                     System.out.println("Color not available"); //this should exactly happen in game but I'm not used to css so I don't know how that works
                     colorAvailable=false;
+                    game2.upper2Label.setText("Color not available");
                     game2.hint4=false;
                 }
             }

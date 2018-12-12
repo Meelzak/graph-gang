@@ -5,6 +5,7 @@ package GraphColoring;
  */
 import java.util.ArrayList;
 public class Graph{
+    //saves all the parameters of the graph
     private int edges;
     private int vertices;
     private int upperBound=-1;
