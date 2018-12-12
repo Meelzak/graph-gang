@@ -1,4 +1,5 @@
-* {
+*
+{
     -fx-color-normal: rgba(88,139,174, 0.50);
     -fx-color-normal-hover: rgba(194, 156, 178, 0.70);
     -fx-color-normal-clicked: rgba(194, 156, 178, 0.90);
