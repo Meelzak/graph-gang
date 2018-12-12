@@ -722,6 +722,7 @@ public class Game2 {
         }
     }
 
+    //goes to the array that contains all dots
     public Dot findNewDot(){
         ArrayList<Dot> myList = currentGraph.getList();
         for(int i=0;i<myList.size();i++){

@@ -13,7 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import java.awt.*;
-
+//All the basic stuff from the GUI
 public class MainInterface {
     //Regions
     //Main
