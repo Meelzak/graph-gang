@@ -15,6 +15,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -115,6 +117,9 @@ public class Game2 {
     private HBox gameWinHBox = new HBox();
     private Button gameWinButton1 = new Button("Try Again");
     private Button gameWinButton2 = new Button("Close Game");
+
+    private HBox hBoxWin = new HBox();
+    private VBox vBoxWin = new VBox();
 
     //Display Stuff
     private ChromaticManager chromaticManager;
@@ -463,7 +468,8 @@ public class Game2 {
         //new Graph
         newGraphHBox.getChildren().addAll(newGraphButtonYes,newGraphButtonNo);
         gameWinHBox.getChildren().addAll(gameWinButton1,gameWinButton2);
-        gameWinStackPane.getChildren().add(gameWinHBox);
+        vBoxWin.getChildren().addAll(hBoxWin,gameWinHBox);
+        gameWinStackPane.getChildren().add(vBoxWin);
 
 	//add objects to Hboxes, Vboxes etc
         sMBHBox.getChildren().addAll(smallButton,middleButton,bigButton);
@@ -475,6 +481,7 @@ public class Game2 {
         vBoxHint2.getChildren().addAll(hintButton4,hintButton5,hintButton6);
         vBoxHint3.getChildren().addAll(hintButton7,hintButton8,hintButton9);
         hintMenu.getChildren().addAll(vBoxHint,vBoxHint2,vBoxHint3);
+
         hintMenuStack.getChildren().add(hintMenu);
 
     }
@@ -1012,6 +1019,10 @@ public class Game2 {
     //method to check if user completes the level
     public void finished(){
         if(coloredRight(currentGraph)==true){
+            //String image = System.getProperty("user.dir")+"/src/GraphColoring/kittencoin.gif";
+            //ImageView viewer = new ImageView();
+            //viewer.setImage(new Image(image));
+            //hBoxWin.getChildren().add(viewer);
             stackPane.getChildren().add(gameWinStackPane);
         }else{
             if(gamemode==3){
