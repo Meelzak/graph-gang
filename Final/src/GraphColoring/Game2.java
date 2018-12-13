@@ -100,15 +100,15 @@ public class Game2 {
     private VBox vBoxHint2 = new VBox();
     private VBox vBoxHint3 = new VBox();
     //add Buttons
-    private Button hintButton1 = new Button("Level One");
-    private Button hintButton2 = new Button("Level One");
-    private Button hintButton3 = new Button("Level One");
-    private Button hintButton4 = new Button("Level Two");
-    private Button hintButton5 = new Button("Level Two");
-    private Button hintButton6 = new Button("Level Two");
-    private Button hintButton7 = new Button("Level Three");
-    private Button hintButton8 = new Button("Level Three");
-    private Button hintButton9 = new Button("Level Three");
+    private Button hintButton1 = new Button("Upper bound");
+    private Button hintButton2 = new Button("Lower bound");
+    private Button hintButton3 = new Button("Chromatic number");
+    private Button hintButton4 = new Button("One time check");
+    private Button hintButton5 = new Button("Most connected");
+    private Button hintButton6 = new Button("New colour?");
+    private Button hintButton7 = new Button("Biggest clique");
+    private Button hintButton8 = new Button("Coloured edges");
+    private Button hintButton9 = new Button("Forever checking");
 
     //Display Stuff
     private ChromaticManager chromaticManager;
