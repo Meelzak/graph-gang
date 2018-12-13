@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Starter extends Application{
-    public ChromaticManager chromaticManager = new ChromaticManager(System.getProperty("user.dir")+"/src/GraphColoring/Graphs");
+    public ChromaticManager chromaticManager = new ChromaticManager(System.getProperty("user.dir")+"/Graphs");
     private MainInterface mainInterface = new MainInterface(this);
     private Game2 game2 = new Game2(this);
     private Scene scene;

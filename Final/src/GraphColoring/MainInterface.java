@@ -105,7 +105,7 @@ public class MainInterface {
 
     //styles the buttons with the style.css
     public void test(){
-        File file = new File(System.getProperty("user.dir")+"/src/GraphColoring/intro.mp4");
+        File file = new File("intro.mp4");
         String MEDIA_URL = file.toURI().toString();
         MediaPlayer player = new MediaPlayer(new Media(MEDIA_URL));
         MediaView view = new MediaView(player);
