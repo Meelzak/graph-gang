@@ -747,6 +747,13 @@ public class Game2 {
                     printDot(list.get(i), true);
                     printDot(list.get(i), false);
                 }
+		int p = currentGraph.getCNumber();
+                if (p==-1) {
+                	finishedButtonClick(left5Button);
+                }
+                else {
+                	rFinishedButton(left5Button);
+                }
             }));
             timeline.setCycleCount(Parameters.trys);
             timeline.play();
@@ -1014,6 +1021,17 @@ public class Game2 {
     	if (gamemode ==3) {
     		this.score = this.score - (10 * (currentGraph.getCNumber() -set.size()));
     	}
+    }
+	
+   private void rFinishedButton(Button button){
+        button.getStyleClass().remove("closedButton");
+        button.getStyleClass().add("leftButton");
+    }
+    //a finishedbutton can not be used now
+    public void finishedButtonClick(Button button){
+        button.setMouseTransparent(true);
+        button.getStyleClass().removeAll("leftButton");
+        button.getStyleClass().add("closedButton");
     }
     
     //method to check if user completes the level
