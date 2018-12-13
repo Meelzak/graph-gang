@@ -547,7 +547,9 @@ public class Game2 {
             setDisplay(currentGraph);
         });
         listView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            myGraph=newValue.toString();
+            if(newValue!=null){
+                myGraph=newValue.toString();
+            }
         });
         submit2.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             stackPane.getChildren().removeAll(listViewVBox,backPane);
@@ -641,10 +643,10 @@ public class Game2 {
                 Parameters.maxPushOf=10;
             }
             if(30<v&&v<=40){
-                Parameters.maxPushOf=5;
+                Parameters.maxPushOf=8;
             }
             if(v>40){
-                Parameters.maxPushOf=3;
+                Parameters.maxPushOf=6;
             }
             upper1Label.setText("");
             upper2Label.setText("");
@@ -708,7 +710,7 @@ public class Game2 {
             timeline.setCycleCount(Parameters.trys);
             timeline.play();
             if (gamemode == 3) {
-                list.get(1).getChildren().add(list.get(1).hBox);
+                list.get(0).getChildren().add(list.get(0).hBox);
             }
         }
 
@@ -793,11 +795,10 @@ public class Game2 {
             }
             set.add(list.get(i).coloredAs);
         }
-        if(gamemode==1||gamemode==3){
+        if(gamemode==1){
             return graph.getCNumber()==set.size();
-        }else{
-            return graph.getUpperBound()>=set.size();
         }
+        return true;
     }
     //game ends when out of time
     private void timerUp(){
@@ -833,7 +834,6 @@ public class Game2 {
 
             }
         }
-
         threadPoolExecutor.execute(() -> {
             NewForce newForce = new NewForce();
             currentGraph.setCNumer(newForce.doNewForce(currentGraph,currentGraph.getUpperBound(),currentGraph.getLowerBound()));
