@@ -19,9 +19,9 @@ public static boolean hintNineUsed = false; //says if you can use colours for th
 public double score = 100; //score is in percent
 
 	//this can give the score (as a String) to another class, after it's calculated:
-	public String giveScore() {
+	public int giveScore() {
 		calculate();
-		return Integer.toString((int) score);
+		return (int) score;
 	}
 	//calculates the score and subtracts points when hints are used
 	//it can never be lower than 0, and when you use more hints, the score gets lower and lower
