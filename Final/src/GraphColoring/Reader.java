@@ -1,4 +1,9 @@
 package GraphColoring;
+/*
+* Short summary:
+* This class reads files and makes them into graphs.
+*/
+
 /**
  * Author:
  * Cavid Karca
@@ -11,7 +16,6 @@ import java.util.ArrayList;
 public class Reader{
     private final String path;
     public Reader(String path){
-        //Reads in Files and gives you Graphs
         this.path=path;
     }
     public Graph read(String filename){
