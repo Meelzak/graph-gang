@@ -329,6 +329,10 @@ public class MainInterface {
     //listeners for buttons
     private void buttonListen(){
         //buttons
+    	buttonLeft1.addEventHandler(MouseEvent.MOUSE_ENTERED, event-> {
+    		buttonLeft1.setText("Rules: \nColour the graph with as few colours as possible. \nYou can only finish when you got that amount. ");
+    	});
+    	
         buttonLeft1.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             gameMode=1;
             buttonLeft1.getStyleClass().removeAll("buttonNormal");
@@ -342,6 +346,15 @@ public class MainInterface {
                 finished.setValue(true);
             }
         });
+        
+        buttonLeft1.addEventHandler(MouseEvent.MOUSE_EXITED, event-> {
+        	buttonLeft1.setText("To the bitter End");
+        });
+        
+        buttonLeft2.addEventHandler(MouseEvent.MOUSE_ENTERED, event->{
+        	buttonLeft2.setText("Rules: \nColour the graph in the fixed amount of time.\nColour the graph with as few colours as possible.");
+        });
+        
         buttonLeft2.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             gameMode=2;
             buttonLeft2.getStyleClass().removeAll("buttonNormal");
@@ -355,6 +368,15 @@ public class MainInterface {
                 finished.setValue(true);
             }
         });
+        
+        buttonLeft2.addEventHandler(MouseEvent.MOUSE_EXITED, event->{
+        	buttonLeft2.setText("Best upperbound in Time");
+        });
+        
+        buttonLeft3.addEventHandler(MouseEvent.MOUSE_ENTERED, event->{
+        	buttonLeft3.setText("Rules: \nYou can only colour the vertix given to you.\nYou can never colour a vertix again.\nColour the graph with as few colours as possible. ");
+        });
+        
         buttonLeft3.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             gameMode=3;
             buttonLeft3.getStyleClass().removeAll("buttonNormal");
@@ -369,7 +391,10 @@ public class MainInterface {
             }
         });
 
-
+        buttonLeft3.addEventHandler(MouseEvent.MOUSE_EXITED, event->{
+        	buttonLeft3.setText("Random Order");
+        });
+        
         buttonRight1.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             graphMode=1;
             buttonRight1.getStyleClass().removeAll("buttonNormal");
