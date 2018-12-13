@@ -1,4 +1,9 @@
 package GraphColoring;
+/*
+* Short summary:
+* The generator class generates random graphs and saves it as a file, for when a user wants to create their own graph.
+*/
+
 /**
  * Author:
  * Cavid Karca
