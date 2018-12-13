@@ -9,6 +9,7 @@ import javafx.animation.Timeline;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -18,10 +19,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
+
+import java.sql.Time;
+import java.util.*;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 public class Game2 {
@@ -110,6 +110,11 @@ public class Game2 {
     private Button hintButton7 = new Button("Biggest clique");
     private Button hintButton8 = new Button("Coloured edges");
     private Button hintButton9 = new Button("Forever checking");
+
+    private StackPane gameWinStackPane  = new StackPane();
+    private HBox gameWinHBox = new HBox();
+    private Button gameWinButton1 = new Button("Try Again");
+    private Button gameWinButton2 = new Button("Close Game");
 
     //Display Stuff
     private ChromaticManager chromaticManager;
@@ -236,7 +241,13 @@ public class Game2 {
         hintButton8.getStyleClass().add("chooseButtons");
         hintButton9.getStyleClass().add("chooseButtons");
 
+        gameWinButton1.getStyleClass().add("chooseButtons");
+        gameWinButton2.getStyleClass().add("chooseButtons");
+        gameWinStackPane.getStyleClass().add("newGraphModeHBox2");
 
+
+        gameWinHBox.setAlignment(Pos.CENTER);
+        gameWinHBox.setSpacing(30);
         vBoxHint.setAlignment(Pos.CENTER);
         vBoxHint2.setAlignment(Pos.CENTER);
         vBoxHint3.setAlignment(Pos.CENTER);
@@ -415,6 +426,17 @@ public class Game2 {
         hintButton9.setMinSize(nBWidth,nBHeight);
         hintButton9.setMaxSize(nBWidth,nBHeight);
 
+        gameWinStackPane.setMinSize(width, height);
+        gameWinStackPane.setMaxSize(width, height);
+
+        gameWinButton1.setMinSize(nBWidth,nBHeight);
+        gameWinButton1.setMaxSize(nBWidth,nBHeight);
+
+        gameWinButton2.setMinSize(nBWidth,nBHeight);
+        gameWinButton2.setMaxSize(nBWidth,nBHeight);
+
+        gameWinHBox.setMinSize(width,height/4);
+        gameWinHBox.setMaxSize(width,height/4);
 
         hintMenuStack.setMinSize(width, height);
         hintMenuStack.setMaxSize(width, height);
@@ -440,6 +462,8 @@ public class Game2 {
         newGraphModeHBox.getChildren().addAll(newGraphModebutton1,newGraphModebutton2,newGraphModebutton3);
         //new Graph
         newGraphHBox.getChildren().addAll(newGraphButtonYes,newGraphButtonNo);
+        gameWinHBox.getChildren().addAll(gameWinButton1,gameWinButton2);
+        gameWinStackPane.getChildren().add(gameWinHBox);
 
 	//add objects to Hboxes, Vboxes etc
         sMBHBox.getChildren().addAll(smallButton,middleButton,bigButton);
@@ -584,7 +608,7 @@ public class Game2 {
             setDisplay(currentGraph);
         });
         gameEndButton.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
-            stackPane.getChildren().removeAll(gameEndStackPane);
+            stackPane.getChildren().removeAll(gameEndStackPane,gameWinStackPane);
             setNewGraph();
             setDisplay(currentGraph);
         });
@@ -628,6 +652,14 @@ public class Game2 {
             hintButtonClick(hintButton9);
         });
 
+        gameWinButton2.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
+            System.exit(0);
+        });
+        gameWinButton1.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
+            stackPane.getChildren().removeAll(gameEndStackPane,gameWinStackPane);
+            setNewGraph();
+            setDisplay(currentGraph);
+        });
     }
     //timer for certain gamemodes
     private void setDisplay(Graph graph){
@@ -977,6 +1009,23 @@ public class Game2 {
     
     //method to check if user completes the level
     public void finished(){
+        if(coloredRight(currentGraph)==true){
+            stackPane.getChildren().add(gameWinStackPane);
+        }else{
+            if(gamemode==3){
+                stackPane.getChildren().add(gameEndStackPane);
+            }else{
+                String string = upper2Label.getText();
+                upper2Label.setText("Nononono");
+                Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3),event -> {
+
+                }));
+                timeline.play();
+                timeline.setOnFinished(event -> {
+                    upper2Label.setText(string);
+                });
+            }
+        }
     	scoresForGameModes();
         System.out.println(coloredRight(currentGraph));
         System.out.println(Integer.toString(score) + "%");

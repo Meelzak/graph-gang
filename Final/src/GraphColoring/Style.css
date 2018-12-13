@@ -66,6 +66,11 @@
     -fx-spacing: 15;
     -fx-alignment: center;
 }
+.newGraphModeHBox2{
+    -fx-background-color: -fx-color-background-menue;
+    -fx-spacing: 15;
+    -fx-alignment: BOTTOM_CENTER;
+}
 
 .newGraphHBox{
     -fx-background-color: -fx-color-background-menue;
