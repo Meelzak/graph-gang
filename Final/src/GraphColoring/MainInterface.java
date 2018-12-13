@@ -1,4 +1,8 @@
 package GraphColoring;
+/*
+* Short summary:
+* This class contains everything, such as buttons, for the main menu, when you start the application.
+*/
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -14,9 +18,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-
 import java.awt.*;
-//All the basic stuff from the GUI
+
 public class MainInterface {
     //Regions
     //Main
