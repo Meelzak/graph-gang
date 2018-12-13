@@ -745,6 +745,8 @@ public class Game2 {
             timeline.play();
             if (gamemode == 3) {
                 list.get(0).getChildren().add(list.get(0).hBox);
+		hintButtonClick(hintButton5);
+              	hintButtonClick(hintButton7);
             }
         }
 
