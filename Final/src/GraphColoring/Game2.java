@@ -1,4 +1,9 @@
 package GraphColoring;
+/* Short summary:
+* This is the class that contains everything to play the game.
+* Such as: buttons, hints, the in-game menu, etx.
+*/
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.property.BooleanProperty;
@@ -13,7 +18,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
@@ -82,12 +86,14 @@ public class Game2 {
     public String myGraph="";
     private Timeline timer;
 
+    //for when the game ends:
     private EventHandler graphHandeler;
     private VBox gameEnd = new VBox();
     private Button gameEndButton = new Button("Try Again");
     private StackPane gameEndTop = new StackPane();
     private StackPane gameEndStackPane = new StackPane();
 
+    //for the hintmenu:
     private StackPane hintMenuStack = new StackPane();
     private HBox hintMenu = new HBox();
     private VBox vBoxHint = new VBox();
@@ -215,6 +221,7 @@ public class Game2 {
         gameEndTop.getStyleClass().add("gameEndTop");
         gameEndStackPane.getStyleClass().add("gameEndStackPane");
 
+	//hintmenu and hintbuttons:
         hintMenuStack.getStyleClass().add("newGraphModeHBox");
 
         hintButton1.getStyleClass().add("chooseButtons");
@@ -308,10 +315,6 @@ public class Game2 {
         upper3Label.setMinSize(labelTopWidth,topLaneHeight);
         upper3Label.setMaxSize(labelTopWidth,topLaneHeight);
         countTopLabels++;
-
-
-
-
 
         double restwidth=width-upperLeftButton.getWidth()-(labelTopWidth*countTopLabels);
         upperRestLabel.setMinSize(restwidth,topLaneHeight);
@@ -436,6 +439,7 @@ public class Game2 {
         //new Graph
         newGraphHBox.getChildren().addAll(newGraphButtonYes,newGraphButtonNo);
 
+	//add objects to Hboxes, Vboxes etc
         sMBHBox.getChildren().addAll(smallButton,middleButton,bigButton);
         textFieldHBox.getChildren().addAll(textFieldVertices,textFieldEdges,buttonTextfield);
         listViewVBox.getChildren().addAll(listView,submit2);
@@ -556,6 +560,7 @@ public class Game2 {
             graphMode=3;
             setNewGraph();
         });
+	//new gamemode buttons:
         newGamemodebutton1.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             gamemode=1;
             setNewGraph();
@@ -648,6 +653,7 @@ public class Game2 {
             if (timer != null) {
                 timer.stop();
             }
+	    //for the second gamemode (fixed time):
             if (gamemode == 2) {
                 double time = myInformation.gameMode2Time;
                 timing = (int) time;
@@ -745,9 +751,9 @@ public class Game2 {
         canvas.getGraphicsContext2D().clearRect(canvas.getWidth(),canvas.getHeight(),1,1);
         pane.getChildren().clear();
     }
-    //gives edges a colour for hint 8
+    //gives edges a colour for hint 8, and otherwise colours them pink, so the user knows to which vertices a vertix is connected
     public void printDot(Dot dot,boolean colored){
-        if(gamemode==3){
+        if(gamemode==3){//does not work for gamemode3
             return;
         }
         else {
@@ -838,28 +844,28 @@ public class Game2 {
     public void giveHint(int hintModeChosen) {
     	canvasStackPane.getChildren().removeAll(leftVBox);
         
-     	if (hintModeChosen==1) {//give upper bound - level 1
+     	if (hintModeChosen==1) {//give upper bound - level 1 hint
              upper1Label.setText("UpperBound: " + Integer.toString(currentGraph.getUpperBound()));
              CalculateScore.hintTwoUsed = true;
          }
         
-     	if (hintModeChosen==2) {//give lower bound - level 1
+     	if (hintModeChosen==2) {//give lower bound - level 1 hint
      		upper1Label.setText("LowerBound: " + Integer.toString(currentGraph.getLowerBound())) ;
      		CalculateScore.hintThreeUsed = true;
      	}
      	
      	
-     	if (hintModeChosen==3) {//give chromatic number - level 1
+     	if (hintModeChosen==3) {//give chromatic number - level 1 hint
      		 upper1Label.setText("Chromatic number: " + Integer.toString(currentGraph.getCNumber()));
      		 CalculateScore.hintThreeUsed = true;
      	}
      	
-         if (hintModeChosen==4) {//give possible colours - level 1
+         if (hintModeChosen==4) {//give possible colours - level 2 hint
         	 hint4 = true;
              CalculateScore.hintFourUsed = true;
          }
          
-		 if(hintModeChosen ==5){//most connected vertex - level 2
+		 if(hintModeChosen ==5){//most connected vertex - level 2 hint
 			 int maximumConnections = 0;
 			  Dot mostConnections = new Dot();
 			  ArrayList<Dot> dots = (ArrayList<Dot>) currentGraph.getList().clone();
@@ -876,7 +882,7 @@ public class Game2 {
 			   CalculateScore.hintFiveUsed = true;
 		  }
 		 
-		 if (hintModeChosen==6){//show if a new colour should be used - level 2
+		 if (hintModeChosen==6){//show if a new colour should be used - level 2 hint
              ArrayList<Dot> dots = (ArrayList<Dot>) currentGraph.getList().clone();
              //checks for every uncoloured vertex if the dots adjacent to it have all possible colours already chosen by the player
              for (int i = 0; i<dots.size();i++){
@@ -897,23 +903,23 @@ public class Game2 {
              CalculateScore.hintSixUsed = true;
          }
 		 
-		  if(hintModeChosen ==7) {//biggest clique - level 3
+		  if(hintModeChosen ==7) {//biggest clique - level 3 hint
 			   ArrayList<Dot> maximumClique = (ArrayList<Dot>) Bk.getMaximumClique().clone();
 			   for (int i = 0; i< maximumClique.size(); i++) {
 				   maximumClique.get(i).markedAsSecondHint();
 			   }
 			   CalculateScore.hintSevenUsed = true;
 		  }
-		  //STILL HAS TO BE IMPLEMENTED
-		  if (hintModeChosen ==8) {//show coloured edges - level 3
+		  if (hintModeChosen ==8) {//show coloured edges - level 3 hint
 			  CalculateScore.hintEightUsed = true;
 		  }
 		  
-		  if (hintModeChosen ==9) {//show if a colour can be used
+		  if (hintModeChosen ==9) {//show if a colour can be used - level 3 hint
 			  hint9 = true;
 			  CalculateScore.hintNineUsed = true;
 		  }
     }
+    //reset the hintButtons, for when a new game is started
     private void resetHintButtons(){
         rHintButton(hintButton1);
         rHintButton(hintButton2);
@@ -925,11 +931,13 @@ public class Game2 {
         rHintButton(hintButton8);
         rHintButton(hintButton9);
     }
+    //let the hintbuttons be clickable again
     private void rHintButton(Button button){
         button.getStyleClass().remove("closedButton");
         button.getStyleClass().add("chooseButtons");
         button.setMouseTransparent(false);
     }
+    //a hintbutton can not be used twice
     public void hintButtonClick(Button button){
         button.setMouseTransparent(true);
         button.getStyleClass().removeAll("chooseButtons");
@@ -950,8 +958,6 @@ public class Game2 {
         hint4 = false;
         hint9 = false;
     }
-
-
 
     //method to check if user completes the level
     public void finished(){
