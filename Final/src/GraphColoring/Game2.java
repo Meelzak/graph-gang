@@ -15,7 +15,9 @@ import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 public class Game2 {
@@ -171,10 +173,10 @@ public class Game2 {
     private void styling(){
         canvasStackPane.getStyleClass().add("canvasStackPane");
 
-        upper1Label.getStyleClass().add("myLabelTest");
-        upper2Label.getStyleClass().add("myLabelTest1");
+        upper1Label.getStyleClass().add("myLabelTest2");
+        upper2Label.getStyleClass().add("myLabelTest2");
         upper3Label.getStyleClass().add("myLabelTest2");
-        upperRestLabel.getStyleClass().add("myLabelTest");
+        upperRestLabel.getStyleClass().add("myLabelTest2");
         upperHBox.getStyleClass().add("upperHBox");
         leftVBox.getStyleClass().add("leftVBox");
         upperLeftButton.getStyleClass().add("upperLeftButton");
@@ -639,17 +641,19 @@ public class Game2 {
             if(v>40){
                 Parameters.maxPushOf=3;
             }
+            upper1Label.setText("");
             upper2Label.setText("");
+            upper3Label.setText("");
 
             if (timer != null) {
                 timer.stop();
             }
             if (gamemode == 2) {
-                double time = 15;
+                double time = myInformation.gameMode2Time;
                 timing = (int) time;
                 timer = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
                     timing--;
-                    upper2Label.setText(Double.toString(timing));
+                    upper3Label.setText("Time: "+Double.toString(timing));
                 }));
 
                 timer.setCycleCount((int) time);
@@ -770,6 +774,7 @@ public class Game2 {
     //checks if user completed the game
     public boolean coloredRight(Graph graph){
         ArrayList<Dot> list = graph.getList();
+        Set set = new HashSet();
         for(int i=0;i<list.size();i++){
             if(list.get(i).coloredAs==null){
                 return false;
@@ -780,10 +785,13 @@ public class Game2 {
                     return false;
                 }
             }
+            set.add(list.get(i).coloredAs);
         }
-
-        if(timer!=null){ timer.stop();}
-        return true;
+        if(gamemode==1||gamemode==3){
+            return graph.getCNumber()==set.size();
+        }else{
+            return graph.getUpperBound()>=set.size();
+        }
     }
     //game ends when out of time
     private void timerUp(){
@@ -831,18 +839,18 @@ public class Game2 {
     	canvasStackPane.getChildren().removeAll(leftVBox);
         
      	if (hintModeChosen==1) {//give upper bound - level 1
-             upper2Label.setText("UpperBound: " + Integer.toString(currentGraph.getUpperBound()));
+             upper1Label.setText("UpperBound: " + Integer.toString(currentGraph.getUpperBound()));
              CalculateScore.hintTwoUsed = true;
          }
         
      	if (hintModeChosen==2) {//give lower bound - level 1
-     		upper2Label.setText("LowerBound: " + Integer.toString(currentGraph.getLowerBound())) ;
+     		upper1Label.setText("LowerBound: " + Integer.toString(currentGraph.getLowerBound())) ;
      		CalculateScore.hintThreeUsed = true;
      	}
      	
      	
      	if (hintModeChosen==3) {//give chromatic number - level 1
-     		 upper2Label.setText("Chromatic number: " + Integer.toString(currentGraph.getCNumber()));
+     		 upper1Label.setText("Chromatic number: " + Integer.toString(currentGraph.getCNumber()));
      		 CalculateScore.hintThreeUsed = true;
      	}
      	
@@ -881,7 +889,7 @@ public class Game2 {
                          }
                          //this means that there is an uncoloured dot where all adjacent dots have an already used colour
                          if (p==connections.size()){
-                             upper3Label.setText("Add a new colour");
+                             upper1Label.setText("Add a new colour");
                          }
                      }
                  }

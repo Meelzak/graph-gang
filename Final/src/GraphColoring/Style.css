@@ -14,14 +14,9 @@
     -fx-background-repeat: stretch;
     -fx-background-size: cover;
 }
-.myLabelTest{
-
-}
-.myLabelTest1{
-
-}
 .myLabelTest2{
-    -fx-font-size: 25;
+    -fx-font-size: 20;
+    -fx-alignment: center;
 }
 .leftVBox{
     -fx-spacing: 3;

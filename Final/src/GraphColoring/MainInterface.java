@@ -1,5 +1,7 @@
 package GraphColoring;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.scene.Scene;
@@ -11,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 import java.awt.*;
 //All the basic stuff from the GUI
@@ -68,7 +71,7 @@ public class MainInterface {
     private TextField textFieldEdges = new TextField();
     private boolean rightFinished=false;
     private StackPane enterStackPane = new StackPane();
-    private Text enter = new Text("Enter");
+    private Text enter = new Text("ENTER");
     //calculateVectors
 //----------------------------------------------------------------------------------------------------------------
     public MainInterface(Starter starter){
@@ -298,6 +301,15 @@ public class MainInterface {
             if(newValue==true){
                 stackPaneMain.getChildren().add(enterStackPane);
             }
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.7),event -> {
+                if(enter.getText()!=""){
+                    enter.setText("");
+                }else{
+                    enter.setText("ENTER");
+                }
+            }));
+            timeline.setCycleCount(-1);
+            timeline.play();
         });
         scene.setOnKeyTyped(keyEvent -> {
             if(keyEvent.getCharacter().equals(" ")&&finished.getValue()){

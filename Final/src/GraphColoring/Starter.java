@@ -1,8 +1,10 @@
 package GraphColoring;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -24,6 +26,9 @@ public class Starter extends Application{
         stage.setTitle("GraphColoring");
         stage.setScene(scene);
         stage.show();
+        stage.setOnCloseRequest(event -> {
+            System.exit(0);
+        });
 
     }
     public ArrayList giveGraphs(){

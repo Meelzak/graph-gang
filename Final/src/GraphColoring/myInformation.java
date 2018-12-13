@@ -11,7 +11,7 @@ import java.awt.*;
 public class myInformation {
     //Game Interface
     public static final double leftButtonsPercent=10;
-    public static final double upperButtonsPercent=15;
+    public static final double upperButtonsPercent=17;
     public static final double upperToDownPercent=4;//insert Upper
     public static final double leftToRightPercent=15;//insert Left
     public static final Dimension startDimension=new Dimension(1400,850);
@@ -25,6 +25,8 @@ public class myInformation {
     public static final double ButtonHelpHeightPercent=90;
     public static final double ButtonHelpWidthPercent=10;
     public static final double ListViewWidthPercent=40;
+
+    public static final double gameMode2Time = 120;
 
     public static final Dimension SmallMiddleBigButtonPercent=new Dimension(20,30);
     public static final Dimension TextfiledPercent=new Dimension(30,30);
