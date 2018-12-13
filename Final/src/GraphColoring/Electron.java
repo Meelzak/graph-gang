@@ -1,16 +1,25 @@
 package GraphColoring;
+/*
+* Short summary:
+* The class Electron, which is used by the Dot class, is important for the force directed graph. 
+* It makes sure that the dots don't overlap, and the graph gets its shape.
+*/
 
 import javafx.scene.layout.StackPane;
-
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Electron extends StackPane {
     public Position position;
+    
+    //first, set the position, and then relocates it using the relocate method
     public void setPosition(Position p){
         this.position=p;
         this.relocate(position.x,position.y);
     }
+    
+    //creates a vector with the position you put in before, and the position of the Dot
+    //after that, calculates what length the vector should be, and then multiply the vector to get that length
     public Vector calculateVector(Dot electron){
         Vector vector= new Vector(this.position,electron.position);
         if(vector.length<=0){
@@ -35,7 +44,8 @@ public class Electron extends StackPane {
         vector.multiply(plannedDistance/vector.length);
         return vector;
     }
-    //needs connected Electron
+    
+    //needs connected Electron, then calculates what the length of the vector using this electron should be, and gives the vector
     public Vector calculateSpring(Dot electron){
         Vector vector= new Vector(this.position,electron.position);
         if(vector.length<=0){
@@ -51,6 +61,9 @@ public class Electron extends StackPane {
         vector.multiply((plannedDistance/vector.length)*-1);
         return vector;
     }
+    
+    //makes sure that the dots are not being pushed outside the border, where the player can't reach them
+    //so it changes the vector so this won't happen
     public Vector borderPush(double witdth,double heigth){
         int i=-1;
         if(this.position.y<0){ i=1; }
@@ -77,6 +90,8 @@ public class Electron extends StackPane {
         vectorTop.add(vectorLeft);
         return vectorTop;
     }
+    
+    //calculates how much the vectors should be adjusted
     private double borderAlgorithm(Vector vector){
         if(vector.length<=0){
             return Parameters.maxPushOfBorder;
@@ -90,9 +105,7 @@ public class Electron extends StackPane {
         return Parameters.maxPushOfBorder-(Parameters.maxPushOfBorder/Parameters.pushOfToBorder*vector.length);
     }
 
-
-
-
+    //calculates the position that should be returned, using the vectors, and then can give it to the other classes
     public Position calculateVectors(ArrayList<Dot> electronArrayList, ArrayList<Dot> connectedElectronsArrayList, double width, double height){
         Vector finalVector = new Vector(0,0);
 

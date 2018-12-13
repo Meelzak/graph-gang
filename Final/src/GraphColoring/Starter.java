@@ -1,11 +1,14 @@
 package GraphColoring;
+/*
+* Short summary:
+* This is the class that starts the application. It creates the stage, and launches it.
+*/
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -15,10 +18,13 @@ public class Starter extends Application{
     private Game2 game2 = new Game2(this);
     private Scene scene;
     private Stage stage;
+    
+    //launches the application:
     public static void main(String[] args){
         launch(args);
     }
     @Override
+    //first, starts with the listener method, then edits the stage (sets the scene and shows the stage)
     public void start(Stage primaryStage) {
         listener();
         stage=primaryStage;
@@ -31,9 +37,11 @@ public class Starter extends Application{
         });
 
     }
+    //gives an arraylist of all the graphs
     public ArrayList giveGraphs(){
         return chromaticManager.listFiles();
     }
+    //adds a listener to the mainInterface, so the game will be started when the user has put in everything in the main menu, and submitted it
     public void listener(){
         mainInterface.sceneFinished.addListener((observable, oldValue, newValue) -> {
             scene=game2.giveScene();
