@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="27007e1f-c877-4946-891b-0a4d78f0b427" name="Default Changelist" comment="" />
+    <list default="true" id="27007e1f-c877-4946-891b-0a4d78f0b427" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,13 +16,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="15" />
-          <entry key="java" value="376" />
+          <entry key="java" value="384" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="15" />
-          <entry key="JAVA" value="376" />
+          <entry key="JAVA" value="384" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -68,8 +70,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GraphColoring/Game2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="453">
-              <caret line="793" column="9" selection-start-line="793" selection-start-column="9" selection-end-line="793" selection-end-column="9" />
+            <state relative-caret-position="232">
+              <caret line="651" column="59" selection-start-line="651" selection-start-column="59" selection-end-line="651" selection-end-column="59" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#5126#6193#0" />
@@ -77,8 +79,8 @@
                 <element signature="e#9400#16809#0" />
                 <element signature="e#16814#18480#0" />
                 <element signature="e#18485#25947#0" />
-                <element signature="e#30361#30362#0" expanded="true" />
-                <element signature="e#30401#30402#0" expanded="true" />
+                <element signature="e#30544#30545#0" expanded="true" />
+                <element signature="e#30584#30585#0" expanded="true" />
                 <element signature="e#30592#31495#0" />
                 <element signature="e#34101#34253#0" />
                 <element signature="e#32285#33862#0" />
@@ -237,10 +239,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1216" />
+    <option name="x" value="132" />
+    <option name="y" value="-12" />
+    <option name="width" value="2882" />
+    <option name="height" value="2026" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -277,7 +279,8 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544668458728" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544712890413" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -361,24 +364,23 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="355034000" />
+    <option name="totallyTimeSpent" value="357630000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1928" y="121" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="66" y="-6" width="1441" height="1013" extended-state="6" />
     <layout>
       <window_info id="Image Layers" order="0" />
       <window_info id="UI Designer" order="1" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="4" sideWeight="0.6703755" visible="true" weight="0.12579957" />
+      <window_info active="true" content_ui="combo" id="Project" order="4" sideWeight="0.6703755" visible="true" weight="0.17064352" />
       <window_info id="Structure" order="5" weight="0.2494577" />
       <window_info id="Favorites" order="6" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.329718" />
       <window_info anchor="bottom" id="Database Changes" order="1" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Find" order="3" weight="0.32993197" />
-      <window_info active="true" anchor="bottom" id="Run" order="4" visible="true" weight="0.2570499" />
+      <window_info anchor="bottom" id="Run" order="4" visible="true" weight="0.26870748" />
       <window_info anchor="bottom" id="Debug" order="5" weight="0.3991323" />
       <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
@@ -603,8 +605,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GraphColoring/Game2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="793" column="9" selection-start-line="793" selection-start-column="9" selection-end-line="793" selection-end-column="9" />
+        <state relative-caret-position="232">
+          <caret line="651" column="59" selection-start-line="651" selection-start-column="59" selection-end-line="651" selection-end-column="59" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#5126#6193#0" />
@@ -612,8 +614,8 @@
             <element signature="e#9400#16809#0" />
             <element signature="e#16814#18480#0" />
             <element signature="e#18485#25947#0" />
-            <element signature="e#30361#30362#0" expanded="true" />
-            <element signature="e#30401#30402#0" expanded="true" />
+            <element signature="e#30544#30545#0" expanded="true" />
+            <element signature="e#30584#30585#0" expanded="true" />
             <element signature="e#30592#31495#0" />
             <element signature="e#34101#34253#0" />
             <element signature="e#32285#33862#0" />

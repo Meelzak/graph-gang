@@ -649,7 +649,7 @@ public class Game2 {
                 timer.stop();
             }
             if (gamemode == 2) {
-                double time = myInformation.gameMode2Time;
+                double time = currentGraph.getVertices()*10;
                 timing = (int) time;
                 timer = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
                     timing--;
