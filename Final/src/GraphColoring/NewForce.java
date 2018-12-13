@@ -3,16 +3,22 @@ package GraphColoring;
 import java.util.ArrayList;
 
 public class NewForce{
+
     public int chromaticNumber;
 
+    //Empty constructor
     public NewForce() {
     }
 
+    //Returns the chromatic number
+    //Gets called in chromatic manager
+    //Returns lowerbound if lowerbound == upperbound
     public int doNewForce(Graph graph, int upperBound, int lowerBound){
         if(lowerBound==upperBound){
             return lowerBound;
         }
         upperBound--;
+        //dF is the boolean function which checks whether two adjacent vertices are same color or no
         while(dF(graph.getList(), upperBound, 0)){
             upperBound--;
             gReset(graph.getList());
@@ -30,6 +36,7 @@ public class NewForce{
                 break;
             }
         }
+        //If none of the adjacent vertices has the same value move to next one and increment the vallue by 1
         if(allColored){
             return true;
         }
@@ -45,7 +52,7 @@ public class NewForce{
         }
         return false;
     }
-
+    //Check is the chromatic number is true or not
     public boolean cNumberTrue(ArrayList<Dot> list,int color){
         for(int i=0;i<list.size();i++){
             if(list.get(i).giveContent()==color){
@@ -54,18 +61,18 @@ public class NewForce{
         }
         return true;
     }
-
+    //clear the values for next dot
     public void gReset(ArrayList<Dot> list){
         for(int i=0;i<list.size();i++){
             list.get(i).setContent(0);
         }
     }
 
-
+    //Manually set the chromatic number
     public void doIt(Graph graph,int startDot,int smallesChrom){
         this.chromaticNumber = smallesChrom;
     }
-
+    //chromatic number getter
     public int getChromaticNumber() {
         return chromaticNumber;
     }
