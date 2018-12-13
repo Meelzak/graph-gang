@@ -45,6 +45,7 @@ public class Game2 {
     private Button left5Button;
     private Label leftRestLabel;
     public static ArrayList<Color> colorsUsers=new ArrayList<>();
+    private Set set = new HashSet();
 
     private Label upperLeftButton;
 
@@ -782,7 +783,7 @@ public class Game2 {
     //checks if user completed the game
     public boolean coloredRight(Graph graph){
         ArrayList<Dot> list = graph.getList();
-        Set set = new HashSet();
+        //Set set = new HashSet();
         for(int i=0;i<list.size();i++){
             if(list.get(i).coloredAs==null){
                 return false;
@@ -958,13 +959,27 @@ public class Game2 {
         hint4 = false;
         hint9 = false;
     }
-
+    //calculate the score according to the gameMode,
+    public void scoresForGameModes() {
+    	CalculateScore myScore = new CalculateScore();
+    	this.score = myScore.giveScore();
+    	if (gamemode == 1) {
+    		return;
+    	}
+    	if (gamemode ==2 ) {
+    		this.score = this.score - (10 * (currentGraph.getCNumber() - set.size()));
+    	}
+    	if (gamemode ==3) {
+    		this.score = this.score - (10 * (currentGraph.getCNumber() -set.size()));
+    	}
+    }
+    
     //method to check if user completes the level
     public void finished(){
+    	scoresForGameModes();
         System.out.println(coloredRight(currentGraph));
-	CalculateScore score = new CalculateScore();
-        System.out.println(score.giveScore() + "%");
-	resetHints();
+        System.out.println(Integer.toString(score) + "%");
+        resetHints();
 	//should be displayed in the score window when the game is finished
     }
 }
