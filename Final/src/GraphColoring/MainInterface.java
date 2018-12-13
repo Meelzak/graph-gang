@@ -7,6 +7,8 @@ package GraphColoring;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.property.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -16,9 +18,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+
 import java.awt.*;
+import java.io.File;
 
 public class MainInterface {
     //Regions
@@ -97,6 +104,20 @@ public class MainInterface {
     }
 
     //styles the buttons with the style.css
+    public void test(){
+        File file = new File(System.getProperty("user.dir")+"/src/GraphColoring/intro.mp4");
+        String MEDIA_URL = file.toURI().toString();
+        MediaPlayer player = new MediaPlayer(new Media(MEDIA_URL));
+        MediaView view = new MediaView(player);
+        stackPaneMain.getChildren().add(view);
+        player.play();
+        player.currentTimeProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue.toSeconds()>5.5){
+                stackPaneMain.getChildren().removeAll(vBoxMain);
+                stackPaneMain.getChildren().add(vBoxMain);
+            }
+        });
+    }
     private void styling(){
         //Region
         stackPaneMain.getStyleClass().add("stackPaneMain");
@@ -141,7 +162,7 @@ public class MainInterface {
         hBoxBottom.getChildren().addAll(vBoxLeft,vBoxRight);
 
         vBoxMain.getChildren().addAll(hBoxTop,hBoxBottom);
-        stackPaneMain.getChildren().add(vBoxMain);
+        //stackPaneMain.getChildren().add(vBoxMain);
 
         //Phase 2 stuff
         buttonRight1HBox.getChildren().addAll(smallButton,middleButton,bigButton);

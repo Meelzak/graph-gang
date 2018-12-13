@@ -31,6 +31,7 @@ public class Starter extends Application{
         scene = mainInterface.getScene();
         stage.setTitle("GraphColoring");
         stage.setScene(scene);
+        mainInterface.test();
         stage.show();
         stage.setOnCloseRequest(event -> {
             System.exit(0);

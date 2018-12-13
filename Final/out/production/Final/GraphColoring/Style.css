@@ -1,8 +1,8 @@
 *
 {
-    -fx-color-normal: rgba(88,139,174, 0.50);
-    -fx-color-normal-hover: rgba(194, 156, 178, 0.70);
-    -fx-color-normal-clicked: rgba(194, 156, 178, 0.90);
+    -fx-color-normal: rgba(138,43,226, 0.60);
+    -fx-color-normal-hover: rgba(138,43,226, 0.80);
+    -fx-color-normal-clicked: rgba(138,43,226, 0.95);
     -fx-color-chooseButton: rgba(255, 255, 255, 0.90);
     -fx-color-chooseButton-hover: rgba(200, 200, 200, 0.90);
     -fx-color-background-menue: rgba(1, 1, 1, 0.50);
@@ -10,7 +10,7 @@
 ;
 }
 .root{
-   -fx-background-image: url("BACKGROUND_BLUE.png");
+   -fx-background-image: url("BACKGROUND.png.png");
     -fx-background-repeat: stretch;
     -fx-background-size: cover;
 }
@@ -110,6 +110,8 @@
 .buttonNormal{
     -fx-background-color: -fx-color-normal;
     -fx-font-size: 30;
+    -fx-text-fill: WHITE;
+
 }
 .buttonNormal:hover{
     -fx-background-color: -fx-color-normal-hover;
@@ -118,6 +120,8 @@
 .buttonClicked{
     -fx-background-color: -fx-color-normal-clicked;
     -fx-font-size: 30;
+    -fx-text-fill: WHITE;
+
 }
 
 .textfield{
