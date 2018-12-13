@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="27007e1f-c877-4946-891b-0a4d78f0b427" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="27007e1f-c877-4946-891b-0a4d78f0b427" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -67,8 +65,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GraphColoring/Game2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="1019" column="80" selection-start-line="1019" selection-start-column="80" selection-end-line="1019" selection-end-column="80" />
+            <state relative-caret-position="226">
+              <caret line="1013" column="14" lean-forward="true" selection-start-line="1013" selection-start-column="14" selection-end-line="1013" selection-end-column="14" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#31009#31010#0" expanded="true" />
@@ -260,7 +258,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544719265306" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544719573922" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RunDashboard">
@@ -345,11 +343,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="364031000" />
+    <option name="totallyTimeSpent" value="364286000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="66" y="-6" width="1441" height="1013" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Image Layers" order="0" />
       <window_info id="UI Designer" order="1" />
@@ -581,8 +578,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GraphColoring/Game2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="1019" column="80" selection-start-line="1019" selection-start-column="80" selection-end-line="1019" selection-end-column="80" />
+        <state relative-caret-position="226">
+          <caret line="1013" column="14" lean-forward="true" selection-start-line="1013" selection-start-column="14" selection-end-line="1013" selection-end-column="14" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#31009#31010#0" expanded="true" />
