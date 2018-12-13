@@ -1,4 +1,9 @@
 package GraphColoring;
+/*
+* Short summary:
+* This is the class where all the information about the graph is stored.
+*/
+
 /**
  * Author:
  * Cavid Karca
@@ -14,7 +19,6 @@ public class Graph{
     private int hints=0;
     private ArrayList<Dot> list;
     public Graph(int vertices,int edges,ArrayList list){
-        //A class were all information of a Graph are safed
         this.edges=edges;
         this.vertices=vertices;
         this.list=(ArrayList)list.clone();
