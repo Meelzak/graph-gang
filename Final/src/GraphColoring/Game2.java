@@ -121,6 +121,7 @@ public class Game2 {
     public int myVertices=0;
     public int selectedSize=0;
     private int timing=0;
+    private int score = 0;
 
     public static ScheduledThreadPoolExecutor threadPoolExecutor = new ScheduledThreadPoolExecutor(2);
 
