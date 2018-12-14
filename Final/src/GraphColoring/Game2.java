@@ -15,6 +15,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -22,6 +23,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.sql.Time;
 import java.util.*;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
@@ -89,6 +91,7 @@ public class Game2 {
     public String myGraph="";
     private Timeline timer;
 
+    private HBox abstand = new HBox();
     //for when the game ends:
     private EventHandler graphHandeler;
     private VBox gameEnd = new VBox();
@@ -120,6 +123,8 @@ public class Game2 {
 
     private HBox hBoxWin = new HBox();
     private VBox vBoxWin = new VBox();
+
+    private ImageView viewer = new ImageView();
 
     //Display Stuff
     private ChromaticManager chromaticManager;
@@ -183,6 +188,9 @@ public class Game2 {
         textFieldEdges.setPromptText("Edges");
         gameEnd.setSpacing(30);
         gameEnd.setAlignment(Pos.CENTER);
+        gameWinStackPane.setAlignment(Pos.CENTER);
+        hBoxWin.setAlignment(Pos.CENTER);
+        hBoxWin.setSpacing(30);
         canvasStackPane.setPickOnBounds(true);
         canvas.setPickOnBounds(true);
         canvas.getGraphicsContext2D().setLineWidth(2.5);
@@ -253,6 +261,7 @@ public class Game2 {
 
         gameWinHBox.setAlignment(Pos.CENTER);
         gameWinHBox.setSpacing(30);
+        vBoxWin.setAlignment(Pos.BASELINE_CENTER);
         vBoxHint.setAlignment(Pos.CENTER);
         vBoxHint2.setAlignment(Pos.CENTER);
         vBoxHint3.setAlignment(Pos.CENTER);
@@ -451,6 +460,7 @@ public class Game2 {
         vBoxHint2.setSpacing(height/20);
         vBoxHint3.setSpacing(height/20);
 
+        abstand.setMinSize(width,height/3);
     }
     //puts the labels buttons into layouts
     private void insert(){
@@ -468,7 +478,8 @@ public class Game2 {
         //new Graph
         newGraphHBox.getChildren().addAll(newGraphButtonYes,newGraphButtonNo);
         gameWinHBox.getChildren().addAll(gameWinButton1,gameWinButton2);
-        vBoxWin.getChildren().addAll(hBoxWin,gameWinHBox);
+        hBoxWin.getChildren().add(viewer);
+        vBoxWin.getChildren().addAll(abstand,hBoxWin,gameWinHBox);
         gameWinStackPane.getChildren().add(vBoxWin);
 
 	//add objects to Hboxes, Vboxes etc
@@ -481,7 +492,6 @@ public class Game2 {
         vBoxHint2.getChildren().addAll(hintButton4,hintButton5,hintButton6);
         vBoxHint3.getChildren().addAll(hintButton7,hintButton8,hintButton9);
         hintMenu.getChildren().addAll(vBoxHint,vBoxHint2,vBoxHint3);
-
         hintMenuStack.getChildren().add(hintMenu);
 
     }
@@ -684,10 +694,10 @@ public class Game2 {
                 Parameters.maxPushOf=10;
             }
             if(30<v&&v<=40){
-                Parameters.maxPushOf=8;
+                Parameters.maxPushOf=9;
             }
             if(v>40){
-                Parameters.maxPushOf=6;
+                Parameters.maxPushOf=8;
             }
             upper1Label.setText("");
             upper2Label.setText("");
@@ -824,6 +834,7 @@ public class Game2 {
     }
     //checks if user completed the game
     public boolean coloredRight(Graph graph){
+        set.clear();
         ArrayList<Dot> list = graph.getList();
         //Set set = new HashSet();
         for(int i=0;i<list.size();i++){
@@ -1019,11 +1030,46 @@ public class Game2 {
     //method to check if user completes the level
     public void finished(){
         if(coloredRight(currentGraph)==true){
-            //String image = System.getProperty("user.dir")+"/src/GraphColoring/kittencoin.gif";
-            //ImageView viewer = new ImageView();
-            //viewer.setImage(new Image(image));
-            //hBoxWin.getChildren().add(viewer);
+            scoresForGameModes();
+            System.out.println(score);
+            hBoxWin.getChildren().clear();
+            viewer.setImage(new Image(new File("src/GraphColoring/kittencoin.gif").toURI().toString()));
+            ImageView viewer2 = new ImageView();
+            viewer2.setImage(new Image(new File("src/GraphColoring/kittencoin.gif").toURI().toString()));
+            ImageView viewer3 = new ImageView();
+            viewer3.setImage(new Image(new File("src/GraphColoring/kittencoin.gif").toURI().toString()));
+            ImageView viewer4 = new ImageView();
+            viewer4.setImage(new Image(new File("src/GraphColoring/kittencoin.gif").toURI().toString()));
+            ImageView viewer5 = new ImageView();
+            viewer5.setImage(new Image(new File("src/GraphColoring/kittencoin.gif").toURI().toString()));
+
+            if(score>=100){
+                hBoxWin.getChildren().addAll(viewer,viewer2,viewer3,viewer4,viewer5);
+            }
+            else if(score >= 90 && score<100){
+                hBoxWin.getChildren().addAll(viewer,viewer2,viewer3,viewer4,viewer5);
+                viewer5.setEffect(new ColorAdjust(0,0,-0.9,0));
+            }
+            else if(score >= 60 && score<90){
+                hBoxWin.getChildren().addAll(viewer,viewer2,viewer3,viewer4,viewer5);
+                viewer5.setEffect(new ColorAdjust(0,0,-0.9,0));
+                viewer4.setEffect(new ColorAdjust(0,0,-0.9,0));
+            }
+            else if(score >= 30 && score<60){
+                hBoxWin.getChildren().addAll(viewer,viewer2,viewer3,viewer4,viewer5);
+                viewer5.setEffect(new ColorAdjust(0,0,-0.9,0));
+                viewer4.setEffect(new ColorAdjust(0,0,-0.9,0));
+                viewer3.setEffect(new ColorAdjust(0,0,-0.9,0));
+            }
+            else if(score<30){
+                hBoxWin.getChildren().addAll(viewer,viewer2,viewer3,viewer4,viewer5);
+                viewer5.setEffect(new ColorAdjust(0,0,-0.9,0));
+                viewer4.setEffect(new ColorAdjust(0,0,-0.9,0));
+                viewer3.setEffect(new ColorAdjust(0,0,-0.9,0));
+                viewer2.setEffect(new ColorAdjust(0,0,-0.9,0));
+            }
             stackPane.getChildren().add(gameWinStackPane);
+            resetHints();
         }else{
             if(gamemode==3){
                 stackPane.getChildren().add(gameEndStackPane);
@@ -1039,10 +1085,6 @@ public class Game2 {
                 });
             }
         }
-    	scoresForGameModes();
-        System.out.println(coloredRight(currentGraph));
-        System.out.println(Integer.toString(score) + "%");
-        resetHints();
 	//should be displayed in the score window when the game is finished
     }
 }

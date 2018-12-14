@@ -165,33 +165,33 @@ public class Dot extends Electron {
         
         button1.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             coloredAs =  Color.YELLOW;
-            checkIfAvailable();
-            //mainSetColor();
+            //checkIfAvailable();
+            mainSetColor();
         });
         button2.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             coloredAs = Color.NAVY;
-            checkIfAvailable();
-            //mainSetColor();
+            //checkIfAvailable();
+            mainSetColor();
         });
         button3.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             coloredAs = Color.CYAN;
-            checkIfAvailable();
-            //mainSetColor();
+            //checkIfAvailable();
+            mainSetColor();
         });
         button4.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             coloredAs = Color.MAROON;
-            checkIfAvailable();
-            //mainSetColor();
+            //checkIfAvailable();
+            mainSetColor();
         });
         button5.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             coloredAs = Color.RED;
-            checkIfAvailable();
-            //mainSetColor();
+            //checkIfAvailable();
+            mainSetColor();
         });
         button6.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
             coloredAs = Color.GREY;
-            checkIfAvailable();
-            //mainSetColor();
+            //checkIfAvailable();
+            mainSetColor();
         });
         
         //for the last two ones, add a colorPicker to the button, so when the user clicks it, an additional menu will appear with more colours:
@@ -201,8 +201,8 @@ public class Dot extends Electron {
         });
         colorPicker.setOnAction(event -> {
             coloredAs=colorPicker.getValue();
-            checkIfAvailable();
-            //mainSetColor();
+            //checkIfAvailable();
+            mainSetColor();
         });
 
     }
@@ -224,18 +224,18 @@ public class Dot extends Electron {
             return;
         }
         //for the first and second game mode:
-            wasClicked=true;
+            this.wasClicked=true;
             for(int i=0;i<list.size();i++){
                 if(!list.get(i).getWasClicked()){
                     list.get(i).setMain();
-                    game2.newDot(this,false);
+                    game2.newDot(list.get(i),false);
                     return;
                 }
             }
             Dot dot = game2.findNewDot();
             if(dot!=null){
                 dot.setMain();
-                game2.newDot(this,false);
+                game2.newDot(dot,false);
                 return;
             }
             game2.finished();
@@ -247,7 +247,6 @@ public class Dot extends Electron {
     public void setMain(){//add the hBox to the Dot and start the newDot method of the game2 class
         this.getChildren().removeAll(hBox);
         this.getChildren().add(hBox);
-        System.out.println("d");
         game2.newDot(this,true);
     }
     public void removeMain(){//remove hBox from the Dot

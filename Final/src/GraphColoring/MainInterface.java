@@ -51,7 +51,7 @@ public class MainInterface {
     private Button buttonRight2 = new Button("Graph from Textfile");
     private Button buttonRight3 = new Button("Create Graph");
     //Help Button
-    private Button buttonHelp = new Button();
+    private Button buttonHelp = new Button("Rules Off");
     private Button buttonTextfield = new Button("Submit");
     //rest
     private int leftOrRigth=1;
@@ -82,6 +82,8 @@ public class MainInterface {
     private boolean rightFinished=false;
     private StackPane enterStackPane = new StackPane();
     private Text enter = new Text("ENTER");
+    private Boolean rules=false;
+    private Boolean b=true;
     //calculateVectors
 //----------------------------------------------------------------------------------------------------------------
     public MainInterface(Starter starter){
@@ -105,6 +107,8 @@ public class MainInterface {
 
     //styles the buttons with the style.css
     public void test(){
+        //stackPaneMain.getChildren().add(vBoxMain);
+        b=true;
         File file = new File(System.getProperty("user.dir")+"/src/GraphColoring/intro.mp4");
         String MEDIA_URL = file.toURI().toString();
         MediaPlayer player = new MediaPlayer(new Media(MEDIA_URL));
@@ -112,7 +116,8 @@ public class MainInterface {
         stackPaneMain.getChildren().add(view);
         player.play();
         player.currentTimeProperty().addListener((observable, oldValue, newValue) -> {
-            if(newValue.toSeconds()>5.5){
+            if(newValue.toSeconds()>5.5 &&b){
+                b=false;
                 stackPaneMain.getChildren().removeAll(vBoxMain);
                 stackPaneMain.getChildren().add(vBoxMain);
             }
@@ -350,8 +355,23 @@ public class MainInterface {
     //listeners for buttons
     private void buttonListen(){
         //buttons
+        buttonHelp.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
+            if(rules){
+                rules=false;
+                buttonHelp.setText("Rules Off");
+                buttonHelp.getStyleClass().clear();
+                buttonHelp.getStyleClass().add("buttonHelp");
+            }else{
+                buttonHelp.setText("Rules On");
+                buttonHelp.getStyleClass().clear();
+                buttonHelp.getStyleClass().add("buttonHelpClicked");
+                rules=true;
+            }
+        });
     	buttonLeft1.addEventHandler(MouseEvent.MOUSE_ENTERED, event-> {
-    		buttonLeft1.setText("Rules: \nColour the graph with as few colours as possible. \nYou can only finish when you got that amount. ");
+    	    if(rules){
+                buttonLeft1.setText("Rules: \nColour the graph with as few colours as possible. \nYou can only finish when you got that amount. ");
+            }
     	});
     	
         buttonLeft1.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
@@ -369,11 +389,15 @@ public class MainInterface {
         });
         
         buttonLeft1.addEventHandler(MouseEvent.MOUSE_EXITED, event-> {
-        	buttonLeft1.setText("To the bitter End");
+            if(rules){
+                buttonLeft1.setText("To the bitter End");
+            }
         });
         
         buttonLeft2.addEventHandler(MouseEvent.MOUSE_ENTERED, event->{
-        	buttonLeft2.setText("Rules: \nColour the graph in the fixed amount of time.\nColour the graph with as few colours as possible.");
+            if(rules){
+                buttonLeft2.setText("Rules: \nColour the graph in the fixed amount of time.\nColour the graph with as few colours as possible.");
+            }
         });
         
         buttonLeft2.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
@@ -391,11 +415,15 @@ public class MainInterface {
         });
         
         buttonLeft2.addEventHandler(MouseEvent.MOUSE_EXITED, event->{
-        	buttonLeft2.setText("Best upperbound in Time");
+            if(rules){
+                buttonLeft2.setText("Best upperbound in Time");
+            }
         });
         
         buttonLeft3.addEventHandler(MouseEvent.MOUSE_ENTERED, event->{
-        	buttonLeft3.setText("Rules: \nYou can only colour the vertix given to you.\nYou can never colour a vertix again.\nColour the graph with as few colours as possible. ");
+            if (rules){
+                buttonLeft3.setText("Rules: \nYou can only colour the vertix given to you.\nYou can never colour a vertix again.\nColour the graph with as few colours as possible. ");
+            }
         });
         
         buttonLeft3.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
@@ -413,7 +441,9 @@ public class MainInterface {
         });
 
         buttonLeft3.addEventHandler(MouseEvent.MOUSE_EXITED, event->{
-        	buttonLeft3.setText("Random Order");
+            if(rules){
+                buttonLeft3.setText("Random Order");
+            }
         });
         
         buttonRight1.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {

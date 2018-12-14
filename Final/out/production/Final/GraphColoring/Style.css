@@ -103,9 +103,18 @@
 }
 .buttonHelp{
     -fx-background-color: -fx-color-normal;
+    -fx-alignment: Center;
+    -fx-font-size: 15;
 }
 .buttonHelp:hover{
     -fx-background-color: -fx-color-normal-hover;
+}
+.buttonHelpClicked{
+    -fx-background-color: -fx-color-normal-clicked;
+    -fx-alignment: Center;
+    -fx-font-size: 15;
+
+
 }
 .buttonNormal{
     -fx-background-color: -fx-color-normal;
@@ -154,6 +163,7 @@
 }
 .enter{
     -fx-font-size: 80;
+    -fx-fill: WHITE;
 }
 .graphButton{
 
